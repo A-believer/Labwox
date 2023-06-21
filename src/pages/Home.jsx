@@ -1,7 +1,11 @@
+import { Banner, Hero } from "../components"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <main className="bg-whitebg">
+        <Hero/>
+        <Banner/>
+    </main>
   )
 }
 

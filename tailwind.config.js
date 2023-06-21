@@ -13,6 +13,7 @@ export default {
       '2xl': '1536px',
     },
     colors: {
+      "clear": "transparent",
       'black': '#000000',
       'blackii': '#212529',
       'blackiii': '#121127',
@@ -36,7 +37,14 @@ export default {
       "aeon": ['Aeonik', "sans-serif"],
       "fair": ["Playfair Display", "serif"]
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "heroBg": "url('/src/assets/heroBg.png')",
+        "heroImg": "url('/src/assets/heroImg.png')",
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+     require('@tailwindcss/forms'),
+  ],
 }

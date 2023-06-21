@@ -6,10 +6,26 @@ import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 const Navbar = () => {
  const [toggle, setToggle] = useState(false)
   const location = useLocation()
+
+  const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5
+    }
+  }
+}
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 }
+}
 
   return (
     <>
@@ -41,26 +57,30 @@ const Navbar = () => {
             {/* Login and Register */}
             <div className="lg:flex hidden justify-between items-center gap-x-7">
               <Link to="/login" className="">Login</Link>
-              <Link to="/register" className="text-white"><Button text="Register" bgColor="orange" /></Link>
+              <Link to="/register" className="text-white"><Button text="Register" bgColor="orange" width="width"/></Link>
             </div>
 
             {/* Mobile NavMenu */}
-            <div className="lg:hidden block transition-all duration-700">
+            <div className="lg:hidden block">
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
                 className={`${toggle ? "h-[12.73px] w-[12.73px]" : "h-[16.67px] w-[24px]"} object-contain lg:hidden block absolute right-[20px] mb-1`}
                 onClick={() => setToggle((prev) => !prev)} />
 
-              {toggle && <ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px]">
+              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px]"
+              variants={container}
+    initial="hidden"
+    animate="show">
               { navLinks.map((link, i) => (
-                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}>
+                <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}
+                variants={item}>
                   <Link to={link.id}>{link.title}</Link>
-                </li>
+                </motion.li>
               ))}
-                <li className="my-[45px]"><Link to="./login">Login</Link></li>
-                <li className="text-white w-full pr-[24px]"><Link to="./register"><Button text="Register" bgColor="orange" /></Link></li>
-            </ul>}
+                <motion.li className="my-[45px]" variants={item}><Link to="./login">Login</Link></motion.li>
+                <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}><Link to="./register"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
+            </motion.ul>}
             </div>
           </div>
         </nav>
