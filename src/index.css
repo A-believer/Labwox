@@ -56,4 +56,19 @@
     @apply rounded-full bg-gradient-to-tr from-blue-500 to-green-500 via-teal-500;
   }
 
+  /* Banner effect */
+  @keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 5s linear infinite;
+}
+/* Banner Effect */
 }

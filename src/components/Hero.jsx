@@ -5,7 +5,7 @@ import arrow from "../assets/arrow.png"
 
 const Hero = () => {
   return (
-    <section className="lg:pt-[90px] pt-[40px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-[30px] lg:flex lg:flex-row flex bg-heroBg bg-contain bg-no-repeat">
+    <section className="lg:pt-[90px]  pt-[40px] lg:pb-[30px] pb-[20px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-[30px] lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px]">
       <div className="pr-[30px] pt-[45px]">
         <p><Header text1="Powering" text2="Research" text3="Capabilities in Africa"/></p>
         <p className=" text-grey my-[23px] w-[89%]">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
@@ -14,7 +14,7 @@ const Hero = () => {
           <Button text="Search" bgColor="orange" width="3/4"/>
         </form>
       </div>
-      <div className="bg-heroImg w-[1000px] h-[580px] bg-cover bg-no-repeat flex flex-col justify-center items-center">
+      <div className="bg-heroImg w-[1000px] h-[580px] bg-cover bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
         {/* Hero Play Button */}
         <p className="w-[171px] h-[171px] rounded-full bg-white flex items-center justify-center justify-self-center relative top-[70px]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[87.87px] h-[87.87px] text-[#444444]">
