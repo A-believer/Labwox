@@ -23,7 +23,7 @@ const Hero = () => {
         </p>
 
         {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[235px] right-[124px] lg:top-[38px] top-[90px]">
+        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[235px] right-[124px] lg:top-[40px] top-[90px]">
           <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" />
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>

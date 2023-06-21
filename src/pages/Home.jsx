@@ -1,10 +1,11 @@
-import { Banner, Hero } from "../components"
+import { Banner, Hero, ProductList } from "../components"
 
 const Home = () => {
   return (
     <main className="bg-whitebg">
         <Hero/>
-        <Banner/>
+      <Banner />
+      <ProductList/>
     </main>
   )
 }
