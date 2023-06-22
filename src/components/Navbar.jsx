@@ -30,7 +30,7 @@ const item = {
   return (
     <>
       <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
-        <nav className="flex justify-between items-center lg:py-[24px] py-[16px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-[30px]">
+        <nav className="flex justify-between items-center lg:py-[24px] py-[16px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/"><img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" /></Link>
           
@@ -46,7 +46,7 @@ const item = {
             </ul>
            
             {/* Cart Icon */}
-            <div className={`items-center ${toggle ? "hidden": "flex"}`}>
+            <div className={`items-center ${toggle ? "hidden": "flex"} lg:mr-0 mr-2`}>
               <div className="flex hover:scale-110">
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[19.93px] h-[20px]" />
                 <p className="relative right-2 w-[11px] h-[11px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
