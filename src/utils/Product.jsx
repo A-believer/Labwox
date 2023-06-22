@@ -32,7 +32,7 @@ const Product = () => {
               <button type="button" className={`text-${item.btnTextColor} bg-${item.btnBgColor} lg:py-[10px] py-[7px] px-[38.5px] lg:px-[39.5px] lg:rounded-[4px] rounded-[3.1px] lg:mb-0 mb-[24px] lg:text-[18px] text-[14px] font-medium lg:leading-[21.6px] leading-[16.8px]`}>Learn More</button>
             </div>
 
-            <div className="lg:w-[433px] w-[348px] lg:h-[415px] h-[333.534px]">
+            <div className="lg:w-[433px] w-[348px] lg:h-[415px] h-[333.534px] lg:mb-0 mb-[48px]">
               <img src={item.imgSrc} alt="product-img" className=" object-contain"/>
             </div>
           </div>
