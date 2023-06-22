@@ -31,7 +31,7 @@ export default {
       'yellow': '#f29b38',
       'yellowii': '#feb616',
       'yellowiii': '#eea400',
-      'yellowbg': '#ed8900',
+      'yellowiv': '#edb900',
     },
     fontFamily: {
       "aeon": ['Aeonik', "sans-serif"],

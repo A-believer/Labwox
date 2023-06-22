@@ -18,6 +18,7 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.5.1",
     "react-marquee-slider": "^1.1.5",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",

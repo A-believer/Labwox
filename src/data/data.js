@@ -60,11 +60,12 @@ export const products = [
   {
   id: 4,
   header: "Photochemical Analysis",
-  bgColor: "yellowbg",
+  bgColor: "yellowiv",
   imgSrc: p4,
-  btnBgColor: "white",
-  btnTextColor: "blackii",
-    textColor: "blackii",
+  btnBgColor: "blackii",
+  btnTextColor: "white",
+  textColor: "blackii",
   subtext: "grey"
   },
 ]
+
