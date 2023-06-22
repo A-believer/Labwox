@@ -10,6 +10,7 @@ const Footer = () => {
       <div>
         <div>
           <div><Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`36px`} f2={`24px`} tColor={`white`}/></div>
+                
           <div className="text-white lg:text-base text-sm leading-[24px]">
             <p className="font-light">© Labworks Limited, all rights reserved. <br />
               Company number: 08433320 <br />
