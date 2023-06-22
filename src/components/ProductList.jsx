@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import Header from "../utils/Header"
 import Product from "../utils/Product";
 

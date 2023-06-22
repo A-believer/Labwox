@@ -17,7 +17,7 @@ const Footer = () => {
               Registered office: 2B Awori Close, Akora Villas off <br />
               Adeniyi Jones, Ikeja, Lagos</p>
             <p className="font-thin">
-              <span><a href="#privacy">Privacy Policy</a></span>  |  <span><a href="#terms">Terms and Conditions</a></span>
+              <span><a href="#privacy">Privacy Policy</a></span>  <span className="mx-4">|</span>  <span><a href="#terms">Terms and Conditions</a></span>
             </p>
           </div>
         </div>

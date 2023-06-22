@@ -60,11 +60,11 @@ export const products = [
   {
   id: 4,
   header: "Photochemical Analysis",
-  bgColor: "yellowiv",
+  bgColor: "black",
   imgSrc: p4,
   btnBgColor: "blackii",
   btnTextColor: "white",
-  textColor: "blackii",
+  textColor: "whiteii",
   subtext: "grey"
   },
 ]

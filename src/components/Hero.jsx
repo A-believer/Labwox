@@ -4,16 +4,16 @@ import arrow from "../assets/arrow.png"
 
 const Hero = () => {
   return (
-    <section className="lg:pt-[97px] pt-[40px] lg:pb-[30px] pb-[20px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-[24px] lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px]">
+       <section className="lg:pt-[97px] pt-[40px] lg:pb-[30px] pb-[20px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-6 lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between">
       <div className="lg:pr-[30px] pr-0 mt-[37px]">
-        <p><Header text1="Powering" text2="Research" text3="Capabilities in Africa" f1={`64px`} f2={`36px`} tColor={`blackii`}/></p>
+        <div><Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`64px`} f2={`36px`} tColor={`blackii`}/></div>
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <form className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
           <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3"/>
           <button type="submit" className="w-1/3 bg-orange lg:text-[18px] lg:leading-[32px] text-[12px] leading-[18px]  rounded-[4px] lg:p-[10px]">Search</button>
         </form>
       </div>
-      <div className="bg-heroImg lg:w-[1000px] w-[400px] lg:mt-0 mt-9 lg:h-[580px] h-[400px] bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
+      <div className="bg-heroImg lg:w-[1000px] w-full lg:mt-0 mt-9 lg:h-screen h-[400px] bg-center bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
         {/* Hero Play Button */}
         <p className="w-[171px] h-[171px] rounded-full bg-white lg:flex hidden items-center justify-center justify-self-center relative top-[35px]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[87.87px] h-[87.87px] text-[#444444]">
@@ -22,7 +22,7 @@ const Hero = () => {
         </p>
 
         {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[235px] right-[135px] lg:top-[75px] top-[105px]">
+        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[240px] right-[122px] lg:top-[68px] top-[108px]">
           <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" />
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>
