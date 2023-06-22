@@ -1,4 +1,3 @@
-
 import Header from "../utils/Header"
 import heroEx from "../assets/heroEx.png"
 import arrow from "../assets/arrow.png"
@@ -7,7 +6,7 @@ const Hero = () => {
   return (
     <section className="lg:pt-[97px] pt-[40px] lg:pb-[30px] pb-[20px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-[24px] lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px]">
       <div className="lg:pr-[30px] pr-0 mt-[37px]">
-        <p><Header text1="Powering" text2="Research" text3="Capabilities in Africa"/></p>
+        <p><Header text1="Powering" text2="Research" text3="Capabilities in Africa" f1={`64px`} f2={`36px`} tColor={`blackii`}/></p>
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <form className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
           <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3"/>
@@ -23,7 +22,7 @@ const Hero = () => {
         </p>
 
         {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[235px] right-[135px] lg:top-[40px] top-[105px]">
+        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[235px] right-[135px] lg:top-[75px] top-[105px]">
           <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" />
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>
