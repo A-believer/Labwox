@@ -1,4 +1,5 @@
-import { Banner, Cta, Hero, Onboarding, ProductList } from "../components"
+import { Banner, Hero, Onboarding, ProductList } from "../components"
+import Cta from "../components"
 
 const Home = () => {
   return (
