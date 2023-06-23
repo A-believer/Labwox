@@ -1,6 +1,7 @@
+
 import Button from "../utils/Button"
 
-const Cta = () => {
+const CTA = () => {
   return (
     <div className="bg-ctaBg bg-contain bg-center lg:px-[160px] px-[16px] lg:py-[167px] pt-[40px] pb-[56px] flex flex-col justify-center items-center">
       <div className="text-center lg:text-[52px] text-[24px] lg:leading-[62.4px] leading-[28.8px] pb-[32px] font-semibold">
@@ -13,4 +14,5 @@ const Cta = () => {
   )
 }
 
-export default Cta
+// eslint-disable-next-line react-refresh/only-export-components
+export default CTA
