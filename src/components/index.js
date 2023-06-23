@@ -1,6 +1,7 @@
 export {default as Banner} from "./Banner.jsx"
 export {default as CoreValues} from "./CoreValues.jsx"
 export {default as CTA} from "./CTA.jsx"
+export {default as Ctaii} from "./Ctaii.jsx"
 export {default as FAQs} from "./FAQs.jsx"
 export {default as Footer} from "./Footer.jsx"
 export {default as Hero} from "./Hero.jsx"
