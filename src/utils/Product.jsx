@@ -1,4 +1,3 @@
-
 import { products } from "../data/data";
 import { motion } from "framer-motion";
 
@@ -29,7 +28,7 @@ const Product = () => {
               <img src={item.imgSrc} alt="product-img" className=" object-contain"/>
             </div>
           </motion.div>
-          ))}
+        ))}
     </div>
   )
 }

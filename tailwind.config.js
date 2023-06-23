@@ -41,6 +41,7 @@ export default {
       backgroundImage: {
         "heroBg": "url('/src/assets/heroBg.png')",
         "heroImg": "url('/src/assets/heroImg.png')",
+        "ctaBg": "url('/src/assets/ctaBg2.png')"
       }
     },
   },
