@@ -21,12 +21,12 @@ const Footer = () => {
             <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white lg:w-full w-3/4 lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
           
           {/* Address   */}
-          <div className="text-white lg:text-base text-sm leading-[24px] font-normal gap-y-4">
-            <p className="font-light opacity-75">© Labworks Limited, all rights reserved. <br />
+          <div className="text-white/50 lg:text-base text-sm leading-[24px] font-normal gap-y-4">
+            <p className="font-light ">© Labworks Limited, all rights reserved. <br />
               Company number: 08433320 <br />
               Registered office: 2B Awori Close, Akora Villas off <br />
               Adeniyi Jones, Ikeja, Lagos</p>
-            <p className="font-thin opacity-50">
+            <p className="font-thin opacity-75">
               <span className="underline underline-offset-[6px] hover:decoration-double ease-linear duration-1000"><a href="#privacy">Privacy Policy</a></span>
               <span className="mx-4">|</span>
               <span className="underline underline-offset-[6px] hover:decoration-double ease-linear duration-1000"><a href="#terms">Terms and Conditions</a></span>
@@ -39,7 +39,7 @@ const Footer = () => {
             {/* Second Footer Section */}
           <div className="">
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Company</p>
-            <ul className="text-white/75 leading-[40px] lg:text-[18px] text-[14px] w-fit">
+            <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-fit">
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/services">Services</Link></li>
               <li><a href="#terms">Terms & Conditions</a></li>
@@ -51,8 +51,8 @@ const Footer = () => {
           {/* Third Section */}
           <div>
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Contact Us</p>
-            <ul className="text-white/75 leading-[40px] lg:text-[18px] text-[14px]">
-              <li><a href="#mail">info@labwox.com</a></li>
+            <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px]">
+              <li className="underline decoration-white/5 underline-offset-4"><a href="#mail">info@labwox.com</a></li>
               <li>(+234)8090870364</li>
               <li>(+234)8090870364</li>
             </ul>
@@ -64,7 +64,7 @@ const Footer = () => {
         <div className="lg:mt-0 mt-[70px]">
           <p className="text-white lg:text-[24px] font-medium lg:leading-[28.8px] mb-[20px] w-fit">Sign up for insights</p>
           
-          <ul className="text-white/75 leading-[40px] lg:text-[18px] text-[14px] w-full">
+          <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-full">
             
               <li className="leading-[27px] pr-[10px]">Join our mailing list to get the inside
                 track on Labworks
@@ -72,10 +72,10 @@ const Footer = () => {
             <li>
               <form action="" method="post" className=" flex mt-[20px] mb-[30px] cursor-pointer">
                 <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear text-white/50 outline-none border-b-white/50 border-b-1 border-t-0 border-l-0 border-r-0 pl-0 focus:outline-none focus:ring focus:ring-violet-300 focus:border-0 focus:bg-clear active:bg-clear" />
-                <div className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
+                <button type="button" className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
                   <span>Join</span>
                   <img src={arrow} alt="arrow" className="w-[16px] h-[16px]"/>
-                </div>
+                </button>
                  
                 </form>
             </li>
