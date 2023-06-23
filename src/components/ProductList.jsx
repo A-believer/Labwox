@@ -5,7 +5,7 @@ import Product from "../utils/Product";
 const ProductList = () => {
   
   return (
-    <section className="w-auto h-auto lg:pt-[75px] pt-[24px] lg:px-[75px] px-[24px] lg:pb-[200px] pb-[60px] bg-whitebgii">
+    <section className="w-auto h-auto lg:pt-[75px] pt-[24px] lg:px-[75px] px-[24px] bg-whitebgii">
       
       {/* Header */}
       <div className="w-full  mx-auto text-center flex flex-col justify-center">

@@ -1,8 +1,9 @@
 
-
 const Onboarding = () => {
   return (
-    <div>Onboarding</div>
+    <div className="sticky top-0">
+            
+    </div>
   )
 }
 
