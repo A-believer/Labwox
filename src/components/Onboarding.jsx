@@ -30,7 +30,7 @@ const Onboarding = () => {
           </li>
         </ul>
 
-        <div className="bg-whitebgiii lg:px-[32px] px-[23px] lg:pt-[37px] pt-[27px] lg:pb-[63px] pb-[45px] lg:mt-0 mt-[40px]">
+        <div className="bg-whitebgiii lg:px-[32px] px-[23px] lg:pt-[37px] pt-[27px] lg:pb-[63px] pb-[45px] lg:mt-0 mt-[40px] lg:mb-0 mb-[30px]">
           <img src={onboardingImg} alt="" className="lg:w-[461px] w-[333px] lg:h-[441px] h-[319px] object-contain"/>
         </div>
       </div>

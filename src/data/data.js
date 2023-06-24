@@ -69,3 +69,21 @@ export const products = [
   },
 ]
 
+export const blogFeed = [
+  {
+    id: 1,
+    title: "Photochemical Analysis",
+    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+  },
+  {
+    id: 2,
+    title: "Photochemical Analysis",
+    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+  },
+  {
+    id: 3,
+    title: "Photochemical Analysis",
+    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+  },
+  
+]

@@ -22,7 +22,9 @@
     "react-marquee-slider": "^1.1.5",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",
+    "react-slick": "^0.29.0",
     "redux": "^4.2.1",
+    "slick-carousel": "^1.8.1",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {

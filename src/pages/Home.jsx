@@ -1,4 +1,4 @@
-import { Banner, CTA, Ctaii, Hero, Onboarding, Partners, ProductList } from "../components"
+import { Banner, CTA, Ctaii, Hero, Notes_Videos, Onboarding, Partners, ProductList } from "../components"
 
 const Home = () => {
   return (
@@ -7,6 +7,7 @@ const Home = () => {
       <Banner />
       <ProductList />
       <Onboarding />
+      <Notes_Videos/>
       <Ctaii />
       <Partners/>
       <CTA />
