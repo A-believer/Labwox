@@ -39,7 +39,7 @@ const item = {
             {/* Desktop Navbar */}
             <ul className="lg:flex hidden justify-between items-center gap-x-7">
               {navLinks.map((link, i) => (
-                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange`}>
+                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange hover:scale-105 transition-all duration-500`}>
                   <Link to={link.id}>{link.title}</Link>
                 </li>
               ))}
@@ -47,16 +47,16 @@ const item = {
            
             {/* Cart Icon */}
             <div className={`items-center ${toggle ? "hidden": "flex"} lg:mr-0 mr-2`}>
-              <div className="flex hover:scale-110">
+              <div className="flex hover:scale-110 transition-all duration-500">
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[19.93px] h-[20px]" />
                 <p className="relative right-2 w-[11px] h-[11px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
               </div>
-                <p className="-ml-[6px]">Cart</p>
+                <p className="-ml-[6px] hover:text-orange hover:scale-105 transition-all duration-500">Cart</p>
             </div>
 
             {/* Login and Register */}
             <div className="lg:flex hidden justify-between items-center gap-x-7">
-              <Link to="/login" className="">Login</Link>
+              <Link to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</Link>
               <Link to="/register" className="text-white"><Button text="Register" bgColor="orange" width="width"/></Link>
             </div>
 
