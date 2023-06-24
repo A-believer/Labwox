@@ -1,11 +1,13 @@
 import footerLogo from "../assets/Logoft.png"
-import { Link } from "react-router-dom"
+import { Link, Outlet, useLocation } from "react-router-dom"
 import arrow from "../assets/arrow.png"
 
 
 const Footer = () => {
+
+  const location = useLocation()
   return (
-    <footer className="font-aeon lg:px-[70px] px-[24px] lg:pt-[160px] pt-[24px] lg:pb-[241px] pb-[145px] bg-black flex flex-col">
+    <footer className={`font-aeon lg:px-[70px] px-[24px] lg:pt-[160px] pt-[24px] lg:pb-[241px] pb-[145px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">
@@ -87,6 +89,7 @@ const Footer = () => {
             
         </div>
       </div>
+      <Outlet/>
     </footer>
   )
 }

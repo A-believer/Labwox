@@ -74,12 +74,15 @@ const item = {
     animate="show">
               { navLinks.map((link, i) => (
                 <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}
-                variants={item}>
+                  variants={item}
+                onClick={() => setToggle((prev) => !prev)}>
                   <Link to={link.id}>{link.title}</Link>
                 </motion.li>
               ))}
-                <motion.li className="my-[45px]" variants={item}><Link to="./login">Login</Link></motion.li>
-                <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}><Link to="./register"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
+                <motion.li className="my-[45px]" variants={item}
+                onClick={() => setToggle((prev) => !prev)}><Link to="./login">Login</Link></motion.li>
+                <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}
+                onClick={() => setToggle((prev) => !prev)}><Link to="./register"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
             </motion.ul>}
             </div>
           </div>
