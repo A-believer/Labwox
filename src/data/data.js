@@ -87,3 +87,31 @@ export const blogFeed = [
   },
   
 ]
+
+export const faqsList = [
+  {
+    id: 1, 
+    question: "How long do payouts take?",
+    answer: "Once you’re set up, payouts arrive in your bank account on a 2-day rolling basis. Or you can opt to receive payouts weekly or monthly."
+  },
+  {
+    id: 2, 
+    question: "How long do payouts take?",
+    answer: "Once you’re set up, payouts arrive in your bank account on a 2-day rolling basis. Or you can opt to receive payouts weekly or monthly."
+  },
+  {
+    id: 3, 
+    question: "How long do payouts take?",
+    answer: "Once you’re set up, payouts arrive in your bank account on a 2-day rolling basis. Or you can opt to receive payouts weekly or monthly."
+  },
+  {
+    id: 4, 
+    question: "How long do payouts take?",
+    answer: "Once you’re set up, payouts arrive in your bank account on a 2-day rolling basis. Or you can opt to receive payouts weekly or monthly."
+  },
+  {
+    id: 5, 
+    question: "How long do payouts take?",
+    answer: "Once you’re set up, payouts arrive in your bank account on a 2-day rolling basis. Or you can opt to receive payouts weekly or monthly."
+  },
+]

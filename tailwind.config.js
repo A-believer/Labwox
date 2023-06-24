@@ -42,7 +42,8 @@ export default {
         "heroBg": "url('/src/assets/heroBg.png')",
         "heroImg": "url('/src/assets/heroImg.png')",
         "ctaBgi": "url('/src/assets/ctaBg1.png')",
-        "ctaBgii": "url('/src/assets/ctaBg2.png')"
+        "ctaBgii": "url('/src/assets/ctaBg2.png')",
+        "faqBg": "url('/src/assets/faqBg.png')"
       }
     },
   },
