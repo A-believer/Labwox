@@ -17,9 +17,9 @@ const BlogFeed = () => {
 
   return (
       <div>
-          <div className="lg:flex hidden ">
+          <div className="lg:flex hidden gap-x-2">
               {blogFeed && blogFeed.map((feed, i) => (
-                  <div key={feed.id + i} className="bg-[#F4F4F6] lg:p-4 p-2 gap-x-6">
+                  <div key={feed.id + i} className="bg-[#F4F4F6] lg:p-4 p-2 ">
                       <div className="bg-white lg:p-6 p-4">
                         <p className="text-yellow lg:text-xl text-sm lg:leading-8 leading-5 font-bold">{ feed.title}</p>
                         <p className="text-blackii lg:text-2xl text-sm lg:leading-8 leading-5 font-bold lg:mt-[8px] lg:mb-[19px]">{ feed.subtext}</p>
@@ -31,10 +31,10 @@ const BlogFeed = () => {
               ))}
           </div>
 
-      <div className="lg:hidden block relative">
+      <div className="lg:hidden block relative gap-x-20 max-w-[268px] overflow-visible mx-auto w-full">
         <Slider {...settings}>
            {blogFeed && blogFeed.map((feed, i) => (
-                  <div key={feed.id + i} className="bg-[#F4F4F6] lg:p-4 p-2 gap-x-20">
+                  <div key={feed.id + i} className="bg-[#F4F4F6] lg:p-4 p-2">
                       <div className="bg-white lg:p-6 p-4">
                         <p className="text-yellow lg:text-xl text-sm lg:leading-8 leading-5 font-bold">{ feed.title}</p>
                         <p className="text-blackii lg:text-2xl text-sm lg:leading-8 leading-5 font-bold lg:mt-[8px] lg:mb-[13px]">{ feed.subtext}</p>
