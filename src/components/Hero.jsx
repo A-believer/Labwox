@@ -10,7 +10,7 @@ const Hero = () => {
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <form className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
           <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3"/>
-          <button type="submit" className="w-1/3 bg-orange lg:text-[18px] lg:leading-[32px] text-[12px] leading-[18px]  rounded-[4px] lg:p-[10px]">Search</button>
+          <button type="submit" className="w-1/3 bg-orange lg:text-[18px] lg:leading-[32px] text-[12px] leading-[18px]  rounded-[4px] lg:p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
         </form>
       </div>
       <div className="bg-heroImg lg:w-[1000px] w-full lg:mt-0 mt-9 lg:h-screen h-[400px] bg-center bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
@@ -22,7 +22,7 @@ const Hero = () => {
         </p>
 
         {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[240px] right-[122px] lg:top-[50px] top-[108px]">
+        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[240px] right-[122px] lg:top-[50px] top-[108px] hover:scale-105 active:scale-95 transition-all duration-300">
           <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" />
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>

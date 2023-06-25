@@ -17,15 +17,15 @@ const Onboarding = () => {
             <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
           </li>
           <li>
-            <p className="font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4">Choose The Test/ Research</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Choose The Test/ Research</p>
             <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
           </li>
           <li>
-            <p className="font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4">Analyis of the Results</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Analyis of the Results</p>
             <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
           </li>
           <li>
-            <p className="font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4">Get Recommendations</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Get Recommendations</p>
             <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
           </li>
         </ul>
