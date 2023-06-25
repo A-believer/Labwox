@@ -1,8 +1,15 @@
+import { CTA, CoreValues, Hero_About, OurGoal, OurStory } from "../components"
 
 
 const About = () => {
   return (
-    <div>About</div>
+    <main className="bg-whitebgii">
+      <Hero_About />
+      <OurStory />
+      <OurGoal/>
+      <CoreValues />
+      <CTA/>
+    </main>
   )
 }
 
