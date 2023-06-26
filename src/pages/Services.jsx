@@ -1,8 +1,15 @@
+import { Banner, CTA, Ctaii, Hero_Services, Service } from "../components"
 
 
 const Services = () => {
   return (
-    <div>Services</div>
+    <main className="bg-whitebg">
+      <Hero_Services />
+      <Banner />
+      <Service />
+      <Ctaii />
+      <CTA/>
+    </main>
   )
 }
 

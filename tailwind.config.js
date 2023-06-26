@@ -31,6 +31,7 @@ export default {
       'yellow': '#f29b38',
       'yellowii': '#feb616',
       'yellowiii': '#eea400',
+      'yellowiv': 'edb900',
       'green': '#356741',
     },
     fontFamily: {
@@ -45,6 +46,7 @@ export default {
         "ctaBgii": "url('/src/assets/ctaBg2.png')",
         "faqBg": "url('/src/assets/faqBg.png')",
         "aboutBg": "url('/src/assets/aboutBg.png')",
+        "servHeroBg": "url('/src/assets/servHeroBg.png')",
       }
     },
   },
