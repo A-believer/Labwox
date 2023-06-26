@@ -3,7 +3,7 @@ import onboardingImg from "../assets/onBoardingImg.png"
 
 const Onboarding = () => {
   return (
-    <div className="bg-white lg:pl-[75px] lg:pt-[50px] lg:pr-[72px] lg:pb-[90px] px-[26px]">
+    <div className="bg-white lg:pl-[75px] lg:pt-[20px] lg:pr-[72px] lg:pb-[90px] px-[26px]">
       
       <div className="lg:text-left text-center lg:px-0 px-10">
         <Header text1={`Get Started in 4`} text2={`Simple Steps`} />

@@ -4,7 +4,7 @@ import {BlogFeed, Header} from "../utils"
 
 const Notes_Videos = () => {
   return (
-    <section className="bg-white lg:px-[70px] px-[24px] lg:pt-[46px] pt-[51px] lg:pb-[100px] pb-[38px]">
+    <section className="bg-white lg:px-[70px] px-[24px] pt-[20px] lg:pb-[50px] pb-[30px]">
       
       {/* Header  */}
       <div className="flex justify-between ">

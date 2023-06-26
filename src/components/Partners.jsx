@@ -8,7 +8,7 @@ import Marquee from "react-marquee-slider"
 
 const Partners = () => {
   return (
-    <div className="bg-white lg:px-[120px] px-0 lg:pt-[120px] pt-[32px] lg:pb-[85px] pb-[20px]">
+    <div className="bg-white lg:px-[120px] px-0 lg:pt-[70px] pt-[32px] lg:pb-[40px] pb-[20px]">
       <p className="mx-[60px] lg:mx-4 text-center lg:text-[34px] text-[20px] lg:leading-9 leading-6 font-bold lg:px-64">These great companies have opted to trust us.</p>
       <div>
         {/* Desktop */}

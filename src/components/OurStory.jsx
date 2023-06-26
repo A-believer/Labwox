@@ -2,7 +2,7 @@
 
 const OurStory = () => {
   return (
-    <section className="lg:pl-[71px] pl-[24px] lg:pr-[70px] pr-[39px] lg:pb-[70px] pb-[6px]">
+    <section className="lg:pl-[71px] pl-[24px] lg:pr-[70px] pr-[39px] lg:pb-[50px] pb-[6px]">
       <p className="lg:text-[52px] text-[36px] leading-[60px] font-bold text-blackii">
         Our <span className="text-orange italic font-fair">Story</span>
       </p>

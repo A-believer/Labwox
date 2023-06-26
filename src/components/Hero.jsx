@@ -4,7 +4,7 @@ import arrow from "../assets/arrow.png"
 
 const Hero = () => {
   return (
-       <section className="lg:pt-[97px] pt-[40px] lg:pb-[30px] pb-[20px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-6 lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between">
+       <section className="py-[10px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-6 lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between">
       <div className="lg:pr-[30px] pr-0 mt-[37px]">
         <div><Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`64px`} f2={`36px`} tColor={`blackii`}/></div>
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>

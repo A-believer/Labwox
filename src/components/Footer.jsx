@@ -7,7 +7,7 @@ const Footer = () => {
 
   const location = useLocation()
   return (
-    <footer className={`font-aeon lg:px-[70px] px-[24px] lg:pt-[160px] pt-[24px] lg:pb-[241px] pb-[145px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+    <footer className={`font-aeon lg:px-[70px] px-[24px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">

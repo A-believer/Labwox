@@ -2,7 +2,7 @@ import aboutImg from "../assets/aboutImg.png"
 
 const OurGoal = () => {
   return (
-    <section className="bg-white lg:mt-0 mt-[64px] flex justify-between items-center lg:flex-row-reverse flex-col lg:px-[70px] px-[24px] lg:pb-[150px] pb-[50px] lg:pt-[103px] gap-x-[80px]">
+    <section className="bg-white lg:mt-0 mt-[64px] flex justify-between items-center lg:flex-row-reverse flex-col lg:px-[70px] px-[24px] lg:pb-[100px] pb-[50px] lg:pt-[103px] gap-x-[80px]">
       <div className="lg:w-[50%] w-full mx-[24px] lg:ml-0 lg:mb-0 mb-[30px] lg:pr-[40px] pr-[30px]">
         <p className="lg:text-4xl text-2xl font-medium lg:mb-[30px] mb-[36px]">Our Goal & Why Choose Us</p>
         <div className="lg:text-2xl text-xl text-grey flex flex-col lg:gap-y-[54px] gap-y-[24px]">
