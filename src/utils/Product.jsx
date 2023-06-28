@@ -12,7 +12,7 @@ const Product = () => {
           {products && products?.map((item) => (
               <motion.div
                   key={item.id}
-              className={`flex lg:flex-row flex-col rounded-[12px] bg-${item.id !== 4 ? item.bgColor : "yellowiv"} lg:mb-[80px] mb-[50px] justify-between boxShadow lg:py-[53px] lg:pr-[66px] lg:pl-[66px] px-[15px] sticky top-20`}
+              className={`flex lg:flex-row flex-col rounded-[12px] bg-${item.bgColor} lg:mb-[80px] mb-[50px] justify-between boxShadow lg:py-[53px] lg:pr-[66px] lg:pl-[66px] px-[15px] sticky top-20`}
             variants={cardVariants}
             initial="hidden"
             animate="visible"

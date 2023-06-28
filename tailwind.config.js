@@ -18,6 +18,7 @@ export default {
       'blackii': '#212529',
       'blackiii': '#121127',
       'blackiv': '#1e1e1e',
+      'blackv': "#262626",
       'orange': '#fe423d',
       'white': '#ffffff',
       'whitebg': '#f5f5f5',
@@ -47,6 +48,7 @@ export default {
         "faqBg": "url('/src/assets/faqBg.png')",
         "aboutBg": "url('/src/assets/aboutBg.png')",
         "servHeroBg": "url('/src/assets/servHeroBg.png')",
+        "resourceHeroBg": "url('/src/assets/resourceHeroImg.png')",
       }
     },
   },
