@@ -8,10 +8,10 @@ const Hero = () => {
       <div className="lg:pr-[30px] pr-0 mt-[37px]">
         <Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`64px`} f2={`36px`} tColor={`blackii`}/>
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
-        <form className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
-          <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3"/>
+        <div className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
+          <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3 border border-grey focus:border-grey ring-0 active:border-grey outline-none"/>
           <button type="submit" className="w-1/3 bg-orange lg:text-[18px] lg:leading-[32px] text-[12px] leading-[18px]  rounded-[4px] lg:p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
-        </form>
+        </div>
       </div>
       <div className="bg-heroImg lg:w-[1000px] w-full lg:mt-0 mt-9 lg:h-screen h-[400px] bg-center bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
         {/* Hero Play Button */}

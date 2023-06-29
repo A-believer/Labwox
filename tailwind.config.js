@@ -37,7 +37,6 @@ export default {
       'red': '#d2120f'
     },
     fontFamily: {
-      "aeon": ['Aeonik', "sans-serif"],
       "fair": ["Playfair Display", "serif"]
     },
     extend: {
@@ -51,10 +50,14 @@ export default {
         "servHeroBg": "url('/src/assets/servHeroBg.png')",
         "resourceHeroBg": "url('/src/assets/resourceHeroImg.png')",
         "contactBg": "url('/src/assets/contactBg.png')",
-      }
+      },
+      fontFamily: {
+        "aeon": ['Aeonik', "sans-serif"],
+      },
     },
-  },
-  plugins: [
-     require('@tailwindcss/forms'),
-  ],
+  
+    plugins: [
+      require('@tailwindcss/forms'),
+    ],
+  }
 }

@@ -73,7 +73,7 @@ const Footer = () => {
             </li>
             <li>
               <form action="" method="post" className=" flex mt-[20px] mb-[30px] cursor-pointer">
-                <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear text-white/50 outline-none border-b-white/50 border-b-1 border-t-0 border-l-0 border-r-0 pl-0 focus:outline-none focus:ring focus:ring-violet-300 focus:border-0 focus:bg-clear active:bg-clear" />
+                <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear border-b active:border-b ring-0 active:ring:-0 focus:ring-0 outline-none active:outline-none focus:outline-none text-white/50  active:bg-clear" />
                 <button type="button" className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
                   <span>Join</span>
                   <img src={arrow} alt="arrow" className="w-[16px] h-[16px]" loading="lazy"/>
