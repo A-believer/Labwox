@@ -35,19 +35,20 @@ const BlogFeed = () => {
                         <p className="text-blackii lg:text-2xl text-sm lg:leading-8 leading-5 font-bold lg:mt-[8px] lg:mb-[19px]">{ feed.subtext}</p>
                     <a href="#" className="text-[#071A2B] lg:text-lg text-xs lg:leading-5 leading-3 font-bold underline underline-offset-4">Read More</a>
                     
-                    <div className="bg-black/20 lg:px-[150px] px-[100px] lg:py-[75px] py-[50px] mt-[37px]" onClick={() => handleOpen(feed.id)}>
-                        {id && <div className={`absolute top-0 max-w-screen-md h-[200px] flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
+                    <div className="bg-black/20 lg:px-[150px] px-[100px] lg:py-[75px] py-[50px] mt-[37px]" onClick={() => handleOpen(feed.id)} onBlur={closeModal}>
+                      Click Here
+                         <div className={`absolute max-w-6xl max-h-screen left-28 flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
                               <button type="button" className={`self-start`} onClick={closeModal}>
                                 <img src={closeFeed} alt="closeFeed" />
                               </button>
                               <video
-                                className="mt-8 rounded"
+                                className="rounded"
                                 autoPlay={true}
                                 controls
                                 muted>
                                 <source type='video/mp4' src={blogFeedVid} />
                               </video> 
-                      </div>}          
+                      </div>        
                     </div>
                       </div>
 
