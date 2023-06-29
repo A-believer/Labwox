@@ -10,6 +10,10 @@ import cv4 from "../assets/cv4.png"
 import cv5 from "../assets/cv5.png"
 import cv6 from "../assets/cv6.png"
 
+import message from "../assets/message.png"
+import location from "../assets/location.png"
+import phone from "../assets/phone.png"
+
 export const navLinks = [
   {
     id: "/about",
@@ -162,4 +166,38 @@ export const corevaluesapi = [
     message: "We understand that time is of the essence when it comes to pediatric healthcare, and we strive to provide prompt and efficient care to our patients"
   },
   
+]
+
+
+export const contactapi = [
+  {
+    id: 1,
+    imgsrc: message,
+    text: "Chat With Us",
+    subtext: "Our friendly team is here to help",
+    subtext2: null,
+    contactinfo: "hi@labwox.com",
+    w: 6,
+    h: 6
+  },
+  {
+    id: 2,
+    imgsrc: location,
+    text: "Visit Us",
+    subtext: "Come say hello to us at our office",
+    subtext2: null,
+    contactinfo: "2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos",
+    w: 6,
+    h: 7
+  },
+  {
+    id: 3,
+    imgsrc: phone,
+    text: "Call Us",
+    subtext: "Mon-Friday 8am-8p.m",
+    subtext2: "Saturday - 9am to 2pm",
+    contactinfo: "(+234)8090870364",
+    w: 5,
+    h: 6
+  },
 ]

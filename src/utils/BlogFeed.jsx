@@ -1,5 +1,5 @@
 import { blogFeed } from "../data/data"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import VideoModal from "./VideoModal";
 import closeFeed from "../assets/closeFeed.png"
 import blogFeedVid from "../assets/blogFeedVid.mp4"
@@ -7,23 +7,22 @@ import blogFeedVid from "../assets/blogFeedVid.mp4"
 
 const BlogFeed = () => {
   const [id, setId] = useState(null);
-  // const [hide, setHide] = useState(false)
+  const [hide, setHide] = useState(false)
 
-  // const handleClose = () => {
-  //     setId(null);
-  //     setHide(false);
-  //       console.log("hello")
-  //   }
+ useEffect(() => {
+    if (!hide) {
+      setId(null);
+    }
+  }, [hide]);
 
-  const handleOpen = (id) => {
-    setId(id)
-    console.log("open")
-  }
+  const handleOpen = (videoId) => {
+    setId(videoId);
+    setHide(true);
+  };
 
   const closeModal = () => {
-    setId(null)
-    console.log("close")
-  }
+    setHide(false);
+  };
 
   return (
     <div>
@@ -37,7 +36,7 @@ const BlogFeed = () => {
                     <a href="#" className="text-[#071A2B] lg:text-lg text-xs lg:leading-5 leading-3 font-bold underline underline-offset-4">Read More</a>
                     
                     <div className="bg-black/20 w-[336px] h-[175px] mt-[37px]" onClick={() => handleOpen(feed.id)}>
-                        {id === feed.id && <div className={`absolute top-0 max-w-screen-md h-[200px] flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
+                        {id && <div className={`absolute top-0 max-w-screen-md h-[200px] flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
                               <button type="button" className={`self-start`} onClick={closeModal}>
                                 <img src={closeFeed} alt="closeFeed" />
                               </button>

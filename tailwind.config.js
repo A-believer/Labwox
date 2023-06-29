@@ -49,6 +49,7 @@ export default {
         "aboutBg": "url('/src/assets/aboutBg.png')",
         "servHeroBg": "url('/src/assets/servHeroBg.png')",
         "resourceHeroBg": "url('/src/assets/resourceHeroImg.png')",
+        "contactBg": "url('/src/assets/contactBg.png')",
       }
     },
   },
