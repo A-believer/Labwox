@@ -34,6 +34,7 @@ export default {
       'yellowiii': '#eea400',
       'yellowiv': 'edb900',
       'green': '#356741',
+      'red': '#d2120f'
     },
     fontFamily: {
       "aeon": ['Aeonik', "sans-serif"],
