@@ -16,7 +16,7 @@ const OurGoal = () => {
       </div>
 
       <div className="lg:w-[616px] lg:h-[591px] w-[380px] h-[365px] rounded">
-        <img src={aboutImg} alt="aboutImg" className="object-contain w-full h-full" />
+        <img src={aboutImg} alt="aboutImg" className="object-contain w-full h-full" loading="lazy"/>
       </div>
      
     </section>

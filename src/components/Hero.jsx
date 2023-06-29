@@ -6,7 +6,7 @@ const Hero = () => {
   return (
        <section className="py-[10px] lg:pl-[60px] pl-[24px] lg:pr-[45px] pr-6 lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between">
       <div className="lg:pr-[30px] pr-0 mt-[37px]">
-        <div><Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`64px`} f2={`36px`} tColor={`blackii`}/></div>
+        <Header text1={`Powering`} text2={`Research`} text3={`Capabilities in Africa`} f1={`64px`} f2={`36px`} tColor={`blackii`}/>
         <p className="text-grey mt-[23px] lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <form className="text-white flex mt-[38px] lg:h-[52px] h-[35.5px] lg:w-5/6 w-full">
           <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3"/>
@@ -24,7 +24,7 @@ const Hero = () => {
         {/* Test Result Sample */}
         <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[240px] right-[122px] lg:top-[50px] top-[108px] hover:scale-105 active:scale-95 transition-all duration-300">
           <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
-            <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" />
+            <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" loading="lazy"/>
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>
           </div>
           
@@ -33,7 +33,7 @@ const Hero = () => {
           <p className="text-greyii lg:text-[13.759px] text-[7.59px] lg:leading-[16.51px] leading-[9.11px] lg:ml-[17px] ml-[9.4px] font-thin tracking-wider">3 hours ago</p>
           <a href="#results" className="flex lg:ml-[17px] ml-[9.4px] lg:mt-[16px] mt-[8.82px] lg:mb-[33px] mb-[18.43px] lg:gap-x-[3px] gap-x-[1.65px] justify-start items-center">
             <p className="text-whiteii lg:text-[14px] text-[7.72px] lg:leading-[16.2px] leading-[9.27px]">View Results</p>
-            <img src={arrow} alt="arrow" className="lg:w-[13px] w-[7.17px] h-auto"/>
+            <img src={arrow} alt="arrow" className="lg:w-[13px] w-[7.17px] h-auto" loading="lazy"/>
           </a>
           
         </div>

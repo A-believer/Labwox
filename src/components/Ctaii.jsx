@@ -17,7 +17,7 @@ const Ctaii = () => {
                 <p className="my-2 text-base leading-5 text-grey w-[70%]">Join thousands of Individuals and SMEs on Scrapays getting value from their recyclables across.</p>
                 <Button bgColor={`orange`} text={`Search`} textColor={`white`} />
           </div>
-            <div><img src={ctaBgii} alt="ctaimg" className="rounded" /></div>
+            <div><img src={ctaBgii} alt="ctaimg" className="rounded" loading="lazy"/></div>
           </div>
     </div>
   )

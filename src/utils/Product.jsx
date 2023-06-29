@@ -25,7 +25,7 @@ const Product = () => {
             </div>
 
             <div className="lg:mb-0 mb-[48px]">
-              <img src={item.imgSrc} alt="product-img" className="lg:w-[390px] w-[348px] lg:h-[400px] h-[333.534px]object-center"/>
+              <img src={item.imgSrc} alt="product-img" className="lg:w-[390px] w-[348px] lg:h-[400px] h-[333.534px]object-center" loading="lazy"/>
             </div>
           </motion.div>
         ))}

@@ -13,7 +13,7 @@ const Notes_Videos = () => {
         </div>
         <Link to={`/resources`} className="flex justify-end items-start gap-x-1 hover:scale-105 active:scale-90 focus:scale-95 transition-all duration-500 h-auto bg-clear pb-0">
           <p className="text-yellow lg:text-[18px] text-[9.9px] font-bold w-fit">View all</p>
-          <img src={arrow} alt="arrow"  className="lg:h-[18px] h-[9.9px] mt-[2px] lg:mt-1"/>
+          <img src={arrow} alt="arrow"  className="lg:h-[18px] h-[9.9px] mt-[2px] lg:mt-1" loading="lazy"/>
         </Link>
       </div>
 

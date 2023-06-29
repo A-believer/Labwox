@@ -11,7 +11,7 @@ const Footer = () => {
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">
-        <img src={footerLogo} alt="footer-logo w-full h-full" />
+        <img src={footerLogo} alt="footer-logo w-full h-full" loading="lazy"/>
       </div>
 
       <div className="lg:grid grid-cols-1 lg:grid-cols-3 lg:gap-x-[100px]">
@@ -76,7 +76,7 @@ const Footer = () => {
                 <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear text-white/50 outline-none border-b-white/50 border-b-1 border-t-0 border-l-0 border-r-0 pl-0 focus:outline-none focus:ring focus:ring-violet-300 focus:border-0 focus:bg-clear active:bg-clear" />
                 <button type="button" className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
                   <span>Join</span>
-                  <img src={arrow} alt="arrow" className="w-[16px] h-[16px]"/>
+                  <img src={arrow} alt="arrow" className="w-[16px] h-[16px]" loading="lazy"/>
                 </button>
                  
                 </form>

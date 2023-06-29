@@ -13,23 +13,23 @@ const Partners = () => {
       <div>
         {/* Desktop */}
         <div className="lg:flex hidden items-center justify-center gap-x-[60px] mt-[60px]">
-          <img src={cl1} alt="cl1" />
-          <img src={cl2} alt="cl2" />
-          <img src={cl3} alt="cl3" />
-          <img src={cl4} alt="cl4" />
-          <img src={cl5} alt="cl5" />
-          <img src={cl6} alt="cl6" />
+          <img src={cl1} alt="cl1" loading="lazy"/>
+          <img src={cl2} alt="cl2" loading="lazy"/>
+          <img src={cl3} alt="cl3" loading="lazy"/>
+          <img src={cl4} alt="cl4" loading="lazy"/>
+          <img src={cl5} alt="cl5" loading="lazy"/>
+          <img src={cl6} alt="cl6" loading="lazy" />
         </div>
 
         {/* Mobile  */}
         <div className="lg:hidden block w-full overflow-hidden mt-[20px]">
            <Marquee speed={50} direction="left" gradient={false} className="flex items-center justify-center">
-          <img src={cl1} alt="cl1" className="mr-24"/>
-          <img src={cl2} alt="cl2" className="mr-24"/>
-          <img src={cl3} alt="cl3" className="mr-24"/>
-          <img src={cl4} alt="cl4" className="mr-24"/>
-          <img src={cl5} alt="cl5" className="mr-24"/>
-          <img src={cl6} alt="cl6" className="mr-24"/>
+          <img src={cl1} alt="cl1" className="mr-24" loading="lazy"/>
+          <img src={cl2} alt="cl2" className="mr-24" loading="lazy"/>
+          <img src={cl3} alt="cl3" className="mr-24" loading="lazy"/>
+          <img src={cl4} alt="cl4" className="mr-24" loading="lazy"/>
+          <img src={cl5} alt="cl5" className="mr-24" loading="lazy"/>
+          <img src={cl6} alt="cl6" className="mr-24" loading="lazy"/>
         </Marquee>
         </div>
        

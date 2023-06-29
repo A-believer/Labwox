@@ -17,7 +17,7 @@ const Hero_About = () => {
           </div>
          
           <div className="relative lg:bottom-[250px] bottom-[50px] lg:mx-[75px] mx-6">
-              <img src={heroImg} alt="w-full h-full" />
+              <img src={heroImg} alt="w-full h-full" loading="lazy"/>
           </div>
     </section>
   )

@@ -37,9 +37,9 @@ const BlogFeed = () => {
                     
                     <div className="bg-black/20 lg:px-[150px] px-[100px] lg:py-[75px] py-[50px] mt-[37px]" onClick={() => handleOpen(feed.id)} onBlur={closeModal}>
                       Click Here
-                         <div className={`absolute max-w-6xl max-h-screen left-28 flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
+                         <div className={`absolute lg:max-w-6xl max-w-[250px] max-h-screen lg:left-28 left-5 flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
                               <button type="button" className={`self-start`} onClick={closeModal}>
-                                <img src={closeFeed} alt="closeFeed" />
+                                <img src={closeFeed} alt="closeFeed" loading="lazy"/>
                               </button>
                               <video
                                 className="rounded"
