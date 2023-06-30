@@ -7,7 +7,7 @@ const Footer = () => {
 
   const location = useLocation()
   return (
-    <footer className={`font-aeon lg:px-[70px] px-[24px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+    <footer className={`font-aeon lg:px-[60px] px-[20px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">
@@ -20,15 +20,15 @@ const Footer = () => {
         <div className="w-full">
           
         {/* Header */}
-            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white lg:w-full w-3/4 lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
+            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white w-full lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
           
           {/* Address   */}
           <div className="text-white/50 lg:text-base text-sm leading-[24px] font-normal gap-y-4">
             <p className="font-light ">© Labworks Limited, all rights reserved. <br />
               Company number: 08433320 <br />
-              Registered office: 2B Awori Close, Akora Villas off <br />
+              Registered office: 2B Awori Close, Akora Villas off 
               Adeniyi Jones, Ikeja, Lagos</p>
-            <p className="font-thin opacity-75">
+            <p className="font-thin opacity-75 mt-2">
               <span className="underline underline-offset-[6px] hover:decoration-double ease-linear duration-1000"><a href="#privacy">Privacy Policy</a></span>
               <span className="mx-4">|</span>
               <span className="underline underline-offset-[6px] hover:decoration-double ease-linear duration-1000"><a href="#terms">Terms and Conditions</a></span>
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         
-        <div className="flex lg:flex-row flex-col gap-x-[30px] gap-y-[60px] w-full justify-between mt-[100px] lg:mt-0">
+        <div className="flex lg:flex-row flex-col gap-x-[25px] gap-y-[60px] w-full justify-between mt-[80px] lg:mt-0">
             {/* Second Footer Section */}
           <div className="">
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Company</p>
