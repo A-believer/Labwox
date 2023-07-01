@@ -29,11 +29,12 @@ export default {
       'whitebgv': '#f0f3f2',
       'grey': '#767778',
       'greyii': '#f9f9fb',
+      'greyiii': '#666666',
       'yellow': '#f29b38',
       'yellowii': '#feb616',
       'yellowiii': '#eea400',
       'yellowiv': 'edb900',
-      'green': '#356741',
+      'green': '#47B86E',
       'red': '#d2120f'
     },
     fontFamily: {

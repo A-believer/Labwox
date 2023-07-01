@@ -14,7 +14,7 @@ const Footer = () => {
         <img src={footerLogo} alt="footer-logo w-full h-full" loading="lazy"/>
       </div>
 
-      <div className="lg:grid grid-cols-1 lg:grid-cols-3 lg:gap-x-[100px]">
+      <div className="lg:grid grid-cols-1 lg:grid-cols-3 lg:gap-x-[60px]">
         
       {/* First footer section */}
         <div className="w-full">
@@ -37,9 +37,9 @@ const Footer = () => {
         </div>
 
         
-        <div className="flex lg:flex-row flex-col gap-x-[25px] gap-y-[60px] w-full justify-between mt-[80px] lg:mt-0">
+        <div className="flex lg:flex-row flex-col gap-x-[25px] gap-y-[30px] w-full justify-between mt-[30px] lg:mt-0">
             {/* Second Footer Section */}
-          <div className="">
+          <div>
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Company</p>
             <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-fit">
               <li><Link to="/about">About Us</Link></li>
@@ -63,7 +63,7 @@ const Footer = () => {
         
 
         {/* Fourth Section */}
-        <div className="lg:mt-0 mt-[70px]">
+        <div className="lg:mt-0 mt-[30px] lg:mb-0 mb-12">
           <p className="text-white lg:text-[24px] font-medium lg:leading-[28.8px] mb-[20px] w-fit">Sign up for insights</p>
           
           <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-full">
@@ -72,19 +72,18 @@ const Footer = () => {
                 track on Labworks
             </li>
             <li>
-              <form action="" method="post" className=" flex mt-[20px] mb-[30px] cursor-pointer">
+              <div className=" flex mt-[20px] mb-[30px] cursor-pointer">
                 <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear border-b active:border-b ring-0 active:ring:-0 focus:ring-0 outline-none active:outline-none focus:outline-none text-white/50  active:bg-clear" />
                 <button type="button" className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
                   <span>Join</span>
                   <img src={arrow} alt="arrow" className="w-[16px] h-[16px]" loading="lazy"/>
                 </button>
                  
-                </form>
+                </div>
             </li>
               <li><a href="#facebook">Facebook</a></li>
               <li><a href="#instagram">Instagram</a></li>
               <li><a href="#linkedin">LinkedIn</a></li>
-
           </ul>
             
         </div>
