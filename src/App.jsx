@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/userprofile" element={<UserProfile/>}/>
+        <Route path="/userprofile" element={<UserProfile />} />
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
       <Footer/>

@@ -7,7 +7,7 @@ const ProductSidebar = () => {
     const [view, setView] = useState(false)
     
   return (
-      <section className="bg-white lg:pt-7 pt-0 lg:px-[14px] px-0 text-blackii text-base leading-5 font-normal rounded">
+      <section className="bg-white lg:pt-7 pt-0 lg:px-[14px] px-0 lg:pb-[600px] pb-5 text-blackii text-base leading-5 font-normal rounded">
           
           {/* Desktop View  */}
           <div className="lg:block hidden">
