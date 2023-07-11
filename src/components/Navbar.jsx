@@ -64,10 +64,10 @@ const item = {
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
-                className={`${toggle ? "h-[12.73px] w-[12.73px]" : "h-[16.67px] w-[24px]"} object-contain lg:hidden block absolute right-[20px] mb-1`}
+                className={`${toggle ? "h-4 w-4" : "h-4 w-6"} object-contain lg:hidden block absolute right-[20px] mb-8`}
                 onClick={() => setToggle((prev) => !prev)} />
 
-              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px]"
+              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px] z-50"
               variants={container}
     initial="hidden"
     animate="show">

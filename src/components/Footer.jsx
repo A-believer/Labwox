@@ -7,7 +7,7 @@ const Footer = () => {
 
   const location = useLocation()
   return (
-    <footer className={`font-aeon lg:px-[60px] px-[20px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">
@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="w-full">
           
         {/* Header */}
-            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white w-full lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
+            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white lg:w-full w-[70%] lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
           
           {/* Address   */}
           <div className="text-white/50 lg:text-base text-sm leading-[24px] font-normal gap-y-4">
