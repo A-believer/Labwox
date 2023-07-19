@@ -5,28 +5,28 @@ const Onboarding = () => {
   return (
     <div className="bg-white lg:pl-[75px] lg:pt-[20px] lg:pr-[72px] lg:pb-[90px] px-[26px]">
       
-      <div className="lg:text-left text-center lg:px-0 px-10">
-        <Header text1={`Get Started in 4`} text2={`Simple Steps`} />
-        <p className="lg:px-0 px-[30px] lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[24px] lg:w-[50%] w-full text-grey" >Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+      <div className="lg:text-left text-center lg:px-0 px-[10px]">
+        <Header text1={`Your journey to `} text2={`quality research`} text3={`in 4 steps`} />
+        <p className="lg:px-0 px-[10px] lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[18px] lg:w-[50%] w-full text-grey" >Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
       </div>
       
-      <div className="flex lg:flex-row flex-col justify-between lg:mt-[28px] ">
-        <ul className="pt-[28px]">
+      <div className="flex lg:flex-row flex-col justify-between items-stretch lg:mt-[28px] ">
+        <ul className="pt-[28px] flex flex-col items-stretch justify-evenly">
           <li>
-            <p className="font-bold lg:text-2xl text-xl lg:leading-7 leading-6">Register and Create Account</p>
-            <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">1. Create an account by signing up</p>
+           
           </li>
           <li>
-            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Choose The Test/ Research</p>
-            <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">2. Select your test of choice by adding test to test cart</p>
+            
           </li>
           <li>
-            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Analyis of the Results</p>
-            <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">3. Provide sample information</p>
+            
           </li>
           <li>
-            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">Get Recommendations</p>
-            <p className="lg:text-base text-sm lg:leading-5 leading-4 font-normal py-[20px] lg:w-[90%] w-full text-grey">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">4. Make payments online</p>
+            
           </li>
         </ul>
 

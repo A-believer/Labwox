@@ -17,15 +17,9 @@ const FAQs = () => {
             {faqsList && faqsList?.map((faq, i) => (
               <div key={faq.id + i} className="flex gap-x-5 bg-white rounded px-[24px] py-[32px]">
                 <div>
-                  <p className="lg:text-lg text-base text-blackiii font-bold lg:leading-6 leading-5">{faq.question}</p>
-                <p className="lg:text-base text-xs text-grey lg:leading-5 leading-4 mt-3">{faq.answer}</p>
-                </div>
-
-                 <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-[#121127]">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
-          </div>  
+                  <p className="lg:text-lg text-base text-blackiii font-bold lg:leading-6 leading-5"><span>Q: </span>{faq.question}</p>
+                <p className="lg:text-base text-xs text-grey lg:leading-5 leading-4 mt-3"><span>A: </span>{faq.answer}</p>
+                </div> 
               </div>
             ))}
           </div>         

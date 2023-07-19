@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="w-full">
           
         {/* Header */}
-            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white lg:w-full w-[70%] lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Powering <span className="text-orange italic font-fair font">Research</span> Capabilities in Africa</h1>
+            <h1 className=" font-aeon lg:text-[36px] text-[24px] lg:leading-[43.2px] leading-[28.8px] font-bold text-white lg:w-full w-[70%] lg:mb-[33px] mb-[45px] lg:mt-[22px] mt-[24px] lg:pr-[10px] pr-0">Expanding <span className="text-orange italic font-fair font">Research</span> Frontiers</h1>
           
           {/* Address   */}
           <div className="text-white/50 lg:text-base text-sm leading-[24px] font-normal gap-y-4">
@@ -55,7 +55,7 @@ const Footer = () => {
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Contact Us</p>
             <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px]">
               <li className="underline decoration-white/50 underline-offset-4"><a href="#mail">info@labwox.com</a></li>
-              <li>(+234)8090870364</li>
+              <li>(+234)9034956049</li>
               <li>(+234)8090870364</li>
             </ul>
           </div>
@@ -69,7 +69,7 @@ const Footer = () => {
           <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-full">
             
               <li className="leading-[27px] pr-[10px]">Join our mailing list to get the inside
-                track on Labworks
+                track on Labwox
             </li>
             <li>
               <div className=" flex mt-[20px] mb-[30px] cursor-pointer">
@@ -81,9 +81,9 @@ const Footer = () => {
                  
                 </div>
             </li>
-              <li><a href="#facebook">Facebook</a></li>
-              <li><a href="#instagram">Instagram</a></li>
-              <li><a href="#linkedin">LinkedIn</a></li>
+              <li className="hover:underline underline-offset-4"><a href="https://www.facebook.com/LABWOX?mibextid=ZbWKwL" rel="noreferrer">Facebook</a></li>
+              <li className="hover:underline underline-offset-4"><a href="https://instagram.com/labwox?igshid=MzNlNGNkZWQ4Mg==" rel="noreferrer">Instagram</a></li>
+              <li className="hover:underline underline-offset-4"><a href="https://www.linkedin.com/company/labwox/" target="_blank" rel="noreferrer" >LinkedIn</a></li>
           </ul>
             
         </div>

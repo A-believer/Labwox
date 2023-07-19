@@ -12,7 +12,7 @@ const Products = ({ onViewProduct }) => {
               <p className="text-black">{ item.price}</p>
             </div>
 
-            <button onClick={onViewProduct} className="self-start bg-white lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-grey rounded border border-grey">
+            <button onClick={() => onViewProduct()} className="self-start bg-white lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-grey rounded border border-grey">
               View Product Detail
             </button>
           </div>

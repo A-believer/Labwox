@@ -9,7 +9,7 @@ const ProductList = () => {
       
       {/* Header */}
       <div className="w-full  mx-auto text-center flex flex-col justify-center">
-        <Header text1={`Some of Our`} text2={`Services`} text3={`Laboratories`} f1={`64px`} f2={`36px`} tColor={`blackii`}/>
+        <Header text1={`Testing`} text2={`Services`} tColor={`blackii`}/>
         <p className="lg:mx-auto mx-[24px] text-base leading-[19.2px] text-center mt-[24px] mb-[17px]">
           Labwox provides cutting-edge solutions to support research and learning in the chemical sciences
         </p>

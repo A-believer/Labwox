@@ -56,7 +56,7 @@ const item = {
             {/* Login and Register */}
             <div className="lg:flex hidden justify-between items-center gap-x-7">
               <Link to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</Link>
-              <Link to="/register" className="text-white"><Button text="Register" bgColor="orange" width="width"/></Link>
+              <Link to="/register" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></Link>
             </div>
 
             {/* Mobile NavMenu */}
