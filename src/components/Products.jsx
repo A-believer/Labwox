@@ -1,6 +1,6 @@
 import { productsapi } from "../data/data"
 
-const Products = ({ onViewProduct }) => {
+const Products = () => {
   return (
     <section className="bg-white lg:px-5 px-2 lg:pt-5 pt-2 lg:pb-20 pb-5">
       {productsapi?.map((item, i) => (
@@ -12,7 +12,7 @@ const Products = ({ onViewProduct }) => {
               <p className="text-black">{ item.price}</p>
             </div>
 
-            <button onClick={() => onViewProduct()} className="self-start bg-white lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-grey rounded border border-grey">
+            <button onClick className="self-start bg-white lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-grey rounded border border-grey">
               View Product Detail
             </button>
           </div>

@@ -1,7 +1,9 @@
 import footerLogo from "../assets/Logoft.png"
 import { Link, Outlet, useLocation } from "react-router-dom"
 import arrow from "../assets/arrow.png"
-
+import { ImFacebook } from 'react-icons/im';
+import { ImInstagram } from 'react-icons/im';
+import { ImLinkedin } from 'react-icons/im';
 
 const Footer = () => {
 
@@ -24,7 +26,7 @@ const Footer = () => {
           
           {/* Address   */}
           <div className="text-white/50 lg:text-base text-sm leading-[24px] font-normal gap-y-4">
-            <p className="font-light ">© Labworks Limited, all rights reserved. <br />
+            <p className="font-light ">© Labwox Limited, all rights reserved. <br />
               Company number: 08433320 <br />
               Registered office: 2B Awori Close, Akora Villas off 
               Adeniyi Jones, Ikeja, Lagos</p>
@@ -81,9 +83,27 @@ const Footer = () => {
                  
                 </div>
             </li>
-              <li className="hover:underline underline-offset-4"><a href="https://www.facebook.com/LABWOX?mibextid=ZbWKwL" rel="noreferrer">Facebook</a></li>
-              <li className="hover:underline underline-offset-4"><a href="https://instagram.com/labwox?igshid=MzNlNGNkZWQ4Mg==" rel="noreferrer">Instagram</a></li>
-              <li className="hover:underline underline-offset-4"><a href="https://www.linkedin.com/company/labwox/" target="_blank" rel="noreferrer" >LinkedIn</a></li>
+            <li>
+              <a href="https://www.facebook.com/LABWOX?mibextid=ZbWKwL" rel="noreferrer" className="flex items-center gap-x-2">
+                 <ImFacebook />
+              <span  className="hover:underline underline-offset-4">Facebook</span>
+              </a>
+             
+            </li>
+            <li>
+              <a href="https://instagram.com/labwox?igshid=MzNlNGNkZWQ4Mg==" rel="noreferrer" className="flex items-center gap-x-2">
+                <ImInstagram/>
+              <span className="hover:underline underline-offset-4">Instagram</span>
+            </a>
+            </li>
+
+            <li>
+              <a href="https://www.linkedin.com/company/labwox/" target="_blank" rel="noreferrer" className="flex items-center gap-x-2">
+                <ImLinkedin/>
+              <span  className="hover:underline underline-offset-4">LinkedIn</span>
+              </a>
+              
+            </li>
           </ul>
             
         </div>

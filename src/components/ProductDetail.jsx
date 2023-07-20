@@ -1,9 +1,11 @@
 
-const ProductDetail = ({ selectedProduct }) => {
+const ProductDetail = () => {
      
 
 
-return (!selectedProduct) ? null : <div>ProductDetail: </div>
+    return (
+    <div></div>
+)
 }
 
 export default ProductDetail
