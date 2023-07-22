@@ -179,7 +179,7 @@ export const productsapi = [
     id: "VIT1Q2",
     name: "Analysis of Vitamins in Food and Drinks",
     price: "#20,000.00",
-    category: "Photochemical Analysis",
+    category: "Phytochemical Analysis",
     parameter: "FAME",
     feature: "1,1,1-Trichloroethane Bromochloromethane Bromobenzene+2-Chlorotoluene cis-1-3-Dichloropropene 1,2-Dibromomethane Naphthalene 1,1,2,2,Tetrechloroethane 1,2-dichlorobenzene+n-Butylbenzene 1,4-Dichlorobenzene Bromodichloromethane n-propylbenzene+tert-Butylbenzene 1,3-Dichlorobenzene Hexachlorobutadiene+1,2,4,-Trichlorobenzene m,p-Xylene Bromoform 1,2-Dichloropropane 1,2,3-Trichlorobenzene Dibromomethane 1,2-Dibromo-3-chloropropane Tetrachloroethene + 1,3-Dichloropropane 1,1,2-Trichloroethene+trans-1,3-Dichloropropane o-xylene+Styrene Chloroform 1,1-Dichloroethene Chlorobenzene Ethylbenzene cis-1,2-Dichloroethene+2,2-Dichloropropane Dibromochloromethane+1,3-Dichloropropane Methylene Chloride trans-1,2-Dichlorethene+1,1-Dichloroethane Trichloethene Carbon tetrachloride+1,1-Dichloropropene Benzene+1,2-Dichloroethane 1,2,3-Trichloropropane Isopropylbenzene 1,3,5-Trimethylbenzene+4-chlorotoluene",
     equipment: "Agilent 2200 HPLC"

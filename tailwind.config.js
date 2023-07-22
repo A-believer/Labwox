@@ -19,6 +19,7 @@ export default {
       'blackiii': '#121127',
       'blackiv': '#1e1e1e',
       'blackv': "#262626",
+      blackvi: '#161815',
       'orange': '#fe423d',
       'white': '#ffffff',
       'whitebg': '#f5f5f5',
@@ -58,6 +59,7 @@ export default {
     },
   
     plugins: [
+      // eslint-disable-next-line no-undef
       require('@tailwindcss/forms'),
     ],
   }
