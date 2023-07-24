@@ -4,17 +4,17 @@ import arrow from "../assets/arrow.png"
 
 const Hero = () => {
   return (
-       <section className="py-2 lg:pl-[60px] pl-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
-      <div className=" pr-0 mt-6">
+       <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
+      <div className="mt-6">
         <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`blackii`}/>
         <p className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <div className="text-white flex mt-4 lg:h-[52px] lg:w-5/6 w-full">
-          <input type="text" placeholder="find research here" className="text-grey pl-[17px] placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[20px] leading-[15px] bg-clear mr-2 w-2/3 border border-grey focus:border-grey ring-0 active:border-grey outline-none"/>
-          <button type="submit" className="w-1/3 bg-orange lg:text-[18px] lg:leading-[32px] text-[12px] leading-[18px]  rounded-[4px] lg:p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
+          <input type="text" placeholder="find research here" className="text-grey pl-4 placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-grey focus:border-grey ring-0 active:border-grey outline-none"/>
+          <button type="submit" className="font-aeon w-1/3 bg-orange lg:text-[18px] lg:leading-[52px] leading-[36px] text-[12px] rounded-[4px] lg:p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
         </div>
       </div>
 
-      <div className="bg-heroImg my-4 w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
+      <div className="bg-heroImg my-4  lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex flex-col justify-center items-center rounded-[8px]">
         {/* Hero Play Button */}
         <p className="w-[171px] h-[171px] rounded-full bg-white lg:flex hidden items-center justify-center justify-self-center relative top-[35px]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[87.87px] h-[87.87px] text-[#444444]">
