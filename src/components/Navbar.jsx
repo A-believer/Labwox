@@ -29,7 +29,7 @@ const item = {
 
   return (
     <>
-      <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+      <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/"><img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy"/></Link>
@@ -56,7 +56,7 @@ const item = {
             {/* Login and Register */}
             <div className="lg:flex hidden justify-between items-center gap-x-7">
               <Link to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</Link>
-              <Link to="/register" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></Link>
+              <Link to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></Link>
             </div>
 
             {/* Mobile NavMenu */}
@@ -81,7 +81,7 @@ const item = {
                 <motion.li className="my-[45px]" variants={item}
                 onClick={() => setToggle((prev) => !prev)}><Link to="./login">Login</Link></motion.li>
                 <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}
-                onClick={() => setToggle((prev) => !prev)}><Link to="./register"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
+                onClick={() => setToggle((prev) => !prev)}><Link to="./signup"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
             </motion.ul>}
             </div>
           </div>

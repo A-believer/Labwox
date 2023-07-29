@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import { About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, Register, Logout, ForgotPassword, UserProfile } from "./pages"
+import { About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, Logout, ForgotPassword, UserProfile } from "./pages"
 import { Footer, Navbar, ProductDetail } from "./components"
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/productdetail" element={<ProductDetail/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<Logout/>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="*" element={<ErrorPage/>}/>

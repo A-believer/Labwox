@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom"
 import Button from "../utils/Button"
 
 const CTA = () => {
@@ -9,7 +10,7 @@ const CTA = () => {
         <p>Labwox can help you achieve</p>
         <p>tangible research and learning capabilities.</p>
       </div>
-      <div><Button bgColor={`black`} textColor={`white`} text={`Get in Touch`}/></div>
+      <Link to={`/contact`}><Button bgColor={`black`} textColor={`white`} text={`Get in Touch`}/></Link>
     </div>
   )
 }

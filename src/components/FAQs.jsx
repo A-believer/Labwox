@@ -4,7 +4,7 @@ import { faqsList } from "../data/data"
 
 const FAQs = () => {
   return (
-    <secion className="bg-white">
+    <div className="bg-white">
       <div className="bg-faqBg lg:px-[154px] px-[24px] lg:pt-[50px] pt-[27px]">
         {/* Header  */}
         <div className="text-center lg:px-[55px] px-0">
@@ -25,7 +25,7 @@ const FAQs = () => {
           </div>         
         </div>
       </div>
-    </secion>
+    </div>
   )
 }
 

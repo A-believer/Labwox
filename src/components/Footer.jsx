@@ -4,12 +4,27 @@ import arrow from "../assets/arrow.png"
 import { ImFacebook } from 'react-icons/im';
 import { ImInstagram } from 'react-icons/im';
 import { ImLinkedin } from 'react-icons/im';
-
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
+  const [email, setEmail] = useState("")
+
+  function handleChange(e) {
+    e.preventDefault()
+    setEmail(e.target.value)
+  }
+
+   function handleEmailSubmit(e) {
+     e.preventDefault()
+     setEmail("")
+     toast.success('Form submitted successfully!')
+    console.log(email)
+  }
 
   const location = useLocation()
   return (
-    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">
@@ -75,8 +90,18 @@ const Footer = () => {
             </li>
             <li>
               <div className=" flex mt-[20px] mb-[30px] cursor-pointer">
-                <input placeholder="enter your email" type="email" name="email" id="email" className="bg-clear border-b active:border-b ring-0 active:ring:-0 focus:ring-0 outline-none active:outline-none focus:outline-none text-white/50  active:bg-clear" />
-                <button type="button" className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
+                <input
+                  value={email}
+                  onChange={handleChange}
+                  placeholder="enter your email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="bg-clear border-b active:border-b ring-0 active:ring:-0 focus:ring-0 outline-none active:outline-none focus:outline-none text-white/50  active:bg-clear" />
+                <button
+                  onClick={handleEmailSubmit}
+                  type="button"
+                  className="flex items-center gap-2 border border-b-1 border-b-white/50 border-t-0 border-l-0 border-r-0">
                   <span>Join</span>
                   <img src={arrow} alt="arrow" className="w-[16px] h-[16px]" loading="lazy"/>
                 </button>
@@ -108,6 +133,7 @@ const Footer = () => {
             
         </div>
       </div>
+      <ToastContainer/>
       <Outlet/>
     </footer>
   )

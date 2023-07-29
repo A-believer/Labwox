@@ -1,79 +1,149 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ContactForm = () => {
 
+  const [ready, setReady] = useState(false)
+  const [formData, setFormData] = useState({
+          firstname: "",
+          surname: "",
+          email: "",
+          subject: "",
+          phone: 0,
+          message: ""
+        })
 
-const { register, handleSubmit, formState: { errors } } = useForm();
-  const [loading, setLoading] = useState(false);
+  function handleChange(event) {
 
-  const onSubmit = async (data) => {
-    setLoading(true);
+    event.preventDefault()
+    const { name, value } = event.target
+    setFormData(prev => ({...prev, [name]: value}))
+  }
 
-   try {
-      await axios.post('https://api.example.com/submit-form', data);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setReady(true);
 
-      // Perform any additional success logic here
-      // ...
-
-      toast.success('Submitted Successfully!');
-    } catch (error) {
-      toast.error('Failed!');
-    }
-
-    setLoading(false);
+    // Mock server URL (replace this with your actual server URL)
+    const serverURL = 'https://example.com/submit';
+    axios
+      .post(serverURL, formData)
+      .then((response) => {
+        // Handle successful form submission
+        toast.success('Form submitted successfully!');
+      })
+      .catch((error) => {
+        // Handle form submission error
+        toast.error('Failed to submit form. Please try again.');
+      })
+      .finally(() => {
+        setReady(false);
+      });
+    console.log(formData)
   };
 
   return (
-      <form className="flex flex-col gap-y-8 w-full" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-y-8 w-full" onSubmit={handleSubmit}>
+      <div className="flex lg:flex-row flex-col lg:gap-4 gap-8 w-full">
+        
+          {/* Surname  */}
           
-          <div className="flex lg:flex-row flex-col lg:gap-4 gap-8 w-full">
-            <div className="flex flex-col lg:w-96 w-full h-12">
-                <label htmlFor="surname" className="text-blackii text-base leading-5 mb-2">Surname</label>
-                  <input type="text" id="surname" name="surname" placeholder="enter surname" className={`py-2 px-3 outline-none bg-clear rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.surname ? "border-red" : "border-grey"}`}
-                      {...register('surname', { required: true })} />
-            </div>
+          <label
+            htmlFor="surname"
+            className="flex flex-col lg:w-96 w-full h-12 text-blackii text-base leading-5">
+            <span className='mb-2'>Surname</span>
+            <input
+            onChange={handleChange}
+            value={formData.surname}
+            type="text"
+            name="surname"
+            placeholder="enter surname"
+            className={`capitalize py-2 px-3 outline-none bg-clear rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`}/>
+          </label>
 
-            <div className="flex flex-col lg:w-96 w-full h-12">
-                <label htmlFor="firstname" className="text-blackii text-base leading-5 mb-2">First Name</label>
-                  <input type="text" id="firstname" name="firstname" placeholder="enter first name" className={`py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.firstname ? "border-red" : "border-grey"}`}
-                      {...register('firstname', { required: true })} />
-            </div>  
-          </div>
+        {/* First name  */}
+          <label
+            htmlFor="firstname"
+            className="flex flex-col lg:w-96 w-full h-12 text-blackii text-base leading-5">
+            <span className='mb-2'>First Name</span>
+            <input
+            onChange={handleChange}
+            value={formData.firstname}
+            type="text"
+            name="firstname"
+            placeholder="enter first name"
+            className={`capitalize py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`} />
+          </label>
+        </div>
 
-          <div className="flex lg:flex-row flex-col lg:gap-4 gap-8 w-full">
-            <div className="flex flex-col lg:w-96 w-full h-12">
-                <label htmlFor="email" className="text-blackii text-base leading-5 mb-2">Email</label>
-                  <input type="email" id="email" name="email" placeholder="enter email" className={`py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.email ? "border-red" : "border-grey"}`}
-                      {...register('email', { required: true })} />
-            </div>
+      <div className="flex lg:flex-row flex-col lg:gap-4 gap-8 w-full">
+        {/* email  */}
+        <label
+            htmlFor="email"
+          className="flex flex-col lg:w-96 w-fulltext-blackii text-base leading-5">
+          <span className='mb-2'>Email</span>
+          <input
+            onChange={handleChange}
+            value={formData.email}
+            type="email"
+            name="email"
+            placeholder="enter email"
+            className={`py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`}/>
+        </label>
+        
+          {/* phone number  */}
+          <label
+            htmlFor="phone"
+            className="flex flex-col lg:w-96 w-full h-12 text-blackii text-base leading-5">
+          <span className='mb-2'>Phone Number</span>
+           <input
+            onChange={handleChange}
+            value={formData.phone}
+            type="number"
+            name="phone"
+            placeholder="enter phone number"
+            className={`capitalize py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`}
+                      />
+          </label>
+        </div>
 
-            <div className="flex flex-col lg:w-96 w-full h-12">
-                <label htmlFor="phone" className="text-blackii text-base leading-5 mb-2">Phone Number</label>
-                  <input type="number" id="phone" name="phone" placeholder="enter phone number" className={`py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.phone ? "border-red" : "border-grey"}`}
-                      {...register('phone', { required: true })} />
-            </div> 
-          </div>
+      {/* Subject  */}
+        <label
+          htmlFor="subject"
+          className="flex flex-col w-full h-12 text-blackii text-base leading-5 ">
+          <span className='mb-2'>Subject</span>
+          <input
+          onChange={handleChange}
+          value={formData.subject}
+          type="text"
+          name="subject"
+          placeholder="enter email subject"
+          className={`capitalize py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`}/>
+        </label>
 
-          <div className="flex flex-col w-full h-12">
-              <label htmlFor="subject" className="text-blackii text-base leading-5 mb-2">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="enter email subject" className={`py-2 px-3 bg-clear outline-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.subject ? "border-red" : "border-grey"}`}
-                  {...register('subject', { required: true })} />
-          </div>
-
-          <div className="flex flex-col">
-              <label htmlFor="message" className="text-blackii text-base leading-5 mb-2">Message</label>
-              <textarea name="message" id="message" cols="10" rows="5" className={`py-2 px-3 bg-clear outline-none resize-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 ${errors.message ? "border-red" : "border-grey"}`}
-                  {...register('message', { required: true })}></textarea>
-          </div>
-
-          <button type="submit" disabled={loading} className={`bg-orange lg:py-[10px] py-2 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-white hover:scale-105 active:scale-95 transition-all duration-300 lg:w-[25%] w-[45%]`}>Submit</button>
-
-          <ToastContainer />
+          {/* message  */}
+        <label
+          htmlFor="message"
+        className="flex flex-col text-blackii text-base leading-5">
+        <span className='mb-2'>Message</span>
+        <textarea
+          onChange={handleChange}
+          value={formData.message}
+          name="message"
+          cols="10"
+          rows="5"
+          className={`py-2 px-3 bg-clear outline-none resize-none rounded text-grey placeholder:text-grey border ring-0 focus:border-grey focus:ring-0 active:ring-0 border-grey`} />
+      </label>
+        
+      <button
+        disabled={ready}
+        className={`bg-orange lg:py-[10px] py-2 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-white hover:scale-105 active:scale-95 transition-all duration-300 lg:w-[25%] w-[45%]`}>
+        Submit
+      </button>
+      <ToastContainer/>
     </form>
   )
 }

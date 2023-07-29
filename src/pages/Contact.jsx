@@ -27,7 +27,7 @@ const Contact = () => {
         </div>
         <div className="lg:pt-10 pt-2 lg:pl-6 lg:pr-6 px-0 flex flex-col">
           <Header text1={`Get In`} text2={`Touch`} text3={`☎️`}/>
-          <p className="text-grey text-base leading-5 mb-7">We’d love to hear from you, and we promise get in touch within 24hours!</p>
+          <p className="text-grey text-base leading-5 mb-7">We’d love to hear from you, and we promise to get in touch within 24hours!</p>
           <ContactForm/>
         </div>
       </div>
