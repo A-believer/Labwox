@@ -29,7 +29,7 @@ const item = {
 
   return (
     <>
-      <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+      <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/"><img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy"/></Link>
