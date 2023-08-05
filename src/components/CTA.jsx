@@ -10,7 +10,7 @@ const CTA = () => {
         <p>Labwox can help you achieve</p>
         <p>tangible research and learning capabilities.</p>
       </div>
-      <Link to={`/contact`}><Button bgColor={`black`} textColor={`white`} text={`Get in Touch`}/></Link>
+      <Link to={`contact`}><Button bgColor={`black`} textColor={`white`} text={`Get in Touch`}/></Link>
     </div>
   )
 }

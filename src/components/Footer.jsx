@@ -1,5 +1,5 @@
 import footerLogo from "../assets/Logoft.png"
-import { Link, Outlet, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import arrow from "../assets/arrow.png"
 import { ImFacebook } from 'react-icons/im';
 import { ImInstagram } from 'react-icons/im';
@@ -134,7 +134,6 @@ const Footer = () => {
         </div>
       </div>
       <ToastContainer/>
-      <Outlet/>
     </footer>
   )
 }

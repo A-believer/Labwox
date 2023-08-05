@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Logo from "../assets/Logo.png"
 import { navLinks } from "../data/data"
 import cartIcon from "../assets/cartIcon.png"
@@ -69,8 +69,8 @@ const item = {
 
               {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px] z-50"
               variants={container}
-    initial="hidden"
-    animate="show">
+              initial="hidden"
+              animate="show">
               { navLinks.map((link, i) => (
                 <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}
                   variants={item}
@@ -86,7 +86,6 @@ const item = {
             </div>
           </div>
         </nav>
-         <Outlet />
       </header>
     </>
   )
