@@ -1,4 +1,5 @@
-import axios from 'axios';
+import { addDoc, collection } from "firebase/firestore"
+import { db } from "../config/firebaseConfig";
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,30 +24,34 @@ const ContactForm = () => {
     setFormData(prev => ({...prev, [name]: value}))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setReady(true);
 
-    // Mock server URL (replace this with your actual server URL)
-    const serverURL = 'https://example.com/submit';
-    axios
-      .post(serverURL, formData)
-      .then((response) => {
-        // Handle successful form submission
-        toast.success('Form submitted successfully!');
-      })
-      .catch((error) => {
-        // Handle form submission error
-        toast.error('Failed to submit form. Please try again.');
-      })
-      .finally(() => {
-        setReady(false);
-      });
-    console.log(formData)
+    try {
+      await addDoc(collection(db, 'contactInformation'), formData);
+      toast.success('Form submitted successfully!');
+      // Clear the form after submission
+      setFormData({
+          firstname: "",
+          surname: "",
+          email: "",
+          subject: "",
+          phone: 0,
+          message: ""
+        });
+    } catch (err) {
+      toast.error('Failed to submit form. Please try again.');
+      console.error(err)
+    }
+    setReady(false);
   };
 
   return (
-    <form className="flex flex-col gap-y-8 w-full" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-y-8 w-full"
+      onSubmit={handleSubmit} 
+      action="https://formsubmit.co/labwoxltd@gmail.com" method="POST">
       <div className="flex lg:flex-row flex-col lg:gap-4 gap-8 w-full">
         
           {/* Surname  */}

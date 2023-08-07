@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { NavLink, Link, useLocation } from "react-router-dom"
 import Logo from "../assets/Logo.png"
 import { navLinks } from "../data/data"
 import cartIcon from "../assets/cartIcon.png"
@@ -40,7 +40,7 @@ const item = {
             <ul className="lg:flex hidden justify-between items-center gap-x-7">
               {navLinks.map((link, i) => (
                 <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange hover:scale-105 transition-all duration-500`}>
-                  <Link to={link.id}>{link.title}</Link>
+                  <NavLink to={link.id}>{link.title}</NavLink>
                 </li>
               ))}
             </ul>
@@ -55,8 +55,8 @@ const item = {
 
             {/* Login and Register */}
             <div className="lg:flex hidden justify-between items-center gap-x-7">
-              <Link to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</Link>
-              <Link to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></Link>
+              <NavLink to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</NavLink>
+              <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>
             </div>
 
             {/* Mobile NavMenu */}
@@ -75,13 +75,13 @@ const item = {
                 <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}
                   variants={item}
                 onClick={() => setToggle((prev) => !prev)}>
-                  <Link to={link.id}>{link.title}</Link>
+                  <NavLink to={link.id}>{link.title}</NavLink>
                 </motion.li>
               ))}
                 <motion.li className="my-[45px]" variants={item}
-                onClick={() => setToggle((prev) => !prev)}><Link to="./login">Login</Link></motion.li>
+                onClick={() => setToggle((prev) => !prev)}><NavLink to="./login">Login</NavLink></motion.li>
                 <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}
-                onClick={() => setToggle((prev) => !prev)}><Link to="./signup"><Button text="Register" bgColor="orange" width="full" /></Link></motion.li>
+                onClick={() => setToggle((prev) => !prev)}><NavLink to="./signup"><Button text="Register" bgColor="orange" width="full" /></NavLink></motion.li>
             </motion.ul>}
             </div>
           </div>
