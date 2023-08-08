@@ -1,16 +1,39 @@
 import { NavLink, Link, useLocation } from "react-router-dom"
 import Logo from "../assets/Logo.png"
+import avatar from "../assets/avatar.png"
+import dropdown from "../assets/dropdownuserprofile.png"
 import { navLinks } from "../data/data"
 import cartIcon from "../assets/cartIcon.png"
 import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { UserAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 const Navbar = () => {
- const [toggle, setToggle] = useState(false)
+  const {user, logout, userData} = UserAuth()
+
   const location = useLocation()
+  const displayCheck = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/userProfile" ||
+    location.pathname === "/signupsuccess")
+  const navigate = useNavigate()
+  const [toggle, setToggle] = useState(false)  
+
+  const handleLogout = async (e) => {
+    e.preventDefault()
+    try {
+      await logout()
+      navigate("/")
+      setToggle((prev) => !prev)
+    } catch (err) {
+      console.error(err.message)
+    }  }
 
   const container = {
   hidden: { opacity: 0 },
@@ -29,45 +52,57 @@ const item = {
 
   return (
     <>
-      <header className={`bg-whitebgiv lg:bg-white font-aeon ${(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+      <header className={`bg-whitebgiv lg:bg-white font-aeon ${displayCheck ? "hidden": "block"}`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
-          <Link to="/"><img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy"/></Link>
+          <Link to="/">
+            <img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy" />
+          </Link>
           
           <div className="flex font-normal text-base leading-[19.2px] gap-x-7">
             
             {/* Desktop Navbar */}
-            <ul className="lg:flex hidden justify-between items-center gap-x-7">
+            <ul className="flex justify-between items-center gap-x-7">
               {navLinks.map((link, i) => (
-                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange hover:scale-105 transition-all duration-500`}>
+                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange hover:scale-105 transition-all duration-500 lg:block hidden`}>
                   <NavLink to={link.id}>{link.title}</NavLink>
                 </li>
               ))}
-            </ul>
-           
-            {/* Cart Icon */}
-            <div className={`items-center ${toggle ? "hidden": "flex"}`}>
-              <div className="flex hover:scale-110 transition-all duration-500">
-                <img src={cartIcon} alt="cartIcon" className="object-contain w-[19.93px] h-[20px]" />
-                <p className="relative right-2 w-[11px] h-[11px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
-              </div>
-            </div>
 
-            {/* Login and Register */}
-            <div className="lg:flex hidden justify-between items-center gap-x-7">
+               {/* Cart Icon */}
+            <li className={`items-center ${toggle ? "hidden": "flex"} flex hover:scale-110 transition-all duration-500 lg:static absolute right-12`}>
+                <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
+                <p className="relative right-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
+        
+              </li>
+
+              {/* Login and Register */}
+              <li className="lg:flex hidden">
+                {user ?
+              <NavLink to='userProfile' className="flex items-center gap-1">
+                <img src={avatar} alt="avatar" className="w-8 h-8"/>
+                    <p>Welcome, {userData.firstName}</p>
+                
+                <div className="ml-1">
+                  <img src={dropdown} alt="dropdown" className="w-2 h-1" />
+                </div>
+              </NavLink>
+              :
+              <div className="lg:flex hidden justify-between items-center gap-x-7">
               <NavLink to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</NavLink>
               <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>
-            </div>
+            </div>}
+            </li>
 
-            {/* Mobile NavMenu */}
-            <div className="lg:hidden block">
+              {/* Mobile NavMenu */}
+            <li className="lg:hidden block">
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
-                className={`${toggle ? "h-4 w-4" : "h-4 w-6"} object-contain lg:hidden block absolute right-[20px] mb-8`}
+                className={`${toggle ? "h-3 w-3" : "h-3 w-5"} object-contain lg:hidden block`}
                 onClick={() => setToggle((prev) => !prev)} />
 
-              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[66px] w-full pl-[24px] z-50"
+              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full pl-[24px] z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"
               variants={container}
               initial="hidden"
               animate="show">
@@ -78,12 +113,29 @@ const item = {
                   <NavLink to={link.id}>{link.title}</NavLink>
                 </motion.li>
               ))}
-                <motion.li className="my-[45px]" variants={item}
-                onClick={() => setToggle((prev) => !prev)}><NavLink to="./login">Login</NavLink></motion.li>
-                <motion.li className="text-white w-full pr-[24px] mt-[70px] mb-[54px]" variants={item}
-                onClick={() => setToggle((prev) => !prev)}><NavLink to="./signup"><Button text="Register" bgColor="orange" width="full" /></NavLink></motion.li>
+                
+                {user ?
+                  <motion.li className="my-[45px]" variants={item}
+                  onClick={handleLogout}>
+                    <NavLink to="/logout">Logout</NavLink>
+                  </motion.li> :
+                  
+                  <div>
+                  <motion.li className="my-[45px]" variants={item}
+                  onClick={() => setToggle((prev) => !prev)}>
+                  <NavLink to="/login">Login</NavLink>
+                </motion.li>
+                <motion.li className="text-white w-full pr-[24px] mt-[20px] mb-[20px]" variants={item}
+                  onClick={() => setToggle((prev) => !prev)}>
+                  <NavLink to="/signup">
+                    <Button text="Sign Up" bgColor="orange" width="full" /></NavLink>
+                </motion.li>
+                </div>}
+                
             </motion.ul>}
-            </div>
+            </li>
+              
+            </ul>
           </div>
         </nav>
       </header>

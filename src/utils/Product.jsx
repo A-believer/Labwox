@@ -8,7 +8,7 @@ const cardVariants = {
 const Product = () => {
 
   return (
-      <div className="gap-y-[16px]">
+      <div>
           {products && products?.map((item) => (
               <motion.div
                   key={item.id}
@@ -25,7 +25,7 @@ const Product = () => {
             </div>
 
             <div className="lg:mb-0 mb-[48px]">
-              <img src={item.imgSrc} alt="product-img" className="lg:w-[390px] w-[348px] lg:h-[400px] h-[333.534px]object-center" loading="lazy"/>
+              <img src={item.imgSrc} alt="product-img" className="lg:w-[390px] w-[348px] lg:h-[380px] h-[300px] object-contain" loading="lazy"/>
             </div>
           </motion.div>
         ))}

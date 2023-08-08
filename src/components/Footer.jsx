@@ -8,8 +8,14 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
+  const location = useLocation()
   const [email, setEmail] = useState("")
-
+  const displayCheck = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/userprofile" ||
+    location.pathname === "/signupsuccess")
   function handleChange(e) {
     e.preventDefault()
     setEmail(e.target.value)
@@ -22,9 +28,9 @@ const Footer = () => {
     console.log(email)
   }
 
-  const location = useLocation()
+  
   return (
-    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgotpassword") ? "hidden": "block"}`}>
+    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col ${displayCheck ? "hidden": "block"}`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">

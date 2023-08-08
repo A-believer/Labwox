@@ -1,15 +1,15 @@
-import { Link, useSearchParams} from "react-router-dom"
+import { Link} from "react-router-dom"
 
 const Products = ({tests}) => {
   console.log(tests)
   return (
-    <section className="bg-white lg:px-5 px-1 lg:pt-5 pt-2 lg:pb-20 pb-2">
+    <section className="bg-white lg:px-5 px-2 lg:py-5 py-2 lg:my-5 my-2">
       {tests.map((test) => (
-        <div key={test.id} className="bg-whitebgii lg:pt-5 pt-0 lg:pl-5 pl-0 lg:pr-3 pr-0 lg:pb-12 pb-4 lg:mb-11 mb-5">
+        <div key={test.id} className="bg-whitebgii lg:p-5 p-2 lg:mb-10 mb-5">
           <div className="flex justify-between items-center lg:gap-x-0 gap-x-4">
             <div className="lg:text-xl text-base font-bold leading-6 text-blackii">
-              <p>{test.testTitle}</p>
-              <p className="my-1">{test.code}</p>
+              <p className="font-extrabold">{test.testTitle}</p>
+              <p className="my-1 ">{test.code}</p>
               <p className="text-black">₦{ test.pricing}</p>
             </div>
 

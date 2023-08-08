@@ -5,7 +5,7 @@ import { faqsList } from "../data/data"
 const FAQs = () => {
   return (
     <div className="bg-white">
-      <div className="bg-faqBg lg:px-[154px] px-[24px] lg:pt-[50px] pt-[27px]">
+      <div className="bg-faqBg lg:px-[154px] px-[24px] lg:py-[50px] py-[27px]">
         {/* Header  */}
         <div className="text-center lg:px-[55px] px-0">
           <Header text1={`Frequently Asked`} text2={`Questions`} />
