@@ -1,12 +1,25 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { Navbar, Footer } from "./components"
 
 const App = () => {
+  const location = useLocation()
+  const displayCheckNavabar = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/signupsuccess")
+
+  const displayCheckFooter = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/userProfile" ||
+    location.pathname === "/signupsuccess")
   return (
     <>
-      <Navbar />
+      {!displayCheckNavabar ? <Navbar /> : null}
       <Outlet />
-      <Footer/>
+      {!displayCheckFooter ? <Footer/> : null}
     </>
   )
 }

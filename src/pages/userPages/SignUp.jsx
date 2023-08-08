@@ -52,7 +52,7 @@ const Login = () => {
         institution,
         uid: userData.user.uid
       })
-        navigate("/")
+        navigate("/signupsuccess")
     } catch (err) {
       console.error(err.message)
     }

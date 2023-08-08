@@ -1,4 +1,4 @@
-import { NavLink, Link, useLocation } from "react-router-dom"
+import { NavLink, Link} from "react-router-dom"
 import Logo from "../assets/Logo.png"
 import avatar from "../assets/avatar.png"
 import dropdown from "../assets/dropdownuserprofile.png"
@@ -7,7 +7,7 @@ import cartIcon from "../assets/cartIcon.png"
 import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
@@ -15,13 +15,6 @@ import { useNavigate } from "react-router-dom"
 const Navbar = () => {
   const {user, logout, userData} = UserAuth()
 
-  const location = useLocation()
-  const displayCheck = (
-    location.pathname === "/login" ||
-    location.pathname === "/signup" ||
-    location.pathname === "/forgotpassword" ||
-    location.pathname === "/userProfile" ||
-    location.pathname === "/signupsuccess")
   const navigate = useNavigate()
   const [toggle, setToggle] = useState(false)  
 
@@ -52,7 +45,7 @@ const item = {
 
   return (
     <>
-      <header className={`bg-whitebgiv lg:bg-white font-aeon ${displayCheck ? "hidden": "block"}`}>
+      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white" }}font-aeon`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">
@@ -70,22 +63,20 @@ const item = {
               ))}
 
                {/* Cart Icon */}
-            <li className={`items-center ${toggle ? "hidden": "flex"} flex hover:scale-110 transition-all duration-500 lg:static absolute right-12`}>
+            <li className={`items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
                 <p className="relative right-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
         
               </li>
 
               {/* Login and Register */}
-              <li className="lg:flex hidden">
+              <li className="flex items-center">
                 {user ?
-              <NavLink to='userProfile' className="flex items-center gap-1">
-                <img src={avatar} alt="avatar" className="w-8 h-8"/>
-                    <p>Welcome, {userData.firstName}</p>
-                
-                <div className="ml-1">
-                  <img src={dropdown} alt="dropdown" className="w-2 h-1" />
-                </div>
+              <NavLink to='userProfile' className="flex items-center gap-1 lg:static absolute">
+                <img src={avatar} alt="avatar" className="lg:w-8 lg:h-8 w-5 h-5"/>
+                    <p className="lg:flex hidden">Welcome, {userData.firstName}</p>
+                  <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden"/>
+              
               </NavLink>
               :
               <div className="lg:flex hidden justify-between items-center gap-x-7">
@@ -95,11 +86,13 @@ const item = {
             </li>
 
               {/* Mobile NavMenu */}
-            <li className="lg:hidden block">
+              <li
+                onBlur={() => {setToggle(prev => !prev)}}
+                className="lg:hidden block">
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
-                className={`${toggle ? "h-3 w-3" : "h-3 w-5"} object-contain lg:hidden block`}
+                className={`${toggle ? "h-4 w-4" : "h-3 w-5"} object-contain lg:hidden block`}
                 onClick={() => setToggle((prev) => !prev)} />
 
               {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full pl-[24px] z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"

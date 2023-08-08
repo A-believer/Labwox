@@ -45,6 +45,7 @@ export default {
     extend: {
       backgroundImage: {
         "heroBg": "url('/src/assets/heroBg.png')",
+        "profileBg": "url('/src/assets/profileBg.png')",
         "heroImg": "url('/src/assets/heroImg.png')",
         "ctaBgi": "url('/src/assets/ctaBg1.png')",
         "ctaBgii": "url('/src/assets/ctaBg2.png')",
