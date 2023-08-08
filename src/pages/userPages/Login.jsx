@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import Logo from "../../assets/Logo.png"
 import { UserAuth } from "../../context/AuthContext"
 import { useState } from "react"
-import UserHero from "../../components/userHero"
+import { UserHero } from "../../components"
 
 
 const Login = () => {
