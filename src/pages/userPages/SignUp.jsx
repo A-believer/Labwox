@@ -4,7 +4,7 @@ import { useState } from "react"
 import { UserAuth } from "../../context/AuthContext"
 import { setDoc, doc } from "firebase/firestore"
 import { db } from "../../config/firebaseConfig"
-import UserHero from "../../components/userHero"
+import { UserHero } from "../../components"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
