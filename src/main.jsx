@@ -9,6 +9,10 @@ import "./font.css"
 import { AuthContextProvider } from './context/AuthContext'
 import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
+import {auth} from "./config/firebaseConfig.js"
+import IdleTimeout from './config/idleTimeOut.js'
+
+const user = auth.currentUser
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -22,14 +26,19 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="login" element={<Login/>}/>
     <Route path="signup" element={<SignUp/>}/>
     <Route path="forgotpassword" element={<ForgotPassword />} />
-    <Route path='signupsuccess' element={<SignUpSuccess/>}/>
+    <Route path='signupsuccess' element={<SignUpSuccess />} />
+    
     <Route path="userprofile" element={<UserProfile />} >
       <Route index element={<UserProfileDetails/>}/>
       <Route path='orders' element={<UserProfileOrders/>}/>
       <Route path='settings' element={<UserProfileSettings />} />
     <Route path="logout" element={<Logout/>}/>
     </Route>
-    <Route path="*" element={<ErrorPage/>}/>
+
+    <Route path="*" element={<ErrorPage />} />
+
+    {user && (
+      <IdleTimeout timeoutInMs={300000} />)}
   </Route>
 ))
 

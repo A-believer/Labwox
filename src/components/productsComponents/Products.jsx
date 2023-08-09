@@ -14,7 +14,7 @@ const Products = ({tests}) => {
             </div>
 
             <button className="self-start bg-white lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-grey rounded border border-grey">
-              <Link to={test.id}>View Test Detail</Link>
+              <Link to={test.id}>View Details</Link>
             </button>
           </div>
           <div className="mt-4 lg:text-base text-sm leading-6 text-blackii font-medium">

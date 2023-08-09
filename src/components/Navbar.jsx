@@ -45,7 +45,7 @@ const item = {
 
   return (
     <>
-      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white" }}font-aeon`}>
+      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon sticky top-0 z-99`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">
@@ -72,11 +72,10 @@ const item = {
               {/* Login and Register */}
               <li className="flex items-center">
                 {user ?
-              <NavLink to='userProfile' className="flex items-center gap-1 lg:static absolute">
+              <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
                 <img src={avatar} alt="avatar" className="lg:w-8 lg:h-8 w-5 h-5"/>
                     <p className="lg:flex hidden">Welcome, {userData.firstName}</p>
                   <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden"/>
-              
               </NavLink>
               :
               <div className="lg:flex hidden justify-between items-center gap-x-7">

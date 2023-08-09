@@ -13,7 +13,9 @@ const App = () => {
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
     location.pathname === "/forgotpassword" ||
-    location.pathname === "/userProfile" ||
+    location.pathname === "/userprofile" ||
+    location.pathname === "/userprofile/orders" ||
+    location.pathname === "/userprofile/settings" ||
     location.pathname === "/signupsuccess")
   return (
     <>
