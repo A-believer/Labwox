@@ -10,7 +10,7 @@ import { AuthContextProvider } from './context/AuthContext'
 import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
 import {auth} from "./config/firebaseConfig.js"
-import IdleTimeout from './config/IdleTimeOut.js'
+import IdleTimeout from './config/IdleTimeout.js'
 
 const user = auth.currentUser
 
