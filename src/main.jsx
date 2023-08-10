@@ -17,22 +17,22 @@ const user = auth.currentUser
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
     <Route index element={<Home/>}/>
-    <Route path="about" element={<About/>}/>
-    <Route path="contact" element={<Contact/>}/>
-    <Route path="resources" element={<Resources/>}/>
-    <Route path="services" element={<Services/>}/>
-    <Route path="testlisting" element={<TestListing />}/>
-    <Route path="testlisting/:id" element={<ProductDetail />} />
-    <Route path="login" element={<Login/>}/>
-    <Route path="signup" element={<SignUp/>}/>
-    <Route path="forgotpassword" element={<ForgotPassword />} />
-    <Route path='signupsuccess' element={<SignUpSuccess />} />
+    <Route path="/about" element={<About/>}/>
+    <Route path="/contact" element={<Contact/>}/>
+    <Route path="/resources" element={<Resources/>}/>
+    <Route path="/services" element={<Services/>}/>
+    <Route path="/testlisting" element={<TestListing />}/>
+    <Route path="/testlisting/:id" element={<ProductDetail />} />
+    <Route path="/login" element={<Login/>}/>
+    <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/forgotpassword" element={<ForgotPassword />} />
+    <Route path='/signupsuccess' element={<SignUpSuccess />} />
     
-    <Route path="userprofile" element={<UserProfile />} >
+    <Route path="/userprofile" element={<UserProfile />} >
       <Route index element={<UserProfileDetails/>}/>
-      <Route path='orders' element={<UserProfileOrders/>}/>
-      <Route path='settings' element={<UserProfileSettings />} />
-    <Route path="logout" element={<Logout/>}/>
+      <Route path='/orders' element={<UserProfileOrders/>}/>
+      <Route path='/settings' element={<UserProfileSettings />} />
+    <Route path="/logout" element={<Logout/>}/>
     </Route>
 
     <Route path="*" element={<ErrorPage />} />
