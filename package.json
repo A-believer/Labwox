@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.0",
     "@heroicons/react": "^2.0.18",
+    "@paystack/inline-js": "^2.13.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
