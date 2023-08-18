@@ -10,23 +10,19 @@ import close from "../assets/close.png"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
-import { useNavigate } from "react-router-dom"
+import { Logout } from "../pages"
 
 const Navbar = () => {
-  const {user, logout, userData} = UserAuth()
+  const {user, userData} = UserAuth()
 
-  const navigate = useNavigate()
-  const [toggle, setToggle] = useState(false)  
+  const [toggle, setToggle] = useState(false)
+  const [logoutToggle, setLogoutToggle] = useState(false)
 
-  const handleLogout = async (e) => {
+  const handleLogout = (e) => {
     e.preventDefault()
-    try {
-      await logout()
-      navigate("/")
-      setToggle((prev) => !prev)
-    } catch (err) {
-      console.error(err.message)
-    }  }
+    setLogoutToggle(prev => !prev)
+    setToggle((prev) => !prev)
+      }
 
   const container = {
   hidden: { opacity: 0 },
@@ -57,7 +53,7 @@ const item = {
             {/* Desktop Navbar */}
             <ul className="flex justify-between items-center gap-x-7">
               {navLinks.map((link, i) => (
-                <li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii"} hover:text-orange hover:scale-105 transition-all duration-500 lg:block hidden`}>
+                <li key={i} className={`${location.pathname === "/" +link.id ? "scale-105 text-orange underline underline-offset-4" : "text-blackii"} hover:text-orange hover:scale-105 transition-all ease-in-out duration-500 lg:block hidden `}>
                   <NavLink to={link.id}>{link.title}</NavLink>
                 </li>
               ))}
@@ -74,7 +70,7 @@ const item = {
                 {user ?
               <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
                 <img src={avatar} alt="avatar" className="lg:w-8 lg:h-8 w-5 h-5"/>
-                    <p className="lg:flex hidden">Welcome, {userData.firstName}</p>
+                    <p className={`lg:flex hidden ${location.pathname === "/userprofile" ? "underline underline-offset-4" : null}`}>Welcome, {userData.firstName}</p>
                   <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden"/>
               </NavLink>
               :
@@ -113,9 +109,11 @@ const item = {
                   </motion.li> :
                   
                   <div>
-                  <motion.li className="my-[45px]" variants={item}
+                  <motion.li className="my-[45px] text-white w-full pr-[24px] mt-[20px] mb-[20px]" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
-                  <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/login">
+                          <Button text="Login" bgColor="orange" width="full" />
+                    </NavLink>
                 </motion.li>
                 <motion.li className="text-white w-full pr-[24px] mt-[20px] mb-[20px]" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
@@ -131,6 +129,7 @@ const item = {
           </div>
         </nav>
       </header>
+      {logoutToggle ? <Logout/> : null}
     </>
   )
 }

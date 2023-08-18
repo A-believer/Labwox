@@ -26,7 +26,7 @@ function UserProfileDetails() {
           <span className="rounded-full lgw-[102px] w-[86px] lg:h-[102px] h-[86px]">
             <img src={avatar} alt="avatar image" />
           </span>
-          <span className="bg-blackii p-1 rounded-full lg:w-7 w-5 lg:h-7 h-5 flex justify-center items-center relative lg:top-[58px] top-16 lg:right-6 right-6">
+          <span className="bg-blackii p-1 rounded-full lg:w-7 w-5 lg:h-7 h-5 flex justify-center items-center relative lg:top-[58px] top-16 lg:right-6 right-6 -z-10">
             <img src={cameraImg} alt="camera image" />
           </span>
         </div>
