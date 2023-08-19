@@ -1,17 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import "./config/logout.js"
+import { Provider } from 'react-redux';
+import store from './utils/store.js'; 
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
-import { About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings } from "./pages"
+import { About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart } from "./pages"
 import {  ProductDetail} from "./components"
 import './index.css'
 import "./font.css"
 import { AuthContextProvider } from './context/AuthContext'
 import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
-// import {auth} from "./config/firebaseConfig.js"
-
-// const user = auth.currentUser
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -26,6 +26,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="signup" element={<SignUp/>}/>
     <Route path="forgotpassword" element={<ForgotPassword />} />
     <Route path='signupsuccess' element={<SignUpSuccess />} />
+    <Route path = "cart" element = {<Cart/>} />
     
     <Route path="userprofile" element={<UserProfile />} >
       <Route index element={<UserProfileDetails/>}/>
@@ -39,9 +40,12 @@ const router = createBrowserRouter(createRoutesFromElements(
 ))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
     <AuthContextProvider>
       <RouterProvider router={router} />
     </AuthContextProvider>
   </React.StrictMode>
+  </Provider>
+  
 )

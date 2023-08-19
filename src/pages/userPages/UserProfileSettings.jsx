@@ -1,7 +1,10 @@
 import { useState } from "react"
+import { UserAuth } from "../../context/AuthContext"
+import { Navigate } from "react-router-dom"
 
 
 function UserProfileSettings() {
+   const { user } = UserAuth()
   const [passwordData, setPasswordData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -15,6 +18,10 @@ function UserProfileSettings() {
   function handleSubmit(e) {
     e.preventDefault()
     console.log(passwordData)
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />
   }
   return (
     <div className="flex flex-col lg:gap-10 gap-6 w-full text-blackii bg-white lg:px-6 px-1 lg:py-10 py-5">

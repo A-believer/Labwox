@@ -3,6 +3,7 @@ import { Navbar, Footer } from "./components"
 
 const App = () => {
   const location = useLocation()
+  
   const displayCheckNavabar = (
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
@@ -16,7 +17,11 @@ const App = () => {
     location.pathname === "/userprofile" ||
     location.pathname === "/userprofile/orders" ||
     location.pathname === "/userprofile/settings" ||
-    location.pathname === "/signupsuccess")
+    location.pathname === "/signupsuccess" || 
+    location.pathname === "/cart")
+  
+  
+  
   return (
     <>
       {!displayCheckNavabar ? <Navbar /> : null}

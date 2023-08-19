@@ -40,13 +40,12 @@ export const AuthContextProvider = ({ children }) => {
         try {
             const newData = await getDoc(doc(db, "userInfo", user.uid))
              if (newData.exists()) {
-          setUserData(newData.data());
-               console.log(userData)
+          setUserData(newData.data())
              } else {
                console.log("error")
           }
-        }catch(err) {
-          console.error(err)
+        } catch(err) {
+          console.log(err)
         }
   }
     getUserData()

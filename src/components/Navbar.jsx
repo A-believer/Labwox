@@ -11,13 +11,20 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import { Logout } from "../pages"
+import CartModal from "./cartComponents/CartModal"
 
 const Navbar = () => {
   const {user, userData} = UserAuth()
-
   const [toggle, setToggle] = useState(false)
+  const [cartToggle, setCartToggle] = useState(false)
   const [logoutToggle, setLogoutToggle] = useState(false)
 
+  function handleCartToggle() {
+    setCartToggle(prev => !prev)
+    console.log(cartToggle)
+  }
+
+  
   const handleLogout = (e) => {
     e.preventDefault()
     setLogoutToggle(prev => !prev)
@@ -41,7 +48,7 @@ const item = {
 
   return (
     <>
-      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon sticky top-0 z-99`}>
+      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon z-99`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">
@@ -59,11 +66,14 @@ const item = {
               ))}
 
                {/* Cart Icon */}
-            <li className={`items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
+              <li
+                onClick={handleCartToggle}
+                className={`items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
-                <p className="relative right-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
-        
+                <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
               </li>
+              {cartToggle &&
+                <CartModal closeModal={handleCartToggle} />}
 
               {/* Login and Register */}
               <li className="flex items-center">
@@ -75,7 +85,7 @@ const item = {
               </NavLink>
               :
               <div className="lg:flex hidden justify-between items-center gap-x-7">
-              <NavLink to="/login" className="hover:text-orange hover:scale-105 transition-all duration-500">Login</NavLink>
+              <NavLink to="/login" className="lg:py-[10px] py-1.5 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-orange hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Login</NavLink>
               <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>
             </div>}
             </li>
@@ -95,7 +105,7 @@ const item = {
               initial="hidden"
               animate="show">
               { navLinks.map((link, i) => (
-                <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-[45px]"} hover:text-orange`}
+                <motion.li key={i} className={`${location.pathname === link.id ? "text-orange" : "text-blackii my-11"} hover:text-orange`}
                   variants={item}
                 onClick={() => setToggle((prev) => !prev)}>
                   <NavLink to={link.id}>{link.title}</NavLink>
@@ -108,14 +118,14 @@ const item = {
                     <NavLink to="/logout">Logout</NavLink>
                   </motion.li> :
                   
-                  <div>
-                  <motion.li className="my-[45px] text-white w-full pr-[24px] mt-[20px] mb-[20px]" variants={item}
+                  <div className="mr-5">
+                  <motion.li className="my-5 text-orange w-full rounded-md text-center border border-orange py-1.5" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
                         <NavLink to="/login">
-                          <Button text="Login" bgColor="orange" width="full" />
+                          Login
                     </NavLink>
                 </motion.li>
-                <motion.li className="text-white w-full pr-[24px] mt-[20px] mb-[20px]" variants={item}
+                <motion.li className="text-white w-full my-5" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
                   <NavLink to="/signup">
                     <Button text="Sign Up" bgColor="orange" width="full" /></NavLink>
