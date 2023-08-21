@@ -8,6 +8,13 @@ function Cart() {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
+  const item = []
+  for (let i = 0; i < cartItems.length; i++) {
+    item.push(cartItems[i])
+  }
+
+  console.log(item)
+
   if (!user) {
     return <Navigate to="/login" />
   }

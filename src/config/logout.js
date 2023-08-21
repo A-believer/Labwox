@@ -16,7 +16,7 @@ let inactivityTimer;
 const startInactivityTimer = () => {
   inactivityTimer = setTimeout(() => {
     logout();
-  },  3*60*1000); // Logout after 3 minutes of inactivity
+  },  20*60*1000); // Logout after 3 minutes of inactivity
 };
 
 const resetInactivityTimer = () => {
@@ -31,9 +31,4 @@ window.addEventListener('keydown', resetInactivityTimer);
 // Start the inactivity timer when the app loads
 startInactivityTimer();
 
-window.addEventListener('beforeunload', (event) => {
-  // Ensure the user is logged out before leaving the page
-  logout();
-  event.preventDefault();
-  event.returnValue = ''; // Display a confirmation message in some browsers
-});
+

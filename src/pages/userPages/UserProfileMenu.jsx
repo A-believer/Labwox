@@ -104,7 +104,7 @@ function UserProfileMenu() {
         </button>
         <hr className="mx-8 my-0 text-[#E5E5E5] mb-8 lg:mb-10 "/>
       </nav>
-      {logoutToggle ? <Logout closeToggle={handleLogout}/> : null}
+      {logoutToggle && <Logout closeToggle={handleLogout}/>}
     </div>
   )
 }

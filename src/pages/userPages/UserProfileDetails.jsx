@@ -32,7 +32,7 @@ function UserProfileDetails() {
             <img src={avatar} alt="avatar image" />
           </span>
           <span className="bg-blackii p-1 rounded-full lg:w-7 w-5 lg:h-7 h-5 flex justify-center items-center relative lg:top-[58px] top-16 lg:right-6 right-6 z-auto">
-            <img src={cameraImg} alt="camera image" />
+            <img src={cameraImg} alt="camera image" className="z-10"/>
           </span>
         </div>
         <p className="lg:text-4xl text-3xl font-medium">{userData.lastName} {userData.firstName}</p>

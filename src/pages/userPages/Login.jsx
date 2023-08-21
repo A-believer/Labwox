@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault()
     try {
       await signIn(formData.email, formData.password)
-      navigate('/userprofile')
+      navigate('/')
     } catch (err) {
       console.error(err.message)
     }

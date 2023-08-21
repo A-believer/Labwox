@@ -12,8 +12,10 @@ import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import { Logout } from "../pages"
 import CartModal from "./cartComponents/CartModal"
+import { useSelector } from "react-redux"
 
 const Navbar = () => {
+  const cartItems = useSelector(state => state.cart.items);
   const {user, userData} = UserAuth()
   const [toggle, setToggle] = useState(false)
   const [cartToggle, setCartToggle] = useState(false)
@@ -21,7 +23,6 @@ const Navbar = () => {
 
   function handleCartToggle() {
     setCartToggle(prev => !prev)
-    console.log(cartToggle)
   }
 
   
@@ -68,9 +69,11 @@ const item = {
                {/* Cart Icon */}
               <li
                 onClick={handleCartToggle}
-                className={`items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
+                className={`cursor-pointer items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
-                <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center cursor-pointer bg-orange">3</p>
+                <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center bg-orange">
+                  {cartItems.length}
+                </p>
               </li>
               {cartToggle &&
                 <CartModal closeModal={handleCartToggle} />}
@@ -115,13 +118,13 @@ const item = {
                 {user ?
                   <motion.li className="my-[45px]" variants={item}
                   onClick={handleLogout}>
-                    <NavLink to="/logout">Logout</NavLink>
+                    <NavLink to="/logout" className="my-5 rounded-md text-orange text-center border border-orange py-1.5 text-xs px-[115px]">Logout</NavLink>
                   </motion.li> :
                   
                   <div className="mr-5">
-                  <motion.li className="my-5 text-orange w-full rounded-md text-center border border-orange py-1.5" variants={item}
+                  <motion.li className="w-full" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
-                        <NavLink to="/login">
+                        <NavLink to="/login" className="my-5 rounded-md text-orange text-center border border-orange py-1.5 text-xs px-[115px]">
                           Login
                     </NavLink>
                 </motion.li>

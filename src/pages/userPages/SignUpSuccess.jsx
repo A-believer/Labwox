@@ -14,7 +14,7 @@ function SignUpSuccess() {
               </div>
               <img src={signupSuccessImg} alt="sign up successful" className="w-32 h-32 my-24"/>
 
-              <Link to="/userprofile" className="bg-orange text-white font-medium text-lg py-2 w-full rounded-md">Go to my account</Link>
+              <Link to="/" className="bg-orange text-white font-medium text-lg py-2 w-full rounded-md">Go to my account</Link>
           </div>
     </main>
   )
