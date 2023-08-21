@@ -12,7 +12,7 @@ const Logout = ({closeToggle}) => {
     e.preventDefault()
     try {
       await logout()
-      navigate("/")
+      navigate("/login")
     } catch (err) {
       console.error(err.message)
     } finally {

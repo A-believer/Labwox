@@ -103,7 +103,7 @@ const item = {
                 className={`${toggle ? "h-4 w-4" : "h-3 w-5"} object-contain lg:hidden block`}
                 onClick={() => setToggle((prev) => !prev)} />
 
-              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full pl-[24px] z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"
+              {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full px-[24px]  z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"
               variants={container}
               initial="hidden"
               animate="show">
@@ -116,15 +116,15 @@ const item = {
               ))}
                 
                 {user ?
-                  <motion.li className="my-[45px]" variants={item}
+                  <motion.li className="flex my-5 text-orange w-full mx-auto text-center" variants={item}
                   onClick={handleLogout}>
-                    <NavLink to="/logout" className="my-5 rounded-md text-orange text-center border border-orange py-1.5 text-xs px-[115px]">Logout</NavLink>
+                    <NavLink to="/logout" className="bg-white lg:py-[10px] py-1.5 lg:px-[54px] px-[] lg:text-base text-xs  rounded w-full hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Logout</NavLink>
                   </motion.li> :
                   
                   <div className="mr-5">
-                  <motion.li className="w-full" variants={item}
+                  <motion.li className="flex my-5 text-orange w-full mx-auto text-center" variants={item}
                   onClick={() => setToggle((prev) => !prev)}>
-                        <NavLink to="/login" className="my-5 rounded-md text-orange text-center border border-orange py-1.5 text-xs px-[115px]">
+                    <NavLink to="/login" className="bg-white lg:py-[10px] py-1.5 lg:px-[54px] px-[] lg:text-base text-xs  rounded w-full hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">
                           Login
                     </NavLink>
                 </motion.li>
