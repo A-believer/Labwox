@@ -21,7 +21,7 @@ const Login = () => {
 
  async function handleSignIn(e) {
     e.preventDefault()
-    try {
+   try {
       await signIn(formData.email, formData.password)
       navigate('/')
     } catch (err) {
@@ -35,7 +35,7 @@ const Login = () => {
 
       <form
         onSubmit={handleSignIn}
-        className="lg:w-1/2 w-full lg:h-screen h-full lg:pt-12 py-10 lg:px-20 px-10 flex flex-col ">
+        className="lg:w-1/2 w-full lg:h-screen h-full lg:pt-12 py-10 lg:px-20 px-10 flex flex-col justify-center">
         <Link
           to="/">
           <img

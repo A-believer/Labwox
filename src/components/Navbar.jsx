@@ -1,4 +1,4 @@
-import { NavLink, Link} from "react-router-dom"
+import { NavLink, Link, useNavigate} from "react-router-dom"
 import Logo from "../assets/Logo.png"
 import avatar from "../assets/avatar.png"
 import dropdown from "../assets/dropdownuserprofile.png"
@@ -10,25 +10,25 @@ import close from "../assets/close.png"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
-import { Logout } from "../pages"
 import CartModal from "./cartComponents/CartModal"
 import { useSelector } from "react-redux"
 
 const Navbar = () => {
   const cartItems = useSelector(state => state.cart.items);
-  const {user, userData} = UserAuth()
+  const { user, userData, logout } = UserAuth()
+  const navigate = useNavigate()
   const [toggle, setToggle] = useState(false)
   const [cartToggle, setCartToggle] = useState(false)
-  const [logoutToggle, setLogoutToggle] = useState(false)
 
   function handleCartToggle() {
     setCartToggle(prev => !prev)
   }
 
   
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault()
-    setLogoutToggle(prev => !prev)
+    await logout()
+    navigate("/login")
     setToggle((prev) => !prev)
       }
 
@@ -142,7 +142,6 @@ const item = {
           </div>
         </nav>
       </header>
-      {logoutToggle ? <Logout/> : null}
     </>
   )
 }

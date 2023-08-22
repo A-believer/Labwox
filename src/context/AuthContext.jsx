@@ -11,7 +11,7 @@ import { doc, getDoc } from 'firebase/firestore';
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [userData, setUserData] = useState({});
 
   const createUser = (email, password) => {
@@ -42,10 +42,10 @@ export const AuthContextProvider = ({ children }) => {
              if (newData.exists()) {
           setUserData(newData.data())
              } else {
-               console.log("error")
+               return
           }
         } catch(err) {
-          console.log(err)
+          return
         }
   }
     getUserData()

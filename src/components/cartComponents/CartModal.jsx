@@ -26,7 +26,6 @@ function CartModal({ closeModal }) {
       </div>
              )) 
     
-  
 
   return (
     <section 

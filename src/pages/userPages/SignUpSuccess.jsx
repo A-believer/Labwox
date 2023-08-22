@@ -7,7 +7,7 @@ function SignUpSuccess() {
   return (
       <main className="flex h-full w-full">
           <UserHero />
-          <div className="flex flex-col h-screen w-1/2 items-center mt-20 text-center px-20">
+          <div className="flex flex-col h-full lg:w-1/2 w-full items-center lg:mt-16 mt-10 text-center lg:px-20 px-10">
               <div>
                   <h2 className="text-blackii font-bold text-3xl">Account Created Successfully</h2>
                   <p className="text-base text-[#777777]">Please fill the details to create your account</p>

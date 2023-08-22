@@ -8,7 +8,7 @@ import heroImg from "../assets/heroImg.png"
 
 function UserHero() {
   return (
-    <div className="bg-blackii lg:flex hidden flex-col w-1/2 py-[30px] px-[64px] pb-[600px] h-full">
+    <div className="bg-blackii lg:flex hidden flex-col w-1/2 py-[30px] px-[64px] pb-[450px] h-full">
         <div>
           <Link to="/" className="mb-6"><img src={Logoft} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy"/></Link>
           <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`white`}/>
@@ -18,8 +18,8 @@ function UserHero() {
           <img src={heroImg} alt="hero image" className="absolute min-w-[560px] h-[400px] object-contain -left-4" />
 
         {/* Test Result Sample */}
-        <div className="bg-blackii border-b border-b-greyii rounded-[4px] font-aeon absolute left-5 top-[430px] hover:scale-105 active:scale-95 transition-all duration-300 ">
-          <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-[36px] mt-[20px] ">
+        <div className="bg-blackii border-b border-b-greyii rounded-[4px] font-aeon relative right-8 top-[250px] w-fit hover:scale-105 active:scale-95 transition-all duration-300 pt-1">
+          <div className="flex lg:ml-[17px] ml-[9.4px] gap-3 lg:mt-5 mt-5 ">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" loading="lazy"/>
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>
           </div>

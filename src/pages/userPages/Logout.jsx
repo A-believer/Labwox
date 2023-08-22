@@ -22,7 +22,10 @@ const Logout = ({closeToggle}) => {
   return (
     <div className="z-[99] flex justify-center items-center bg-black/20 text-center absolute inset-0 my-auto mx-auto ">
       <div className="bg-white lg:w-[660px] w-full lg:py-20 py-10 lg:px-0 px-4">
-         <img src={closeCart} alt="close cart modal" className="relative lg:-right-[600px] cursor-pointer" onClick={closeToggle}/>
+        <button type="button" onClick={closeToggle} className="relative lg:-right-[250px] cursor-pointer">
+          <img src={closeCart} alt="close cart modal"/>
+        </button>
+         
         <div className="flex justify-center rounded-full">
           <img src={logoutImg} alt="logout" className="lg:w-[150px] w-[100px] lg:h-[150px] h-[100px]" />
         </div>
