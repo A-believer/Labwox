@@ -1,6 +1,5 @@
 import { NavLink, Link, useNavigate} from "react-router-dom"
 import Logo from "../assets/Logo.png"
-import avatar from "../assets/avatar.png"
 import dropdown from "../assets/dropdownuserprofile.png"
 import { navLinks } from "../data/data"
 import cartIcon from "../assets/cartIcon.png"
@@ -12,10 +11,11 @@ import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import CartModal from "./cartComponents/CartModal"
 import { useSelector } from "react-redux"
+import {HiOutlineUserCircle} from "react-icons/hi"
 
 const Navbar = () => {
   const cartItems = useSelector(state => state.cart.items);
-  const { user, userData, logout } = UserAuth()
+  const { currentUser, logout } = UserAuth()
   const navigate = useNavigate()
   const [toggle, setToggle] = useState(false)
   const [cartToggle, setCartToggle] = useState(false)
@@ -49,7 +49,7 @@ const item = {
 
   return (
     <>
-      <header className={`${!user ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon z-99`}>
+      <header className={`${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon z-99`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">
@@ -69,7 +69,7 @@ const item = {
                {/* Cart Icon */}
               <li
                 onClick={handleCartToggle}
-                className={`cursor-pointer items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${user ? "right-[70px]" : "right-[50px]"}`}>
+                className={`cursor-pointer items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${currentUser ? "right-[70px]" : "right-[50px]"}`}>
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
                 <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center bg-orange">
                   {cartItems.length}
@@ -80,10 +80,10 @@ const item = {
 
               {/* Login and Register */}
               <li className="flex items-center">
-                {user ?
-              <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
-                <img src={avatar} alt="avatar" className="lg:w-8 lg:h-8 w-5 h-5"/>
-                    <p className={`lg:flex hidden ${location.pathname === "/userprofile" ? "underline underline-offset-4" : null}`}>Welcome, {userData.firstName}</p>
+                {currentUser ?
+                  <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
+                    <HiOutlineUserCircle className="text-blackii/50 lg:w-8 lg:h-8 w-5 h-5"/>
+                    <p className={`lg:flex hidden ${location.pathname === "/userprofile" ? "underline underline-offset-4" : null}`}>Welcome, {currentUser.displayName}</p>
                   <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden"/>
               </NavLink>
               :
@@ -100,7 +100,7 @@ const item = {
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
-                className={`${toggle ? "h-4 w-4" : "h-3 w-5"} object-contain lg:hidden block`}
+                className={`${toggle ? "h-4 w-4" : "h-3 w-4"} object-contain lg:hidden block`}
                 onClick={() => setToggle((prev) => !prev)} />
 
               {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full px-[24px]  z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"
@@ -115,7 +115,7 @@ const item = {
                 </motion.li>
               ))}
                 
-                {user ?
+                {currentUser ?
                   <motion.li className="flex my-5 text-orange w-full mx-auto text-center" variants={item}
                   onClick={handleLogout}>
                     <NavLink to="/logout" className="bg-white lg:py-[10px] py-1.5 lg:px-[54px] px-[] lg:text-base text-xs  rounded w-full hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Logout</NavLink>

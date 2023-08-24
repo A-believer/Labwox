@@ -1,18 +1,31 @@
-import { Banner, CTA, Ctaii, FAQs, Hero, Notes_Videos, Onboarding, Partners, ProductList } from "../components"
+import { Outlet, useLocation } from "react-router-dom"
+import { Navbar, Footer } from "../components"
 
 const Home = () => {
+
+  const location = useLocation()
+  
+  const displayCheckNavabar = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/signupsuccess")
+
+  const displayCheckFooter = (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname === "/userprofile" ||
+    location.pathname === "/userprofile/orders" ||
+    location.pathname === "/userprofile/settings" ||
+    location.pathname === "/signupsuccess" || 
+    location.pathname === "/cart")
   return (
-    <main className="bg-whitebg">
-      <Hero/>
-      <Banner />
-      <ProductList />
-      <Onboarding />
-      <Notes_Videos />
-      <FAQs/>
-      <Ctaii />
-      <Partners/>
-      <CTA />
-    </main>
+    <>
+      {!displayCheckNavabar ? <Navbar /> : null}
+      <Outlet />
+      {!displayCheckFooter ? <Footer/> : null}
+    </>
   )
 }
 

@@ -8,15 +8,15 @@ const Logout = ({closeToggle}) => {
 
   const {logout} = UserAuth()
    const navigate = useNavigate()
+   
     const handleLogout = async (e) => {
     e.preventDefault()
     try {
       await logout()
       navigate("/login")
+      closeToggle
     } catch (err) {
       console.error(err.message)
-    } finally {
-      closeToggle
     }
   }
   return (

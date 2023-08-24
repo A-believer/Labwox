@@ -1,66 +1,36 @@
 import { Link, useNavigate } from "react-router-dom"
 import Logo from "../../assets/Logo.png"
 import { useState } from "react"
-import { setDoc, doc } from "firebase/firestore"
-import { db } from "../../config/firebaseConfig"
 import { UserHero } from "../../components"
 import { UserAuth } from "../../context/AuthContext"
 
 const Login = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     institution: "",
     phoneNumber: ""
-  })
+  }
+  const [formData, setFormData] = useState(initialFormData)
   const [error, setError] = useState(null)
-
-  const { createUser } = UserAuth()
+  const { createUser, currentUser } = UserAuth()
   const navigate = useNavigate()
 
   function handleChange(e) {
     const {name, value} = e.target
     setFormData(prevData => ({ ...prevData, [name]: value }))
   }
-    const email = formData.email
-    const firstName = formData.firstName
-    const lastName = formData.lastName
-    const phoneNumber = formData.phoneNumber
-  const institution = formData.institution
   
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      if (!formData.email ||
-        !formData.password ||
-        !formData.firstName ||
-        !formData.lastName ||
-        !formData.phoneNumber ||
-        !formData.institution) {
-        setError("Please fill in all fields!")
-        return
-      }
-      const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
-      if (!passwordPattern.test(formData.password)) {
-        setError('Password does not meet the requirements.');
-        return;
-      }
-      
-      const userData= await createUser(
-        formData.email,
-        formData.password, formData.phoneNumber, formData.firstName, formData.lastName )
-      
-      await setDoc(doc(db, "userInfo", userData.user.uid), {
-        email,
-        firstName,
-        lastName,
-        phoneNumber,
-        institution,
-        uid: userData.user.uid
-      })
+      await createUser(formData.email, formData.password, formData.firstName, formData.lastName, formData.institution, formData.phoneNumber)
+      if (currentUser) {
         navigate("/signupsuccess")
+        setFormData(initialFormData)
+      }
     } catch (err) {
       setError(err.message)
       console.error(err.message)

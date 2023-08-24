@@ -7,12 +7,13 @@ import { UserHero } from "../../components"
 
 
 const Login = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     email: "",
     password: ""
-    });
+    }
+  const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
-  const { signIn } = UserAuth();
+  const { signIn, currentUser } = UserAuth();
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -22,8 +23,11 @@ const Login = () => {
  async function handleSignIn(e) {
     e.preventDefault()
    try {
-      await signIn(formData.email, formData.password)
-      navigate('/')
+     await signIn(formData.email, formData.password)
+     if (currentUser) {
+       navigate('/')
+     setFormData(initialFormData)
+     }
     } catch (err) {
       console.error(err.message)
     }
@@ -74,7 +78,9 @@ const Login = () => {
             />
         </label>
 
-        <button className="bg-orange text-center text-white text-lg font-medium leading-snug p-2.5 rounded mt-4 mb-8">
+        <button
+           type="submit"
+          className="bg-orange text-center text-white text-lg font-medium leading-snug p-2.5 rounded mt-4 mb-8">
           Login
         </button>
 

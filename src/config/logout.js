@@ -15,7 +15,7 @@ let inactivityTimer;
 
 const startInactivityTimer = () => {
   inactivityTimer = setTimeout(() => {
-    logout();
+    logout()
   },  20*60*1000); // Logout after 3 minutes of inactivity
 };
 

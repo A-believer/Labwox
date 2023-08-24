@@ -30,8 +30,8 @@ function CartModal({ closeModal }) {
   return (
     <section 
       onBlur={closeModal}
-      className="lg:w-[500px] w-[300px] absolute lg:top-[80px] top-[50px] lg:right-0 right-2 bg-white z-20 lg:px-6 px-2 lg:py-10 py-5 border border-grey/50 rounded-lg">
-          <div className="flex justify-between items-center mb-10">
+      className="lg:w-[500px] w-[300px] absolute lg:top-[80px] top-[50px] lg:right-0 right-2 bg-white z-20 lg:px-6 px-2 py-5 border border-grey/50 rounded-lg">
+          <div className="flex justify-between items-center mb-2">
               <p className="flex flex-col">
                 <span className="text-neutral-800 lg:text-2xl text-base font-medium tracking-tight">Cart</span>
           <span className=" text-grey lg:text-base text-sm font-normal leading-tight"> Please add items from the <Link
@@ -44,7 +44,8 @@ function CartModal({ closeModal }) {
                   <img src={closeCart} alt="close cart modal"/>
               </div>
               
-          </div>
+      </div>
+      <hr className="text-greyiii mb-5"/>
           
           <div className="mb-10 flex flex-col gap-y-3">
              {displayCartItems}

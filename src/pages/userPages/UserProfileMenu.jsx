@@ -1,5 +1,4 @@
 import { NavLink, useLocation } from "react-router-dom"
-import avatar from "../../assets/avatar.png"
 import { UserAuth } from "../../context/AuthContext"
 import profile from "../../assets/profile.png"
 import orders from "../../assets/orders.png"
@@ -8,10 +7,11 @@ import logoutbtn from "../../assets/logout.png"
 import { useState } from "react"
 import {RiArrowDropDownLine} from "react-icons/ri"
 import Logout from "./Logout"
+import {HiOutlineUserCircle} from "react-icons/hi"
 
 function UserProfileMenu() {
   const location = useLocation()
-  const { userData } = UserAuth()
+  const { userData} = UserAuth()
   const [toggle, setToggle] = useState(false)
 
    const [logoutToggle, setLogoutToggle] = useState(false)
@@ -29,12 +29,9 @@ function UserProfileMenu() {
     <div className={`bg-white w-full`}>
       <div className="bg-blackii">
         <div className="bg-profileBg flex items-center gap-2 lg:py-[34px] py-5 pl-4 pr-0">
-          <img
-            src={avatar}
-            alt=""
-            className="h-11 w-11" />
+          <HiOutlineUserCircle className="h-11 w-11 text-whitebgiii text-xs"/>
           <p className="text-white text-xl font-bold">
-            {userData.lastName} {userData.firstName}
+            {`${userData.firstName} ${userData.lastName}`}
           </p>
           <RiArrowDropDownLine onClick={handleToggle} className="text-white text-4xl lg:hidden block"/>
         </div>

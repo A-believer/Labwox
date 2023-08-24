@@ -1,24 +1,20 @@
 import cameraImg from "../../assets/cameraImg.png"
-import avatar from "../../assets/avatar.png"
 import { UserAuth } from "../../context/AuthContext"
 import { useState } from "react"
-import { Navigate } from "react-router-dom"
+import {HiOutlineUserCircle} from "react-icons/hi"
 
 function UserProfileDetails() {
-  const { userData,user } = UserAuth()
-  const [formData, setFormData] = useState({
+   const { userData } = UserAuth()
+  const initialFormData = {
     lastName: userData.lastName,
     firstName: userData.firstName,
     email: userData.email,
     phoneNumber: userData.phoneNumber,
     institution: userData.institution,
-  })
- 
-  
-  if (!user) {
-    return <Navigate to="/login" />
   }
-  function handleChange(e) {
+  const [formData, setFormData] = useState(initialFormData)
+  
+ function handleChange(e) {
     const {name, value} = e.target
     setFormData(prevData => ({...prevData, [name]: value}))
   }
@@ -27,15 +23,17 @@ function UserProfileDetails() {
     <section className={`w-full text-blackii bg-white lg:px-6 px-1 lg:py-10 py-5`}>
       
       <div className="flex flex-col lg:flex-row items-center mb-5">
-        <div className="flex">
-          <span className="rounded-full lgw-[102px] w-[86px] lg:h-[102px] h-[86px]">
-            <img src={avatar} alt="avatar image" />
+        <div className="flex cursor-pointer">
+          <span className="rounded-full lg:w-[102px] w-[86px] lg:h-[102px] h-[86px]">
+            <HiOutlineUserCircle className="w-full h-full text-blackii/40"/>
           </span>
-          <span className="bg-blackii p-1 rounded-full lg:w-7 w-5 lg:h-7 h-5 flex justify-center items-center relative lg:top-[58px] top-16 lg:right-6 right-6 z-auto">
+          <span className="bg-blackii p-1 rounded-full w-7 h-7 flex justify-center items-center relative lg:top-[68px] top-[52px] lg:right-9 right-9 z-auto">
             <img src={cameraImg} alt="camera image" className="z-10"/>
           </span>
         </div>
-        <p className="lg:text-4xl text-3xl font-medium">{userData.lastName} {userData.firstName}</p>
+        <p className="lg:text-4xl text-3xl font-medium">
+          {/* {userData.lastName} {userData.firstName} */}
+        </p>
       </div>
 
       <form className="text-base flex flex-col w-full gap-6">
@@ -104,3 +102,6 @@ function UserProfileDetails() {
 }
 
 export default UserProfileDetails
+
+
+

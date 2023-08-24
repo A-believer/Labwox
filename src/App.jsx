@@ -1,33 +1,36 @@
-import { Outlet, useLocation } from "react-router-dom"
-import { Navbar, Footer } from "./components"
+import { Route, Routes } from "react-router-dom"
+import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
+import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
+import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart, HomeLayout} from "./pages"
+import {ProductDetail} from "./components"
 
 const App = () => {
-  const location = useLocation()
-  
-  const displayCheckNavabar = (
-    location.pathname === "/login" ||
-    location.pathname === "/signup" ||
-    location.pathname === "/forgotpassword" ||
-    location.pathname === "/signupsuccess")
-
-  const displayCheckFooter = (
-    location.pathname === "/login" ||
-    location.pathname === "/signup" ||
-    location.pathname === "/forgotpassword" ||
-    location.pathname === "/userprofile" ||
-    location.pathname === "/userprofile/orders" ||
-    location.pathname === "/userprofile/settings" ||
-    location.pathname === "/signupsuccess" || 
-    location.pathname === "/cart")
-  
   
   
   return (
-    <>
-      {!displayCheckNavabar ? <Navbar /> : null}
-      <Outlet />
-      {!displayCheckFooter ? <Footer/> : null}
-    </>
+    <Routes>
+      <Route path='/' element={<Home />}>
+        <Route index element={<HomeLayout/>}/>
+        <Route path="about" element={<About/>}/>
+        <Route path="contact" element={<Contact/>}/>
+        <Route path="resources" element={<Resources/>}/>
+        <Route path="services" element={<Services/>}/>
+        <Route path="testlisting" element={<TestListing />}/>
+        <Route path="testlisting/:id" element={<ProductDetail />} />
+        <Route path="login" element={<Login/>}/>
+        <Route path="signup" element={<SignUp/>}/>
+        <Route path="forgotpassword" element={<ForgotPassword />} />
+        <Route path='signupsuccess' element={<SignUpSuccess />} />
+        <Route path = "cart" element = {<Cart/>} />
+        <Route path="userprofile" element={<UserProfile />}>
+          <Route index element={<UserProfileDetails/>}/>
+          <Route path='orders' element={<UserProfileOrders/>}/>
+          <Route path='settings' element={<UserProfileSettings />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+        
+    </Routes>
   )
 }
 

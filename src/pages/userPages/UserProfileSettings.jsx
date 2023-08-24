@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { UserAuth } from "../../context/AuthContext"
-import { Navigate } from "react-router-dom"
 
 
 function UserProfileSettings() {
@@ -45,9 +44,6 @@ setOldPassword(e.target.value)
     }
   }
 
-  if (!user) {
-    return <Navigate to="/login" />
-  }
   return (
     <div className="flex flex-col lg:gap-10 gap-6 w-full text-blackii bg-white lg:px-6 px-1 lg:py-10 py-5">
        <div className="flex flex-col gap-2 text-blackii w-full lg:w-[450px] mt-10">

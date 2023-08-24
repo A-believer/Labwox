@@ -1,17 +1,11 @@
-import { Route, Redirect } from 'react-router-dom';
-import { auth } from '../config/firebaseConfig'; 
+import { Navigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext"; 
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const user = auth.currentUser;
-
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        user ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+export const ProtectedRoute = ({ children }) => {
+  const { user } = UserAuth();
+  if (!user) {
+    // user is not authenticated
+    return <Navigate to="/" />;
+  }
+  return children;
 };
-
-export default ProtectedRoute;
