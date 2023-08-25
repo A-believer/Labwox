@@ -1,11 +1,12 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext"; 
 
 export const ProtectedRoute = ({ children }) => {
-  const { user } = UserAuth();
-  if (!user) {
+  const { currentUser } = UserAuth();
+  const nav = useNavigate()
+  if (!currentUser) {
     // user is not authenticated
-    return <Navigate to="/" />;
+   nav("/login")
   }
   return children;
 };

@@ -1,12 +1,11 @@
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import UserProfileMenu from "./UserProfileMenu"
 import { UserAuth } from "../../context/AuthContext"
 import { useEffect, useState } from "react"
 
 
 const UserProfile = () => {
-  const { currentUser, userData } = UserAuth()
-  const navigate = useNavigate()
+  const { userData } = UserAuth()
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,10 +15,6 @@ const UserProfile = () => {
     }
   }, [userData]);
 
-    if (!currentUser) {
-    return navigate("/login")
-  }
- 
   return (
     <div className="bg-whitebgii lg:flex flex-col lg:flex-row w-full lg:px-[70px] lg:py-[40px] px-4 py-4 gap-x-6">
       {isLoading ?

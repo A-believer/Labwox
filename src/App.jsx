@@ -3,6 +3,7 @@ import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
 import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart, HomeLayout} from "./pages"
 import {ProductDetail} from "./components"
+import { ProtectedRoute } from "./utils/ProtectedRoute.jsx"
 
 const App = () => {
   
@@ -22,14 +23,13 @@ const App = () => {
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path='signupsuccess' element={<SignUpSuccess />} />
         <Route path = "cart" element = {<Cart/>} />
-        <Route path="userprofile" element={<UserProfile />}>
+        <Route path="userprofile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>}>
           <Route index element={<UserProfileDetails/>}/>
           <Route path='orders' element={<UserProfileOrders/>}/>
           <Route path='settings' element={<UserProfileSettings />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Route>
-        
     </Routes>
   )
 }

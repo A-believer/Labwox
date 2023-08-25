@@ -6,7 +6,7 @@ import cartIcon from "../assets/cartIcon.png"
 import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import CartModal from "./cartComponents/CartModal"
@@ -15,7 +15,7 @@ import {HiOutlineUserCircle} from "react-icons/hi"
 
 const Navbar = () => {
   const cartItems = useSelector(state => state.cart.items);
-  const { currentUser, logout } = UserAuth()
+  const { currentUser, logout, loading } = UserAuth()
   const navigate = useNavigate()
   const [toggle, setToggle] = useState(false)
   const [cartToggle, setCartToggle] = useState(false)
@@ -80,17 +80,18 @@ const item = {
 
               {/* Login and Register */}
               <li className="flex items-center">
-                {currentUser ?
+                {(currentUser && loading) &&
                   <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
-                    <HiOutlineUserCircle className="text-blackii/50 lg:w-8 lg:h-8 w-5 h-5"/>
+                    <HiOutlineUserCircle className="text-blackii/50 lg:w-8 lg:h-8 w-5 h-5" />
                     <p className={`lg:flex hidden ${location.pathname === "/userprofile" ? "underline underline-offset-4" : null}`}>Welcome, {currentUser.displayName}</p>
-                  <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden"/>
-              </NavLink>
-              :
-              <div className="lg:flex hidden justify-between items-center gap-x-7">
-              <NavLink to="/login" className="lg:py-[10px] py-1.5 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-orange hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Login</NavLink>
-              <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>
-            </div>}
+                    <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden" />
+                  </NavLink>}
+              
+                {(!currentUser && !loading) &&
+                  <div className="lg:flex hidden justify-between items-center gap-x-7">
+                    <NavLink to="/login" className="lg:py-[10px] py-1.5 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-orange hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Login</NavLink>
+                    <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>
+                  </div>}
             </li>
 
               {/* Mobile NavMenu */}
