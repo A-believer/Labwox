@@ -6,7 +6,7 @@ import cartIcon from "../assets/cartIcon.png"
 import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import CartModal from "./cartComponents/CartModal"
@@ -24,7 +24,6 @@ const Navbar = () => {
     setCartToggle(prev => !prev)
   }
 
-  
   const handleLogout = async (e) => {
     e.preventDefault()
     await logout()
@@ -72,22 +71,23 @@ const item = {
                 className={`cursor-pointer items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${currentUser ? "right-[70px]" : "right-[50px]"}`}>
                 <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
                 <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center bg-orange">
-                  {cartItems.length}
+                 {cartItems.length}
                 </p>
               </li>
               {cartToggle &&
-                <CartModal closeModal={handleCartToggle} />}
+                <CartModal
+                  closeModal={handleCartToggle}
+                  />}
 
               {/* Login and Register */}
               <li className="flex items-center">
-                {(currentUser && loading) &&
+                {(currentUser && loading) ?
                   <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
                     <HiOutlineUserCircle className="text-blackii/50 lg:w-8 lg:h-8 w-5 h-5" />
-                    <p className={`lg:flex hidden ${location.pathname === "/userprofile" ? "underline underline-offset-4" : null}`}>Welcome, {currentUser.displayName}</p>
+                    <p className={`lg:flex hidden decoration-orange ${location.pathname === "/userprofile" ? "underline underline-offset-4 text-black/80" : "text-greyiii"} `}>Welcome, {currentUser.displayName}</p>
                     <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden" />
-                  </NavLink>}
-              
-                {(!currentUser && !loading) &&
+                  </NavLink>
+              :
                   <div className="lg:flex hidden justify-between items-center gap-x-7">
                     <NavLink to="/login" className="lg:py-[10px] py-1.5 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-orange hover:scale-105 active:scale-95 transition-all duration-300 z-99 border border-orange">Login</NavLink>
                     <NavLink to="/signup" className="text-white"><Button text="Sign Up" bgColor="orange" width="width"/></NavLink>

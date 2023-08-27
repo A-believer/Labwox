@@ -7,7 +7,7 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { auth, db } from '../config/firebaseConfig';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const UserContext = createContext();
 
@@ -16,6 +16,18 @@ export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false)
 
+  async function handleAddToCart(...item) {
+    try {
+      const userId = auth.currentUser.uid
+    const cartRef = doc(collection(db, "userInfo", userId))
+
+    await setDoc(cartRef, {...item})
+    } catch (error) {
+      console.error(error.message)
+    }
+    
+  }
+ 
   const createUser = async (email, password, firstName, lastName, institution, phoneNumber) => {
     try {
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
@@ -79,7 +91,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [userData])
           
 
-  const value = {createUser, signIn, currentUser, userData, loading, logout }
+  const value = {createUser, signIn, currentUser, userData, loading, logout, handleAddToCart }
 
   return (
     <UserContext.Provider value={value}>

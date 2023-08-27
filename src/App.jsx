@@ -22,7 +22,7 @@ const App = () => {
         <Route path="signup" element={<SignUp/>}/>
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path='signupsuccess' element={<SignUpSuccess />} />
-        <Route path = "cart" element = {<Cart/>} />
+        <Route path = "cart" element = {<ProtectedRoute><Cart/></ProtectedRoute>} />
         <Route path="userprofile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>}>
           <Route index element={<UserProfileDetails/>}/>
           <Route path='orders' element={<UserProfileOrders/>}/>

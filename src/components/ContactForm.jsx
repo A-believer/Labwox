@@ -145,7 +145,8 @@ const ContactForm = () => {
         
       <button
         disabled={ready}
-        className={`bg-orange lg:py-[10px] py-2 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-white hover:scale-105 active:scale-95 transition-all duration-300 lg:w-[25%] w-[45%]`}>
+        type="submit"
+        className={`bg-orange lg:py-[10px] py-2 lg:px-[54px] px-[35px] lg:text-base text-xs  rounded-[4px] text-white hover:scale-105 active:scale-95 transition-all duration-300 lg:w-[25%] w-[45%]cursor-pointer`}>
         Submit
       </button>
       <ToastContainer/>

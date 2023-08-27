@@ -3,24 +3,31 @@ import closeCart from "../../assets/closeCart.png"
 import { Link, NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from "../../utils/cartSlice";
-import {TbTrashXFilled}  from "react-icons/tb"
+import { TbTrashXFilled } from "react-icons/tb"
+import uniqueId from 'lodash/uniqueId';
+
 
 function CartModal({ closeModal }) {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  
 
+  // total price of items in cart 
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
     total += cartItems[i].pricing
-  }
+  } 
+
 
   const displayCartItems =  cartItems?.map(item => (
-    <div key={item.code} className="flex justify-between items-center gap-x-10 bg-greyii lg:p-2 p-1 rounded-lg">
+    <div key={uniqueId("cartItem-")} className="flex justify-between items-center gap-x-10 bg-greyii lg:p-2 p-1 rounded-lg">
       <p className="flex flex-col justify-center text-base">
         <span className="text-grey mb-2 underline">{item.testTitle}</span>
         <span className="text-blackii font-bold">₦ {item.pricing}.00</span>
       </p>
-      <button onClick={() => dispatch(removeItem(item.id))}>
+      <button
+        type="submit"
+        onClick={() => dispatch(removeItem(item.id))}>
         <TbTrashXFilled className="text-greyiii" />
       </button>
       </div>
@@ -55,7 +62,7 @@ function CartModal({ closeModal }) {
         <div>
           <hr className="text-greyiii"/>
           <p className="flex justify-between my-4">
-          <span className="font-bold text-greyiii">Order Total</span>
+          <span className="font-bold text-greyiii">Cart Total</span>
           <span className="font-bold">₦ {total}.00</span>
         </p>
         </div>

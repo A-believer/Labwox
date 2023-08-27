@@ -57,9 +57,13 @@ const ProductDetail = () => {
                         Add to Cart
                     </button>
                     {cartDetailToggle &&
-                        <CartDetail closeCartDetail={handleCartDetailToggle}
-                        test={test} testPricing={test.pricing}
+                        <CartDetail
+                        closeCartDetail={handleCartDetailToggle}
+                        test={test}
+                        testPricing={test.pricing}
                         testCode={test.code}
+                        testTitle={test.testTitle}
+                        testSampleType={test.sampleType}
                     />}
                     
                 </div>
