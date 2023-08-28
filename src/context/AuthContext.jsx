@@ -16,17 +16,6 @@ export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false)
 
-  async function handleAddToCart(...item) {
-    try {
-      const userId = auth.currentUser.uid
-    const cartRef = doc(collection(db, "userInfo", userId))
-
-    await setDoc(cartRef, {...item})
-    } catch (error) {
-      console.error(error.message)
-    }
-    
-  }
  
   const createUser = async (email, password, firstName, lastName, institution, phoneNumber) => {
     try {
@@ -88,10 +77,9 @@ export const AuthContextProvider = ({ children }) => {
     })
 
    return () => unsubscribe()
-  }, [userData])
-          
+  }, [userData])        
 
-  const value = {createUser, signIn, currentUser, userData, loading, logout, handleAddToCart }
+  const value = {createUser, signIn, currentUser, userData, loading, logout }
 
   return (
     <UserContext.Provider value={value}>

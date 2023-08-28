@@ -48,7 +48,7 @@ const item = {
 
   return (
     <>
-      <header className={`${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} font-aeon z-99`}>
+      <header className={`drop-shadow-xl ${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} sticky font-aeon z-[99]`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">

@@ -8,8 +8,8 @@ import heroImg from "../assets/heroImg.png"
 
 function UserHero() {
   return (
-    <div className="bg-blackii lg:flex hidden flex-col w-1/2 py-[30px] px-[64px] pb-[450px] h-full">
-        <div>
+    <div className="bg-blackii lg:flex hidden flex-col w-1/2 py-[30px] px-[64px] pb-[420px]">
+        <div className="w-fit">
           <Link to="/" className="mb-6"><img src={Logoft} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy"/></Link>
           <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`white`}/>
         </div>

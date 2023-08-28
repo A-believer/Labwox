@@ -34,12 +34,12 @@ const Login = () => {
     
  }
   return (
-    <main className="flex h-[100vh] w-full">
+    <main className="flex h-full w-full">
       <UserHero/>
 
       <form
         onSubmit={handleSignIn}
-        className="lg:w-1/2 w-full lg:h-screen h-full lg:pt-12 py-10 lg:px-20 px-10 flex flex-col justify-center">
+        className="lg:w-1/2 w-full lg:h-screen h-full lg:p-12 py-10 lg:px-20 px-10 flex flex-col justify-center">
         <Link
           to="/">
           <img

@@ -4,40 +4,58 @@ import { Link, NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from "../../utils/cartSlice";
 import { TbTrashXFilled } from "react-icons/tb"
-import uniqueId from 'lodash/uniqueId';
-
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../config/firebaseConfig";
+import { ToastContainer, toast } from "react-toastify";
+import PropTypes from 'prop-types';
+import { UserAuth } from "../../context/AuthContext";
 
 function CartModal({ closeModal }) {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-  
 
   // total price of items in cart 
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
-    total += cartItems[i].pricing
+    total += cartItems[i].testPrice
   } 
 
+  
+  const cartTotal = total.toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+    });
+
+  
+
+  async function removeTestFromCart(id) {
+    dispatch(removeItem(id))
+
+    try {
+       await deleteDoc(doc(db, 'userCart', id));
+      toast.error('Test removed from cart!');
+    } catch (error) {
+      console.error(error.message)
+    }
+     
+    
+  }
 
   const displayCartItems =  cartItems?.map(item => (
-    <div key={uniqueId("cartItem-")} className="flex justify-between items-center gap-x-10 bg-greyii lg:p-2 p-1 rounded-lg">
+    <form onSubmit={() => removeTestFromCart(item.id)} key={item.id} className="flex justify-between items-center gap-x-10 bg-greyii lg:p-2 p-1 rounded-lg">
       <p className="flex flex-col justify-center text-base">
-        <span className="text-grey mb-2 underline">{item.testTitle}</span>
-        <span className="text-blackii font-bold">₦ {item.pricing}.00</span>
+        <span className="text-grey mb-2 underline">{item.testName}</span>
+        <span className="text-blackii font-bold">₦ {item.testPrice?.toLocaleString('en-US')}.00</span>
       </p>
       <button
-        type="submit"
-        onClick={() => dispatch(removeItem(item.id))}>
+        type="submit">
         <TbTrashXFilled className="text-greyiii" />
       </button>
-      </div>
-             )) 
-    
+      </form>)) 
 
   return (
     <section 
       onBlur={closeModal}
-      className="lg:w-[500px] w-[300px] absolute lg:top-[80px] top-[50px] lg:right-0 right-2 bg-white z-20 lg:px-6 px-2 py-5 border border-grey/50 rounded-lg">
+      className="lg:w-[500px] w-[300px] absolute lg:top-[80px] top-[50px] lg:right-0 right-2 bg-white lg:px-6 px-2 py-5 border border-grey/50 rounded-lg z-[10000]">
           <div className="flex justify-between items-center mb-2">
               <p className="flex flex-col">
                 <span className="text-neutral-800 lg:text-2xl text-base font-medium tracking-tight">Cart</span>
@@ -63,7 +81,7 @@ function CartModal({ closeModal }) {
           <hr className="text-greyiii"/>
           <p className="flex justify-between my-4">
           <span className="font-bold text-greyiii">Cart Total</span>
-          <span className="font-bold">₦ {total}.00</span>
+          <span className="font-bold">₦ {cartTotal}.00</span>
         </p>
         </div>
         }
@@ -71,9 +89,13 @@ function CartModal({ closeModal }) {
           <NavLink to={`cart`} onClick={closeModal}>
               <Button bgColor={`orange`} text={`View Full`} textColor={`white`} width={`full`} />
           </NavLink>
-          
+          <ToastContainer/>
     </section>
   )
+}
+
+CartModal.propTypes = {
+  closeModal: PropTypes.func.isRequired
 }
 
 export default CartModal

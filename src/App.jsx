@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
 import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart, HomeLayout} from "./pages"
-import {ProductDetail} from "./components"
+import { ProductDetail} from "./components"
 import { ProtectedRoute } from "./utils/ProtectedRoute.jsx"
 
 const App = () => {

@@ -17,7 +17,7 @@ const Hero = () => {
     console.log(search)
   }
   return (
-       <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center -z-10">
+       <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
       <div className="lg:my-0 my-10">
         <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`blackii`}/>
         <p className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
@@ -35,9 +35,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden z-10">
+      <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden">
         
-        <img src={heroImg} alt="hero image" className="absolute lg:h-[425px] sm:h-[280px] lg:w-[450px] sm:w-[270px]"/>
+        <img src={heroImg} alt="hero image" className="lg:h-[425px] sm:h-[280px] lg:w-[450px] sm:w-[270px] absolute"/>
 
         {/* Test Result Sample */}
         <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[160px] right-[100px] lg:top-[130px] top-[100px] hover:scale-105 active:scale-95 transition-all duration-300">

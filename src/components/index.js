@@ -25,3 +25,6 @@ export { default as ProductDetailParameters } from "./productsComponents/Product
 export { default as UserHero } from "./UserHero.jsx"
 export {default as CartModal} from "./cartComponents/CartModal.jsx"
 export {default as CartDetail} from "./cartComponents/CartDetail.jsx"
+export {default as CartShipping} from "./cartComponents/CartShipping.jsx"
+export {default as CartShippingAddress} from "./cartComponents/CartShippingAddress.jsx"
+export {default as CartToOrderSuccess} from "./cartComponents/CartToOrderSuccess.jsx"
