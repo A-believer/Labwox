@@ -37,8 +37,12 @@ const orderSlice = createSlice({
       state.items = orderItems;
     },
     addOrder: (state, action) => {
-      state.items.push(action.payload);
+      const newItem = action.payload
+      if (newItem) {
+        state.items.push(action.payload);
       localStorage.setItem('orderItems', JSON.stringify(state.items));
+      }
+      
     },
     removeOrder: (state, action) => {
       state.filter(order => order.id !== action.payload);

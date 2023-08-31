@@ -7,7 +7,7 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { auth, db } from '../config/firebaseConfig';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const UserContext = createContext();
 
@@ -63,21 +63,25 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-          setLoading(true)
-            setCurrentUser(user)
+        setCurrentUser(user)
+      setLoading(true)
+        
             const newData = await getDoc(doc(db, "userInfo", user.uid))
             if (newData.exists()) {
               setUserData(newData.data())
-            } 
+              console.log("user")
+        } 
+        
       } else {
         setCurrentUser(null);
-        setUserData(null);
         setLoading(false)
+        setUserData(null);
       }
+      
     })
 
-   return () => unsubscribe()
-  }, [userData])        
+   return () => {unsubscribe()}
+  }, [])        
 
   const value = {createUser, signIn, currentUser, userData, loading, logout }
 

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, removeItem } from "../utils/cartSlice";
 import { Link } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 
@@ -20,29 +20,35 @@ function Cart() {
   }
   const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
   const [shippingDetails, setShippinDetails] = useState(intialShippingDetails)
-  const [orderDetails, setOrderDetails] = useState(null)
+  const [orderDetails, setOrderDetails] = useState({})
 
 
   // handles what happens when all the right shipping details are correctly filled
   function handleOrdersSubmit() {
-    setToggleShipping(true)
     let orderDetail;
     if (shippingDetails.deliveryOption === "Drop Off") {
       orderDetail = {
         deliveryDetails: shippingDetails.deliveryOption,
         cart: cartItems
       }
+       setOrderDetails(orderDetail)
+      dispatch(addOrder(orderDetails))
+    } else if (shippingDetails.deliveryOption === "") {
+      setToggleShipping(true)
       } else {
         orderDetail = {
           deliveryDetails: shippingDetails,
           cart: cartItems
       }
+      setOrderDetails(orderDetail)
+      dispatch(addOrder(orderDetails))
     }
-    setOrderDetails(orderDetail)
-    dispatch(addOrder(orderDetails))
-    console.log(orderDetails)
-    console.log(orderItems)
   }
+  useEffect(() => {
+    console.log(orderItems)
+      console.log(orderDetails)
+  }, [])
+    
  // handles what happens when all the right shipping details are correctly filled
   
 
@@ -55,31 +61,31 @@ function Cart() {
 
   // handles what delivery option state
   function handleShippingOptionChange(option) {
-    if (option !== "") {
+    if (option !== null) {
       setToggleShipping(prev => !prev)
       setShippinDetails(prevData => ({...prevData, deliveryOption: option}))
     }
     if (option === "Agent Pick Up") {
-      setToggleShippingAddress(prev => !prev)
+      setToggleShippingAddress(true)
     } 
   }
   // handles what delivery option state
 
   //handle Shipping details
   function handleShippingDetails() {
-    setToggleShippingAddress(false)
     if (shippingDetails.contactNumber === "" &&
     shippingDetails.locationLandmark === "" &&
     shippingDetails.deliveryAddress === ""
     ) {
       setError(true)
+    } else {
+      setToggleShippingAddress(false)
     }
 }
 
   // handle close shipping Address details
   function handleShippingAddressDetail() {
     setToggleShippingAddress(prev => !prev)
-   setShippinDetails(intialShippingDetails)
   }
 
   // cart total and shipping Fee

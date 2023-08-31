@@ -5,7 +5,7 @@ const Products = ({ tests }) => {
   
   const [currentPage, setCurrentPage] = useState(1)
   const totalTests = tests.length
-  const pageSize = 10
+  const pageSize = 5
   const pages = Math.floor(totalTests / pageSize)
   
   function goToPrev() {

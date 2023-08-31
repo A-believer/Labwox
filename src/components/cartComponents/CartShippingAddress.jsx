@@ -25,7 +25,7 @@ function CartShippingAddress({ closeModal, deliveryDetails, shippingDetailsChang
           name="address"
           placeholder="enter your address..."
           className="border border-grey rounded outline-none p-2 mt-1" />
-        {error && <p>enter your address!</p>}
+        {error && <p className="text-sm text-left text-red italic">enter your address!</p>}
       </label> 
 
       <label htmlFor="landmark" className="flex flex-col text-base font-normal">
@@ -37,7 +37,7 @@ function CartShippingAddress({ closeModal, deliveryDetails, shippingDetailsChang
           name="landmark"
           placeholder="enter a landmark..."
           className="border border-grey rounded outline-none p-2 mt-1" />
-        {error && <p>enter a recognizable landmark!</p>}
+        {error && <p className="text-sm text-left text-red italic">enter a recognizable landmark!</p>}
       </label> 
 
       <label htmlFor="phoneNumber" className="flex flex-col text-base font-normal">
@@ -49,7 +49,7 @@ function CartShippingAddress({ closeModal, deliveryDetails, shippingDetailsChang
           name="phoneNumber"
           placeholder="enter your contact number..."
           className="border border-grey rounded outline-none p-2 mt-1" />
-        {error && <p>enter your contact number!</p>}
+        {error && <p className="text-sm text-left text-red italic">enter your contact number!</p>}
       </label>
 
       <button type="submit" onClick={handleShippingDetails} className="text-white bg-orange rounded px-5 py-1.5">Continue</button>

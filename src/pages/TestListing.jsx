@@ -8,7 +8,7 @@ const TestListing = () => {
   const [tests, setTests] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("all")
   const categories = ["Phytochemical Analysis", "Polutant Analysis", "Nutritional Analysis"]
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const filteredTests = tests.filter(test => {
     return (
@@ -27,7 +27,8 @@ const TestListing = () => {
   };
   
   const testListCollectionRef = collection(db, "lists of tests")
-  async function getTestList() {
+   async function getTestList() {
+      setLoading(true)
     try {
           await getDocs(testListCollectionRef, {source: "cache"})
           .then((data) => {
@@ -36,16 +37,16 @@ const TestListing = () => {
           id: doc.id
               })) 
             setTests(newData)
-            setLoading(false)
           })
     } catch (err) {
       console.error(err)
-      setLoading(true)
-    }
-      
+      }
+      setLoading(false)
   }
+  
   useEffect(() => {
-    getTestList()
+   
+    return () => {getTestList()}
   }, [])
 
 
@@ -59,10 +60,11 @@ const TestListing = () => {
           :
           <>
             <div className="rounded">
-              <ProductSidebar
-              categories={categories}
+            <ProductSidebar 
+              categories={categories  }
               selectedCategory={selectedCategory}
-              handleCategoryChange={handleCategoryChange} />
+              handleCategoryChange={handleCategoryChange}
+              />
             </div>
             <div>
               <Products tests={tests} />
