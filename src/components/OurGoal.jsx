@@ -1,8 +1,8 @@
-import aboutImg from "../assets/aboutImg.png"
+import aboutImg from "../assets/imgIII.jpeg"
 
 const OurGoal = () => {
   return (
-    <section className="bg-white lg:mt-0 mt-[64px] flex justify-between items-center lg:flex-row-reverse flex-col lg:px-[70px] px-[24px] lg:pb-[100px] pb-[50px] lg:pt-[103px] gap-x-[80px]">
+    <section className="bg-white lg:mt-0 mt-[64px] flex justify-between items-center lg:flex-row-reverse flex-col lg:px-[70px] px-[24px] lg:pb-[100px] pb-[50px] lg:pt-[103px] lg:gap-x-[80px] gap-x-2 ">
       <div className="lg:w-[50%] w-full mx-[24px] lg:ml-0 lg:mb-0 mb-[30px] lg:pr-[40px] pr-[30px]">
         
         <div className="lg:text-2xl text-xl text-grey flex flex-col lg:gap-y-[54px] gap-y-[24px]">

@@ -2,16 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, removeItem } from "../utils/cartSlice";
 import { Link } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
+import CartToOrderSuccess from '../components/cartComponents/CartToOrderSuccess';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
-  const orderItems = useSelector(state => state.order.items)
   const dispatch = useDispatch();
   const [error, setError] = useState(false)
   const [toggleShipping, setToggleShipping] = useState(false)
+  const [toggleSuccess, setToggleSuccess] = useState(false)
   const intialShippingDetails = {
     deliveryOption: "",
     deliveryAddress: "",
@@ -33,6 +34,7 @@ function Cart() {
       }
        setOrderDetails(orderDetail)
       dispatch(addOrder(orderDetails))
+      setToggleSuccess(true)
     } else if (shippingDetails.deliveryOption === "") {
       setToggleShipping(true)
       } else {
@@ -42,12 +44,10 @@ function Cart() {
       }
       setOrderDetails(orderDetail)
       dispatch(addOrder(orderDetails))
+      setToggleSuccess(true)
     }
   }
-  useEffect(() => {
-    console.log(orderItems)
-      console.log(orderDetails)
-  }, [])
+ 
     
  // handles what happens when all the right shipping details are correctly filled
   
@@ -103,7 +103,7 @@ function Cart() {
   
   
   return (
-    <section className="lg:px-[70px] px-6 lg:py-7 py-6 bg-whitebgiv relative">
+    <section className="lg:px-[70px] px-6 lg:py-7 py-6 bg-whitebgiv relative w-full h-screen">
       <div className='my-2'>
         <p className="flex items-center">
         <span className='font-bold lg:text-2xl text-xl'>Cart</span>
@@ -138,7 +138,10 @@ function Cart() {
           closeModal={handleShippingAddressDetail }
           deliveryDetails={shippingDetails}
           shippingDetailsChange={handleShippingDetailsChange}
-          handleShippingDetails={handleShippingDetails}/>}
+            handleShippingDetails={handleShippingDetails} />}
+        
+        {toggleSuccess && <CartToOrderSuccess
+        orderDetails={orderDetails}/>}
         
         <div className='w-[65%] bg-white h-[60vh] lg:flex flex-col drop-shadow-2xl hidden'>
           
@@ -200,7 +203,7 @@ function Cart() {
           <hr className='text-grey/30 my-10' />
         </div>
 
-        <div className='lg:w-[35%] w-full bg-white py-[50px] h-[60vh] px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl'>
+        <div className='lg:w-[35%] w-full bg-white py-[50px] h-[60vh] px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl mb-10 lg:mb-0'>
           <p className='whitespace-nowrap flex justify-between items-center'>
             <span className='font-normal'>Cart Subtotal</span>
             <span className='font-bold'># {total.toLocaleString('en-US')}.00</span>

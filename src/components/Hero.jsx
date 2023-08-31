@@ -2,7 +2,7 @@ import Header from "../utils/Header"
 import heroEx from "../assets/heroEx.png"
 import arrow from "../assets/arrow.png"
 import { useState } from "react"
-import heroImg from "../assets/heroImg.png"
+import heroImg from "../assets/imgI.jpeg"
 
 const Hero = () => {
 
@@ -37,10 +37,10 @@ const Hero = () => {
 
       <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden">
         
-        <img src={heroImg} alt="hero image" className="lg:h-[425px] sm:h-[280px] lg:w-[450px] sm:w-[270px] absolute"/>
+        <img src={heroImg} alt="hero image" className="lg:h-[425px] sm:h-[280px] lg:w-[550px] sm:w-[270px] absolute object-contain"/>
 
         {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon relative lg:right-[160px] right-[100px] lg:top-[130px] top-[100px] hover:scale-105 active:scale-95 transition-all duration-300">
+        <div className="bg-blackii rounded-[4px] font-aeon absolute bottom-0 left-0 hover:scale-105 active:scale-95 transition-all duration-300">
           <div className="flex lg:ml-[12px] ml-[8px] lg:gap-3 gap-2 lg:mt-[16px] mt-[8px] items-center">
             <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" loading="lazy"/>
             <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>

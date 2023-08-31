@@ -46,7 +46,8 @@ const TestListing = () => {
   
   useEffect(() => {
    
-    return () => {getTestList()}
+    getTestList()
+    console.log("tests")
   }, [])
 
 

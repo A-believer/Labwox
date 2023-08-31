@@ -1,5 +1,5 @@
 import { Button, Header } from "../utils"
-import heroImg from "../assets/aboutHeroImg.png"
+import heroImg from "../assets/imgII.jpeg"
 import { Link } from "react-router-dom"
 
 
