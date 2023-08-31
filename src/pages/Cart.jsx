@@ -1,38 +1,103 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem } from "../utils/cartSlice";
+import { addOrder, removeItem } from "../utils/cartSlice";
 import { Link } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
 import { useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
+import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
+  const orderItems = useSelector(state => state.order.items)
   const dispatch = useDispatch();
+  const [error, setError] = useState(false)
   const [toggleShipping, setToggleShipping] = useState(false)
-  const [shippingOption, setShippingOption] = useState('')
-  
-  function handleShippingOptionChange(option) {
-    setShippingOption(option)
+  const intialShippingDetails = {
+    deliveryOption: "",
+    deliveryAddress: "",
+    locationLandmark: "",
+    contactNumber: ""
+  }
+  const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
+  const [shippingDetails, setShippinDetails] = useState(intialShippingDetails)
+  const [orderDetails, setOrderDetails] = useState(null)
 
-    if (shippingOption !== "") {
-      setToggleShipping(prev => !prev)
-      console.log(shippingOption)
+
+  // handles what happens when all the right shipping details are correctly filled
+  function handleOrdersSubmit() {
+    setToggleShipping(true)
+    let orderDetail;
+    if (shippingDetails.deliveryOption === "Drop Off") {
+      orderDetail = {
+        deliveryDetails: shippingDetails.deliveryOption,
+        cart: cartItems
+      }
+      } else {
+        orderDetail = {
+          deliveryDetails: shippingDetails,
+          cart: cartItems
+      }
     }
-    
+    setOrderDetails(orderDetail)
+    dispatch(addOrder(orderDetails))
+    console.log(orderDetails)
+    console.log(orderItems)
+  }
+ // handles what happens when all the right shipping details are correctly filled
+  
+
+  // handle shippingDetails state 
+  function handleShippingDetailsChange(key, value) { 
+    setShippinDetails(prevData => ({...prevData, [key]: value}))
+  }
+  // handle shippingDetails state 
+  
+
+  // handles what delivery option state
+  function handleShippingOptionChange(option) {
+    if (option !== "") {
+      setToggleShipping(prev => !prev)
+      setShippinDetails(prevData => ({...prevData, deliveryOption: option}))
+    }
+    if (option === "Agent Pick Up") {
+      setToggleShippingAddress(prev => !prev)
+    } 
+  }
+  // handles what delivery option state
+
+  //handle Shipping details
+  function handleShippingDetails() {
+    setToggleShippingAddress(false)
+    if (shippingDetails.contactNumber === "" &&
+    shippingDetails.locationLandmark === "" &&
+    shippingDetails.deliveryAddress === ""
+    ) {
+      setError(true)
+    }
+}
+
+  // handle close shipping Address details
+  function handleShippingAddressDetail() {
+    setToggleShippingAddress(prev => !prev)
+   setShippinDetails(intialShippingDetails)
   }
 
-  function handleShippingToggle() {
-    setToggleShipping(prev => !prev)
-  }
-
+  // cart total and shipping Fee
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
     total += cartItems[i].testPrice
   } 
-  let shippingFee = 2500
+  let shippingFee
+  if (shippingDetails.deliveryOption === "Drop Off") {
+    shippingFee = 0
+  } else {
+    shippingFee = 2500
+  }
+  // cart total and shipping Fee
+  
   
   return (
-    <section className="lg:px-[70px] px-6 lg:py-10 py-6 bg-whitebgiv relative">
+    <section className="lg:px-[70px] px-6 lg:py-7 py-6 bg-whitebgiv relative">
       <div className='my-2'>
         <p className="flex items-center">
         <span className='font-bold lg:text-2xl text-xl'>Cart</span>
@@ -56,11 +121,18 @@ function Cart() {
 
       <div className='flex lg:flex-row flex-col items-center w-full justify-between gap-6'>
         
-      {toggleShipping &&
-            <CartShipping
-              shippingOption={shippingOption}
-          onOptionChange={handleShippingOptionChange}
-            />}
+      {toggleShipping && 
+        <CartShipping
+          shippingOption={shippingDetails.deliveryOption}
+          onOptionChange={handleShippingOptionChange}/>}
+        
+        {toggleShippingAddress &&
+          <CartShippingAddress
+          error={error}
+          closeModal={handleShippingAddressDetail }
+          deliveryDetails={shippingDetails}
+          shippingDetailsChange={handleShippingDetailsChange}
+          handleShippingDetails={handleShippingDetails}/>}
         
         <div className='w-[65%] bg-white h-[60vh] lg:flex flex-col drop-shadow-2xl hidden'>
           
@@ -136,7 +208,7 @@ function Cart() {
             <span className='font-normal'>Order Total</span>
             <span className='font-bold'># {(total+shippingFee).toLocaleString('en-US')}.00</span>
           </p>
-          <button type='submit' onClick={handleShippingToggle} className='text-center text-white bg-orange rounded w-full py-2'>Place Order</button>
+          <button type='submit' onClick={handleOrdersSubmit} className='text-center text-white bg-orange rounded w-full py-2'>Place Order</button>
         </div>
       </div>
       

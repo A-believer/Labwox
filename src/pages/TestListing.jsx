@@ -29,7 +29,7 @@ const TestListing = () => {
   const testListCollectionRef = collection(db, "lists of tests")
   async function getTestList() {
     try {
-          await getDocs(testListCollectionRef)
+          await getDocs(testListCollectionRef, {source: "cache"})
           .then((data) => {
               const newData = data.docs.map((doc) => ({
           ...doc.data(),
@@ -51,19 +51,23 @@ const TestListing = () => {
 
 
   return (
-    <main className="bg-whitebgii flex lg:flex-row flex-col lg:pl-[70px] pl-4 pr-4 lg:pt-[52px] pt-4 gap-[24px] w-full ">
-      <div className="rounded">
-        <ProductSidebar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        handleCategoryChange={handleCategoryChange} />
-      </div>
-      <div>
-        {loading ?
-          <div className="text-center bg-white lg:px-5 px-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center">Loading...</div>
-          : <Products tests={tests} />}
+    <main className="bg-whitebgii flex lg:flex-row flex-col lg:pl-[70px] px-4 lg:pr-10 lg:py-[52px] pt-4 gap-[24px] w-full ">
+      
+      {loading ?
         
-      </div>
+          <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
+          :
+          <>
+            <div className="rounded">
+              <ProductSidebar
+              categories={categories}
+              selectedCategory={selectedCategory}
+              handleCategoryChange={handleCategoryChange} />
+            </div>
+            <div>
+              <Products tests={tests} />
+            </div>
+         </>  }
     </main>
   )
 }

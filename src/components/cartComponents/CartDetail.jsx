@@ -16,6 +16,7 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
     sampleType: "",
     sampleName: ""
   })
+  const [error, setError] = useState(false)
   
   const [ready, setReady] = useState(false)
     const customId = uniqueId(`${userData.firstName} ${userData.lastName}-`)
@@ -38,16 +39,19 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
   async function addTestToCart(e) {
     e.preventDefault()
     setReady(true)
-    dispatch(addItem(cartData))
+    if (cartDetail.sampleName !== "" && cartDetail.sampleType !== "") {
+       dispatch(addItem(cartData))
     closeCartDetail()
-
     try {
       await setDoc(doc(db, 'userCart', customId), cartData);
       toast.success('Test added to cart!');
     } catch (err) {
       console.error(err.message)
+      }
+       } else {
+      setError(true)
     }
-      
+   
       setCartDetail({
       sampleType: "",
       sampleName: ""
@@ -59,7 +63,7 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
   return (
     <div className="bg-blackii/50 absolute left-0 top-0 w-full h-full lg:text-lg text-sm">
       <div
-      className="bg-white lg:w-[400px] w-[300px] sticky lg:left-[35%] left-[10px] lg:top-[20%] top-[10%] outline-orange outline-4 border-2 border-grey/90 rounded-lg">
+      className="bg-white lg:w-[400px] w-[300px] fixed lg:left-[35%] left-[10px] lg:top-[20%] top-[10%] outline-orange outline-4 border-2 border-grey/90 rounded-lg mt-10">
       
         <form onSubmit={addTestToCart} className="lg:p-8 px-5 py-8 flex flex-col gap-y-5">
           <div className="flex justify-between px-5 items-center">
@@ -83,7 +87,10 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
               onChange={handleCartDetailChange}
               type="text"
               className="border border-greyiii/50 font-bold w-[80%] rounded pl-2 py-1 border-grey outline-none text-grey" />
-        </p>
+          </p>
+          {error &&
+            <p className="text-red italic text-xs text-right">enter a sample name!</p>}
+          
         <p className="flex gap-x-3 items-center">
           <label htmlFor="sampleType" className="text-grey font-bold whitespace-nowrap text-right">Sample Type</label>
             <select
@@ -102,6 +109,9 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
             <option value="Tissue">Tissue</option>
           </select>
           </p>
+          {error &&
+            <p className="text-red italic text-xs text-right">select a sample type!</p>}
+          
           <hr className="text-greyiii/30" />
         <button
           disabled={ready}

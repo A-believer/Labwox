@@ -26,6 +26,29 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addItem, removeItem, loadCartFromLocalStorage } = cartSlice.actions;
+const orderSlice = createSlice({
+  name: 'order',
+  initialState: {
+    items: []
+  },
+  reducers: {
+    loadOrderFromLocalStorage(state) {
+      const orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+      state.items = orderItems;
+    },
+    addOrder: (state, action) => {
+      state.items.push(action.payload);
+      localStorage.setItem('orderItems', JSON.stringify(state.items));
+    },
+    removeOrder: (state, action) => {
+      state.filter(order => order.id !== action.payload);
+      localStorage.setItem('orderItems', JSON.stringify(state.items));
+    },
+  },
+});
 
-export default cartSlice.reducer;
+export const { addItem, removeItem, loadCartFromLocalStorage } = cartSlice.actions;
+export const { addOrder, removeOrder, loadOrderFromLocalStorage } = orderSlice.actions;
+
+export const cartReducer = cartSlice.reducer;
+export const orderReducer = orderSlice.reducer;

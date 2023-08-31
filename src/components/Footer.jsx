@@ -1,5 +1,5 @@
 import footerLogo from "../assets/Logoft.png"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import arrow from "../assets/arrow.png"
 import { ImFacebook } from 'react-icons/im';
 import { ImInstagram } from 'react-icons/im';
@@ -59,11 +59,11 @@ const Footer = () => {
           <div>
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Company</p>
             <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px] w-fit">
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/services">Services</Link></li>
+              <li><NavLink to="about">About Us</NavLink></li>
+              <li><NavLink to="services">Services</NavLink></li>
               <li><a href="#terms">Terms & Conditions</a></li>
               <li><a href="#privacy">Privacy Policy</a></li>
-              <li><Link to="/resources">Resources</Link></li>
+              <li><NavLink to="resources">Resources</NavLink></li>
             </ul>
           </div>
 

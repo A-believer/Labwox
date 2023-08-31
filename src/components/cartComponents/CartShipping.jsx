@@ -8,7 +8,7 @@ function CartShipping({ shippingOption, onOptionChange }) {
 
   const option = ["Drop Off", "Agent Pick Up"]
   return (
-    <section className="absolute lg:top-[125px] top-[70px] lg:left-[72px] left-auto lg:w-[57vw] w-[90vw] text-center bg-white drop-shadow-2xl p-8 z-[99]">
+    <section className="lg:absolute sticky lg:top-[125px] top-[10%] lg:left-[72px] left-auto lg:w-[57vw] w-[90vw] text-center bg-white drop-shadow-2xl p-8 z-[99] border border-orange">
       
       <label htmlFor="dropOff" className="flex gap-x-5">
         <input

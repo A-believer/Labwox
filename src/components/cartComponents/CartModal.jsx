@@ -8,7 +8,6 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 import { ToastContainer, toast } from "react-toastify";
 import PropTypes from 'prop-types';
-import { UserAuth } from "../../context/AuthContext";
 
 function CartModal({ closeModal }) {
   const cartItems = useSelector(state => state.cart.items);
@@ -19,13 +18,10 @@ function CartModal({ closeModal }) {
   for (let i = 0; i < cartItems.length; i++) {
     total += cartItems[i].testPrice
   } 
-
   
   const cartTotal = total.toLocaleString('en-US', {
         minimumFractionDigits: 0,
     });
-
-  
 
   async function removeTestFromCart(id) {
     dispatch(removeItem(id))
@@ -36,8 +32,6 @@ function CartModal({ closeModal }) {
     } catch (error) {
       console.error(error.message)
     }
-     
-    
   }
 
   const displayCartItems =  cartItems?.map(item => (
