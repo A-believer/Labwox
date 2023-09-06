@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import SignUpSuccess from './pages/userPages/SignUpSuccess.jsx'
 import UserProfileDetails from './pages/userPages/UserProfileDetails.jsx'
-import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart, HomeLayout} from "./pages"
+import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login, SignUp, ForgotPassword, UserProfile, UserProfileOrders, UserProfileSettings, Cart, HomeLayout, UserProfileOrdersDetails} from "./pages"
 import { ProductDetail} from "./components"
 import { ProtectedRoute } from "./utils/ProtectedRoute.jsx"
+import SampleSheet from "./pages/userPages/SampleSheet.jsx"
 
 const App = () => {
   
@@ -25,7 +26,9 @@ const App = () => {
         <Route path = "cart" element = {<ProtectedRoute><Cart/></ProtectedRoute>} />
         <Route path="userprofile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>}>
           <Route index element={<UserProfileDetails/>}/>
-          <Route path='orders' element={<UserProfileOrders/>}/>
+          <Route path='orders' element={<UserProfileOrders />} />
+          <Route path='orders/:id' element={<UserProfileOrdersDetails />} />
+          <Route path={`orders/:id/samplesheet`} element={<SampleSheet />} />
           <Route path='settings' element={<UserProfileSettings />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />

@@ -1,7 +1,8 @@
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, useLocation, useParams } from "react-router-dom"
 import { Navbar, Footer } from "../components"
 
 const Home = () => {
+  const {id} = useParams()
 
   const location = useLocation()
   
@@ -19,6 +20,8 @@ const Home = () => {
     location.pathname === "/userprofile/orders" ||
     location.pathname === "/userprofile/settings" ||
     location.pathname === "/signupsuccess" || 
+    location.pathname === `/userprofile/orders/:${id}` || 
+    location.pathname === `/userprofile/orders/:${id}/samplesheet` || 
     location.pathname === "/cart")
   return (
     <>

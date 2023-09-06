@@ -1,63 +1,99 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder, removeItem } from "../utils/cartSlice";
+import { removeItem, clearCart } from "../utils/cartSlice";
 import { Link } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
 import { useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 import CartToOrderSuccess from '../components/cartComponents/CartToOrderSuccess';
+import { collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
+import { db } from '../config/firebaseConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import { UserAuth } from '../context/AuthContext';
+import { v1 as uuidv1 } from 'uuid';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-  const [error, setError] = useState(false)
+  const {userData, currentUser} = UserAuth()
   const [toggleShipping, setToggleShipping] = useState(false)
+  const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
   const [toggleSuccess, setToggleSuccess] = useState(false)
-  const intialShippingDetails = {
+    const intialShippingDetails = {
     deliveryOption: "",
     deliveryAddress: "",
     locationLandmark: "",
     contactNumber: ""
   }
-  const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
+  
   const [shippingDetails, setShippinDetails] = useState(intialShippingDetails)
-  const [orderDetails, setOrderDetails] = useState({})
+  const [error, setError] = useState(false)
+  const orderId = uuidv1().split("").slice(24, 35).join("")
 
-
-  // handles what happens when all the right shipping details are correctly filled
+  // cart total and shipping Fee
+  let total = 0
+  for (let i = 0; i < cartItems.length; i++) {
+    total += cartItems[i].testPrice
+  } 
+  let shippingFee
+  if (shippingDetails.deliveryOption === "Drop Off") {
+    shippingFee = 0
+  } else {
+    shippingFee = 2500
+  }
+  
+  
+  const details = {
+    createdAt: serverTimestamp(),
+    cart: cartItems,
+    deliveryDetails: shippingDetails,
+    cartTotal: total,
+    userName: currentUser.displayName,
+    id: orderId,
+    userId: userData.id,
+    orderStatus: "Unpaid"
+  }
+  
+  const [orderDetails, setOrderDetails] = useState(details)
+  // handles what happens when all the right shipping details are correctly filled   
   function handleOrdersSubmit() {
-    let orderDetail;
-    if (shippingDetails.deliveryOption === "Drop Off") {
-      orderDetail = {
-        deliveryDetails: shippingDetails.deliveryOption,
-        cart: cartItems
-      }
-       setOrderDetails(orderDetail)
-      dispatch(addOrder(orderDetails))
-      setToggleSuccess(true)
-    } else if (shippingDetails.deliveryOption === "") {
+    if (shippingDetails.deliveryOption === "") {
       setToggleShipping(true)
-      } else {
-        orderDetail = {
-          deliveryDetails: shippingDetails,
-          cart: cartItems
-      }
-      setOrderDetails(orderDetail)
-      dispatch(addOrder(orderDetails))
+    } else {
+      setOrderDetails(details)
       setToggleSuccess(true)
+     deleteCartItems()
     }
   }
- 
-    
- // handles what happens when all the right shipping details are correctly filled
-  
 
+  // delete whole cart
+  async function deleteCartItems() {
+    dispatch(clearCart())
+    try {
+      const q = query(collection(db, "userCart"), where("userId", "==", `${userData, currentUser.id}`));
+    const qS = await getDocs(q)
+    qS.forEach(doc => {
+      deleteDoc(doc)
+    })
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+//handle order success
+ async function handleOrderSuccess() {
+   try {
+      await setDoc(doc(db, 'order', orderId), orderDetails);
+      toast.success('Items added to Orders!');
+    } catch (err) {
+      console.error(err.message)
+      }   
+}
+  
   // handle shippingDetails state 
   function handleShippingDetailsChange(key, value) { 
     setShippinDetails(prevData => ({...prevData, [key]: value}))
   }
-  // handle shippingDetails state 
-  
 
   // handles what delivery option state
   function handleShippingOptionChange(option) {
@@ -69,7 +105,6 @@ function Cart() {
       setToggleShippingAddress(true)
     } 
   }
-  // handles what delivery option state
 
   //handle Shipping details
   function handleShippingDetails() {
@@ -88,20 +123,18 @@ function Cart() {
     setToggleShippingAddress(prev => !prev)
   }
 
-  // cart total and shipping Fee
-  let total = 0
-  for (let i = 0; i < cartItems.length; i++) {
-    total += cartItems[i].testPrice
-  } 
-  let shippingFee
-  if (shippingDetails.deliveryOption === "Drop Off") {
-    shippingFee = 0
-  } else {
-    shippingFee = 2500
+  // delete item from firebase
+  async function removeTestFromCart(id) {
+    dispatch(removeItem(id))
+    try {
+       await deleteDoc(doc(db, 'userCart', id));
+      toast.error('Test removed from cart!');
+    } catch (error) {
+      console.error(error.message)
+    }
   }
-  // cart total and shipping Fee
   
-  
+  // Final return
   return (
     <section className="lg:px-[70px] px-6 lg:py-7 py-6 bg-whitebgiv relative w-full h-screen">
       <div className='my-2'>
@@ -141,7 +174,8 @@ function Cart() {
             handleShippingDetails={handleShippingDetails} />}
         
         {toggleSuccess && <CartToOrderSuccess
-        orderDetails={orderDetails}/>}
+          handleOrderSuccess={handleOrderSuccess}
+        />}
         
         <div className='w-[65%] bg-white h-[60vh] lg:flex flex-col drop-shadow-2xl hidden'>
           
@@ -156,7 +190,7 @@ function Cart() {
               <th>Sample Type</th>
               <th>Test Code</th>
               <th>Sub Total</th>
-              <th>Remove</th>
+              <th onClick={() => dispatch(clearCart())}>Remove All</th>
               </tr>
           </thead>
           <tbody>
@@ -170,7 +204,7 @@ function Cart() {
                 <td>
                   <button
                     type="submit"
-                  onClick={() => dispatch(removeItem(item.id))}>
+                  onClick={() => removeTestFromCart(item.id)}>
                   <TbTrashXFilled className="text-greyiii" />
                   </button>
                 </td>
@@ -194,7 +228,7 @@ function Cart() {
               </p>
               <button
                     type="submit"
-                  onClick={() => dispatch(removeItem(item.id))}>
+                  onClick={() => () => removeTestFromCart(item.id)}>
                   <TbTrashXFilled className="text-greyiii" />
               </button>
             </div>
@@ -220,7 +254,7 @@ function Cart() {
           <button type='submit' onClick={handleOrdersSubmit} className='text-center text-white bg-orange rounded w-full py-2'>Place Order</button>
         </div>
       </div>
-      
+      <ToastContainer/>
     </section>
   )
 }

@@ -3,7 +3,7 @@ import success from "../../assets/signupsuccess.png"
 import PropTypes from 'prop-types';
 
 
-function CartToOrderSuccess({orderDetails}) {
+function CartToOrderSuccess({ handleOrderSuccess}) {
   return (
     <section className="w-full lg:h-screen h-full absolute top-0 left-0 z-[99] lg:bg-black/30 bg-clear flex justify-center items-center">
       <div className="sticky mt-28 flex flex-col justify-center bg-white lg:w-fit w-[90vw] h-fit p-16 gap-y-10 border border-orange">
@@ -15,9 +15,9 @@ function CartToOrderSuccess({orderDetails}) {
         <img src={success} alt="successful"  className="w-[140px] h-[140px] mx-auto object-contain"/>
         
         <NavLink
+          onClick={handleOrderSuccess}
           className="text-center w-full bg-orange text-white rounded py-2"
-          to={'/userprofile/orders'}
-          onClick={() => console.log("Add the new order!")}>
+          to={'/userprofile/orders'}>
           View Orders
           </NavLink>
       </div>
@@ -27,7 +27,7 @@ function CartToOrderSuccess({orderDetails}) {
 }
 
 CartToOrderSuccess.propTypes = {
-  orderDetails: PropTypes.arrayOf()
+  handleOrderSuccess: PropTypes.func.isRequired
 }
 
 export default CartToOrderSuccess

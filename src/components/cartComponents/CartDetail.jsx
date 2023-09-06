@@ -19,16 +19,17 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
   const [error, setError] = useState(false)
   
   const [ready, setReady] = useState(false)
-    const customId = uniqueId(`${userData.firstName} ${userData.lastName}-`)
+    const cartId = uniqueId(`${userData.firstName} ${userData.lastName}-`)
 
   const cartData = {
-    createdAt: serverTimestamp(),
+    // createdAt: serverTimestamp(),
     sampleName: cartDetail.sampleName,
     sampleType: cartDetail.sampleType,
     testCode: testCode,
     testName: testTitle,
     testPrice: testPricing,
-    id: customId
+    id: cartId,
+    userId: userData.id
       }
 
   function handleCartDetailChange(e) {
@@ -41,9 +42,9 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
     setReady(true)
     if (cartDetail.sampleName !== "" && cartDetail.sampleType !== "") {
        dispatch(addItem(cartData))
-    closeCartDetail()
+      closeCartDetail()
     try {
-      await setDoc(doc(db, 'userCart', customId), cartData);
+      await setDoc(doc(db, 'userCart', cartId), cartData);
       toast.success('Test added to cart!');
     } catch (err) {
       console.error(err.message)
@@ -51,7 +52,6 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
        } else {
       setError(true)
     }
-   
       setCartDetail({
       sampleType: "",
       sampleName: ""
@@ -129,7 +129,7 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
 
 CartDetail.propTypes = {
   testCode: PropTypes.string.isRequired,
-  testPricing: PropTypes.string.isRequired,
+  testPricing: PropTypes.number.isRequired,
   testTitle: PropTypes.string.isRequired,
   closeCartDetail: PropTypes.func.isRequired
 }

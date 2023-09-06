@@ -8,13 +8,19 @@ import CartDetail from "../cartComponents/CartDetail";
 
 const ProductDetail = () => {
     const [test, setTest] = useState([])
+    const [truncate, setTruncate] = useState(false)
     const { id } = useParams()
     const [cartDetailToggle, setCartDetailToggle] = useState(false)
     function handleCartDetailToggle() {
         setCartDetailToggle(prev => !prev)
     }
-    
-    const testRef = doc(db, "lists of tests", id)
+
+    function handleTextToggle() {
+      setTruncate(!truncate)
+    }
+
+    useEffect(() => {
+      const testRef = doc(db, "lists of tests", id)
 
     async function getTest() {
         try {
@@ -29,8 +35,6 @@ const ProductDetail = () => {
             console.error(err)
         }
     }
-
-  useEffect(() => {
     getTest()
   }, [])
 
@@ -71,6 +75,15 @@ const ProductDetail = () => {
             <ul className="lg:text-base text-sm leading-6 text-blackii font-medium lg:pb-5 pb-3 lg:pl-5 lg:pr-3 px-2 flex flex-col gap-y-2 lg:mx-20 mx-0 border border-t-0 border-orange rounded-b-lg">
                 <li><span className="text-lg">Category: </span><span className="text-grey">{test.category}</span></li>
                 <li><span className="text-lg">Sub-Category: </span><span className="text-grey">{ test.subcategory }</span></li>
+                <li>
+                    <span className="text-lg">Sub-Category Information: </span>
+                    <span className={`text-grey`}>
+                        {truncate ?
+                        test["Subcategory Info"] :
+                       (test["Subcategory Info"]?.split(" ").slice(0, 10).join(" "))}
+                    </span>
+                    {!truncate && <span className="cursor-pointer hover:underline" onClick={handleTextToggle}>...Read More</span>}
+                </li>
                 <li><span className="text-lg">Minimum Sample Amount: </span><span className="text-grey">{test.minimumSampleAmount}</span></li>
                 <li><span className="text-lg">Paramenters: </span><span className="text-grey">{test.parameters }</span></li>
                 <li><span className="text-lg">Instrument: </span><span className="text-grey">{ test.instruments}</span></li>

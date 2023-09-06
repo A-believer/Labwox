@@ -63,15 +63,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setCurrentUser(user)
+      setCurrentUser(user)
       setLoading(true)
-        
             const newData = await getDoc(doc(db, "userInfo", user.uid))
             if (newData.exists()) {
               setUserData(newData.data())
               console.log("user")
         } 
-        
       } else {
         setCurrentUser(null);
         setLoading(false)
