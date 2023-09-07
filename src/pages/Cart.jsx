@@ -38,8 +38,9 @@ function Cart() {
   let shippingFee
   if (shippingDetails.deliveryOption === "Drop Off") {
     shippingFee = 0
-  } else {
-    shippingFee = 2500
+  }
+  if(shippingDetails.deliveryOption === "Agent Pick Up"){
+    shippingFee = 5000
   }
 
   let serverTime = new Date()
@@ -55,7 +56,7 @@ function Cart() {
     createdAt: `${dateStamp}, ${timeStamp}`,
     cart: cartItems,
     deliveryDetails: shippingDetails,
-    cartTotal: total,
+    cartTotal: total + shippingFee,
     userName: currentUser.displayName,
     id: orderId,
     userId: userData.id,
@@ -199,7 +200,7 @@ function Cart() {
               <th>Sample Type</th>
               <th>Test Code</th>
               <th>Sub Total</th>
-              <th onClick={() => dispatch(clearCart())}>Remove All</th>
+              <th onClick={() => dispatch(clearCart())} className='cursor-pointer'>Remove All</th>
               </tr>
           </thead>
           <tbody>
@@ -251,10 +252,10 @@ function Cart() {
             <span className='font-normal'>Cart Subtotal</span>
             <span className='font-bold'># {total.toLocaleString('en-US')}.00</span>
           </p>
-          <p className='whitespace-nowrap flex justify-between items-center my-8'>
+          {shippingDetails.deliveryOption === "Agent Pick Up" && <p className='whitespace-nowrap flex justify-between items-center my-8'>
             <span className='font-normal'>Shipping</span>
-            <span className='font-bold'># {shippingFee.toLocaleString('en-US') }.00</span>
-          </p>
+            <span className='font-bold'># {shippingFee.toLocaleString('en-US')}.00</span>
+          </p>}
            <hr className='text-grey/30 my-10'/>
           <p className='whitespace-nowrap flex justify-between items-center mb-8'>
             <span className='font-normal'>Order Total</span>

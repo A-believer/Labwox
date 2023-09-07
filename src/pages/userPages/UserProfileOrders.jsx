@@ -29,13 +29,11 @@ function UserProfileOrders() {
       }
       setLoading(false)
   }
-  console.log(orders)
   
   useEffect(() => {
     getOrders()
   }, [])
 
-  console.log(orders)
 
   
   return (

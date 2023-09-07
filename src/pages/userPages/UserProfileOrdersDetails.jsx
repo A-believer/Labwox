@@ -4,7 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { db } from '../../config/firebaseConfig';
 import PaystackPop from "@paystack/inline-js"
 import { UserAuth } from '../../context/AuthContext';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function UserProfileOrdersDetails() {
@@ -56,7 +56,7 @@ function UserProfileOrdersDetails() {
             toast.success(`Payment Successful ${transaction.reference}`)
           },
           onCancel() {
-            console.log("You have cancelled the transaction")
+            toast.error("transaction cancelled")
           }
     })
   }
@@ -75,7 +75,7 @@ function UserProfileOrdersDetails() {
         <p><span className='font-semibold'>Shipping Fee: </span><span>₦ 2,500.00</span></p>
       </div>
       setShipping(details)
-      setAmount(order?.cartTotal + 2500)
+      setAmount(order?.cartTotal)
     }
     setShipping(details)
   }, [order.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
@@ -134,7 +134,8 @@ function UserProfileOrdersDetails() {
                   
             <NavLink to={`samplesheet`} className='text-orange bg-white py-2 px-6 rounded border border-orange text-center'>View Sample Sheet</NavLink>
               </div>
-          </div>
+      </div>
+      <ToastContainer/>
       </section>
   )
 }
