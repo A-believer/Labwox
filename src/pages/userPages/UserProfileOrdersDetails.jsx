@@ -22,8 +22,6 @@ function UserProfileOrdersDetails() {
  
   const orderRef = doc(db, "order", id)
   async function getOrder() {
-  
-
       setLoading(true)
       try {
         const newOrder = await getDoc(orderRef)
@@ -34,9 +32,9 @@ function UserProfileOrdersDetails() {
             console.error(err)
     }
     setLoading(false)
-    }
+  }
+  
     useEffect(() => {
-   
       getOrder()
   }, [])
 

@@ -15,6 +15,7 @@ export default function SampleSheet() {
     
     const orderRef = doc(db, "order", id)
     async function getOrder() {
+        setLoading(true)
       try {
         const newOrder = await getDoc(orderRef)
         if (newOrder.exists()) {
@@ -25,8 +26,8 @@ export default function SampleSheet() {
     }
     setLoading(false)
     }
+
     useEffect(() => {
-   
       getOrder()
     }, [])
     
@@ -45,8 +46,8 @@ export default function SampleSheet() {
   }, [order.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
 
     console.log(order.createdAt)
-    const orderDate = order.createdAt.toDate().toDateString()
-    const orderTime = order.createdAt.toDate().toLocaleTimeString()
+    const orderDate = order?.createdAt.toDate().toDateString()
+    const orderTime = order?.createdAt.toDate().toLocaleTimeString()
 
   return (
       <section className="text-base">

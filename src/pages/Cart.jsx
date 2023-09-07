@@ -6,7 +6,7 @@ import { useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 import CartToOrderSuccess from '../components/cartComponents/CartToOrderSuccess';
-import { collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, query,  setDoc, where } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
@@ -41,10 +41,18 @@ function Cart() {
   } else {
     shippingFee = 2500
   }
+
+  let serverTime = new Date()
+  const dateStamp = serverTime.toDateString()
+  const timeStamp = serverTime.toLocaleTimeString()
+  console.log(serverTime)
+  console.log(dateStamp)
+  console.log(timeStamp)
+  
   
   
   const details = {
-    createdAt: serverTimestamp(),
+    createdAt: `${dateStamp}, ${timeStamp}`,
     cart: cartItems,
     deliveryDetails: shippingDetails,
     cartTotal: total,
@@ -61,6 +69,7 @@ function Cart() {
       setToggleShipping(true)
     } else {
       setOrderDetails(details)
+      toast.success('Items added to Orders!');
       setToggleSuccess(true)
      deleteCartItems()
     }
@@ -84,7 +93,7 @@ function Cart() {
  async function handleOrderSuccess() {
    try {
       await setDoc(doc(db, 'order', orderId), orderDetails);
-      toast.success('Items added to Orders!');
+      
     } catch (err) {
       console.error(err.message)
       }   

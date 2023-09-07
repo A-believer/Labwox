@@ -80,9 +80,9 @@ function CartModal({ closeModal }) {
         </div>
         }
           
-          <NavLink to={`cart`} onClick={closeModal}>
+          {cartItems.length > 0 && <NavLink to={`cart`} onClick={closeModal}>
               <Button bgColor={`orange`} text={`View Full`} textColor={`white`} width={`full`} />
-          </NavLink>
+          </NavLink>}
           <ToastContainer/>
     </section>
   )
