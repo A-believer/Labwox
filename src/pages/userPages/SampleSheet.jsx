@@ -45,9 +45,6 @@ export default function SampleSheet() {
     setShipping(details)
   }, [order.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
 
-    console.log(order.createdAt)
-    const orderDate = order?.createdAt.toDate().toDateString()
-    const orderTime = order?.createdAt.toDate().toLocaleTimeString()
 
   return (
       <section className="text-base">
@@ -62,7 +59,7 @@ export default function SampleSheet() {
                           <p className="grid auto-cols-fr grid-cols-2 my-4 gap-x-4 whitespace-nowrap">
                               <span>Order Date</span>
                               <span className="whitespace-normal">
-                              {orderDate}, {orderTime}
+                              {order.createdAt}
                           </span></p>
                           <p className="grid auto-cols-fr grid-cols-2 my-4 gap-x-4 whitespace-nowrap">
                               <span>Order No.</span>

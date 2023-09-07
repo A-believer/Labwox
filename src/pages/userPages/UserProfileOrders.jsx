@@ -37,7 +37,6 @@ function UserProfileOrders() {
 
   console.log(orders)
 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   
   return (
     <section className="relative w-full">
@@ -53,7 +52,7 @@ function UserProfileOrders() {
         <p className="flex flex-col text-grey text-base">
             <span className="text-lg">labwox-{order.id}</span>
             <span className="my-1">
-              {`${order.createdAt.toDate().toLocaleString("en-US", options)}`}
+              {order.createdAt}
             </span>
             <span className="text-blackii font-bold">₦{order.cartTotal.toLocaleString('en-US')}</span>
                <span className="text-[#66C27C]">{order?.orderStatus}</span>
