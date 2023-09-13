@@ -1,4 +1,4 @@
-import aboutImg from "../assets/imgIII.jpeg"
+import aboutImg from "../assets/imgIII.png"
 
 const OurGoal = () => {
   return (

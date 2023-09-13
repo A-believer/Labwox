@@ -2,7 +2,7 @@ import Header from "../utils/Header"
 import heroEx from "../assets/heroEx.png"
 import arrow from "../assets/arrow.png"
 import { useState } from "react"
-import heroImg from "../assets/imgI.jpeg"
+import heroImg from "../assets/heroImg.png"
 
 const Hero = () => {
 
