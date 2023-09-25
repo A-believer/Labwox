@@ -1,6 +1,7 @@
 {
   "name": "labwox",
   "private": true,
+  "homepage": "https://labwox.com/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
