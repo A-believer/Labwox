@@ -7,7 +7,7 @@ import { db } from "../config/firebaseConfig"
 const TestListing = () => {
   const [tests, setTests] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("all")
-  const categories = ["Phytochemical Analysis", "Polutant Analysis", "Nutritional Analysis"]
+  const categories = ["Phytochemical Analysis", "Pollutant Analysis", "Nutritional Analysis"]
   const [loading, setLoading] = useState(false)
 
   const filteredTests = tests.filter(test => {
