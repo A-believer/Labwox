@@ -1,38 +1,77 @@
 import Header from "../utils/Header"
 import heroEx from "../assets/heroEx.png"
 import arrow from "../assets/arrow.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import heroImg from "../assets/heroImg.png"
+import { collection, query, where, getDocs } from 'firebase/firestore'
+import { db } from "../config/firebaseConfig"
+import { Link } from "react-router-dom"
 
 const Hero = () => {
-
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
 
   function handleChange(event) {
     event.preventDefault()
     setSearch(event.target.value)
   }
 
-  function handleSearch() {
-    console.log(search)
+  async function handleQuery(search) {
+   
+    if (!search) {
+      setResults([])
+      return
+    }
+
+    try {
+      const testListRef = collection(db, "lists of tests")
+      const res = query(testListRef, where('testTitle', ">=", search).or("instruments", ">=", search))
+
+      const resSnapshot = await getDocs(res)
+      const searchResults = []
+      resSnapshot.forEach((doc) => {
+        const data = doc.data()
+        searchResults.push({id: doc.id, ...data})
+        
+      })
+      setResults(searchResults)
+      console.log(results)
+    } catch (error) {
+      console.error(error.message)
+    }
   }
+  
+  useEffect(() => {
+   handleQuery(search)
+  }, [search])
+  
+
   return (
        <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
-      <div className="lg:my-0 my-10">
+      <div className="lg:my-0 my-10 relative">
         <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`blackii`}/>
         <p className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
-        <div className="text-white flex mt-4 lg:h-[52px] lg:w-5/6 w-full">
+        <div className="text-white flex mt-4 lg:h-[52px] lg:w-5/6 w-full relative">
           <input
             value={search}
             onChange={handleChange}
             type="text"
             placeholder="find research here"
-            className="text-grey pl-4 placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px]  lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-grey focus:border-grey ring-0 active:border-grey outline-none" />
+            className="text-grey pl-4 placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px] lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-grey ring-0 active:border-grey outline-none focus:border-orange" />
           <button
-            onClick={handleSearch}
+            onClick={() => handleQuery(search)}
             type="button"
             className="font-aeon w-1/3 bg-orange lg:text-[18px] leading-[28px] text-[12px] rounded-[4px] p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
+          
         </div>
+        {results && results.map((test, index) => {
+              <Link
+                key={index}
+                to={test.id}
+                className="absolute left-0 top-0 text-white bg-black w-[200px] h-[200px] z-[999]">
+                {test.testTitle}
+              </Link>
+            })}
       </div>
 
       <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden">

@@ -17,7 +17,7 @@ const Onboarding = () => {
            
           </li>
           <li>
-            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">2. Select your test of choice by adding test to test cart</p>
+            <p className="hover:font-bold hover:text-black font-semibold text-grey lg:text-2xl text-xl lg:leading-7 leading-6 pt-4 transition-all duration-500">2. Add test of your choice to cart</p>
             
           </li>
           <li>

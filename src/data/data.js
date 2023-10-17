@@ -47,7 +47,8 @@ export const products = [
   btnTextColor: "blackii",
   textColor: "white",
     subtext: "white",
-  description: "Analyse a variety of chemical pollutants in environmental media and other matrices."
+    description: "Analyse a variety of chemical pollutants in environmental media and other matrices.",
+  services: "At Labwox, we understand the critical importance of monitoring and managing environmental pollutants to ensure the safety of our planet and the well-being of its inhabitants. Our laboratory business specializes in providing comprehensive testing services for a wide range of environmental pollutants"
   },
   {
   id: 2,
@@ -58,7 +59,8 @@ export const products = [
   btnTextColor: "blackii",
   textColor: "white",
     subtext: "white",
-  description: "Foods require rigorous testing to determine their nutritional content."
+    description: "Foods require rigorous testing to determine their nutritional content.",
+  services: "At Labwox, we specialize in providing comprehensive testing services to uncover the nutritional composition of a wide range of food and beverage products. Our mission is to empower individuals, food manufacturers, health professionals, and researchers with accurate and detailed nutritional information"
   },
   {
   id: 3,
@@ -69,7 +71,8 @@ export const products = [
   btnTextColor: "white",
   textColor: "blackii",
     subtext: "blackii",
-  description: "Obtain qualitative and quantitative information about bioactive plant compounds."
+    description: "Obtain qualitative and quantitative information about bioactive plant compounds.",
+  services: "At Labwox, we specialize in providing comprehensive testing services for phytochemicals, unlocking the secrets of the plant kingdom to advance your research and development endeavors. Labwox offers a wide range of tests to identify, quantify, and characterize phytochemicals found in plants. Whether you're studying flavonoids, alkaloids, polyphenols, or any other phytochemical class, our advanced laboratory facilities are equipped to meet your specific research needs."
   },
 ]
 

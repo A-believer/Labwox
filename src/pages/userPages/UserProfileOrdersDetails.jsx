@@ -42,7 +42,7 @@ function UserProfileOrdersDetails() {
      e.preventDefault()
      const paystack = new PaystackPop()
         await paystack.newTransaction({
-          key: "pk_test_3cd589de022087fac93f7324eaf9a53a5e063eec",
+          key: "pk_live_7d1a10bd189ae156ac3c3f360f851600f70b439e",
           amount: amount * 100,
           email,
           firstName,
@@ -72,7 +72,7 @@ function UserProfileOrdersDetails() {
         <p><span className='font-semibold'>Pick Up Address: </span><span>{order?.deliveryDetails?.deliveryAddress}</span></p>
         <p><span className='font-semibold'>Contact Number: </span><span>{order?.deliveryDetails?.contactNumber}</span></p>
        <p><span className='font-semibold'>Landmark: </span><span>{order?.deliveryDetails?.locationLandmark}</span></p>
-        <p><span className='font-semibold'>Shipping Fee: </span><span>₦ 2,500.00</span></p>
+        <p><span className='font-semibold'>Shipping Fee: </span><span>₦ 5,000.00</span></p>
       </div>
       setShipping(details)
       setAmount(order?.cartTotal)
