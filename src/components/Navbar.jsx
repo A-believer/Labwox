@@ -47,12 +47,16 @@ const item = {
 }
 
   return (
-    <>
+    <>      
       <header className={`drop-shadow-xl ${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} sticky font-aeon z-[99]`}>
         <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
           
           <Link to="/">
-            <img src={Logo} alt="labwox-logo" className="w-[93px] h-[34px]" loading="lazy" />
+            <img
+              
+              src={Logo}
+              alt="labwox-logo"
+              className="w-[93px] h-[34px]" loading="lazy" />
           </Link>
           
           <div className="flex font-normal text-base leading-[19.2px] gap-x-7">

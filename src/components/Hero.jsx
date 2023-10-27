@@ -1,6 +1,5 @@
+/* eslint-disable no-unused-vars */
 import Header from "../utils/Header"
-import heroEx from "../assets/heroEx.png"
-import arrow from "../assets/arrow.png"
 import { useEffect, useState } from "react"
 import heroImg from "../assets/heroImg.png"
 import { collection, query, where, getDocs } from 'firebase/firestore'
@@ -8,96 +7,104 @@ import { db } from "../config/firebaseConfig"
 import { Link } from "react-router-dom"
 
 const Hero = () => {
+  const [tests, setTests] = useState([])
   const [search, setSearch] = useState('');
+  const [searchModal, setSearchModal] = useState(false)
+  // const [emailToggle, setEmailToggle] = useState(false)
   const [results, setResults] = useState([]);
 
-  function handleChange(event) {
-    event.preventDefault()
-    setSearch(event.target.value)
-  }
-
-  async function handleQuery(search) {
-   
-    if (!search) {
-      setResults([])
-      return
-    }
-
+  async function getTestList() {
     try {
       const testListRef = collection(db, "lists of tests")
-      const res = query(testListRef, where('testTitle', ">=", search).or("instruments", ">=", search))
-
-      const resSnapshot = await getDocs(res)
-      const searchResults = []
-      resSnapshot.forEach((doc) => {
-        const data = doc.data()
-        searchResults.push({id: doc.id, ...data})
-        
-      })
-      setResults(searchResults)
-      console.log(results)
+      await getDocs(testListRef, {source: "cache"})
+          .then((data) => {
+              const newData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id
+              })) 
+            setTests(newData)
+          })
     } catch (error) {
       console.error(error.message)
     }
   }
-  
-  useEffect(() => {
-   handleQuery(search)
-  }, [search])
-  
 
+  useEffect(() => {
+    getTestList()
+  }, [])
+
+  const handleQuery = (e) => {
+    e.preventDefault() 
+    const filteredTest = tests.filter((item) =>
+          item.testTitle.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")) ||
+          item.instruments.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")))
+      setResults(filteredTest)
+     
+    }
+ 
+    const handleSearch = (e) => {
+      let term = e.target.value
+    
+      setSearch(term)
+      if (term === "" ) {
+        setSearchModal(false)
+      } else {
+        const filteredTest = tests.filter((item) =>
+          item.testTitle.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")) ||
+          item.instruments.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")))
+        setResults(filteredTest)
+        setSearchModal(true)
+      }
+    }
+  
   return (
        <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
-      <div className="lg:my-0 my-10 relative">
+      <div className="lg:my-0 my-10 relative z-[1]">
         <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`blackii`}/>
-        <p className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+        <p
+          // onClick={() => setEmailToggle(prev => !prev)}
+          className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <div className="text-white flex mt-4 lg:h-[52px] lg:w-5/6 w-full relative">
           <input
             value={search}
-            onChange={handleChange}
+            onChange={handleSearch}
             type="text"
             placeholder="find research here"
             className="text-grey pl-4 placeholder:text-grey rounded-[4px] lg:text-[19px] text-[13px] lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-grey ring-0 active:border-grey outline-none focus:border-orange" />
           <button
-            onClick={() => handleQuery(search)}
+            onClick={handleQuery}
             type="button"
             className="font-aeon w-1/3 bg-orange lg:text-[18px] leading-[28px] text-[12px] rounded-[4px] p-[10px] hover:scale-105 active:scale-95 transition-all duration-300">Search</button>
           
         </div>
-        {results && results.map((test, index) => {
-              <Link
-                key={index}
-                to={test.id}
-                className="absolute left-0 top-0 text-white bg-black w-[200px] h-[200px] z-[999]">
-                {test.testTitle}
-              </Link>
-            })}
+
+        {searchModal &&
+          <div className={`absolute left-0 text-blackiii bg-white lg:w-[83%] w-full lg:h-[500px] h-[400px] overflow-hidden overflow-y-scroll mt-1 p-4 rounded-lg border scroll-m-0 scroll-p-0 border-orange flex flex-col gap-y-5`}>
+            {results?.map((test, index) => (
+            <Link
+                  key={index}
+                to={`/testlisting/${test.id}`}
+                className="italic text-lg"
+                  >
+                <div>
+                  {test.testTitle}
+                  <hr className="mt-1 bg-orange h-[2px] border-0"/>
+                </div>
+            </Link>
+              ))}
+        </div>}
+        
       </div>
 
       <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden">
         
         <img src={heroImg} alt="hero image" className="lg:h-[425px] sm:h-[280px] lg:w-[550px] sm:w-[270px] absolute object-contain"/>
 
-        {/* Test Result Sample */}
-        <div className="bg-blackii rounded-[4px] font-aeon absolute bottom-0 left-0 hover:scale-105 active:scale-95 transition-all duration-300">
-          <div className="flex lg:ml-[12px] ml-[8px] lg:gap-3 gap-2 lg:mt-[16px] mt-[8px] items-center">
-            <img src={heroEx} alt="heroEx" className="lg:w-[24px] w-[13px] lg:h-[24px] h-[13px]" loading="lazy"/>
-            <p className="lg:text-base text-[9px] text-white leading-[19px]">Dr. Charles Okafor</p>
-          </div>
-          
-          <hr className="lg:mx-[12px] mx-[8px] lg:my-[16px] my-[8px] text-[#e5e5e5] opacity-40 lg:w-[180px] w-[100px] lg:h-[1.3px] h-[1px]"/>
-          <p className="text-white lg:text-base text-[8.853px] lg:ml-[17px] ml-[9.4px] lg:leading-[19px] leading-[12px]">Nutrional Analysis</p>
-          <p className="text-greyii lg:text-[13.759px] text-[7.59px] lg:leading-[16.51px] leading-[9.11px] lg:ml-[17px] ml-[9.4px] font-thin tracking-wider">3 hours ago</p>
-          <a href="#results" className="flex lg:ml-[17px] ml-[9.4px] lg:mt-[16px] mt-[8.82px] lg:mb-[33px] mb-[18.43px] lg:gap-x-[3px] gap-x-[1.65px] justify-start items-center">
-            <p className="text-whiteii lg:text-[14px] text-[7px] lg:leading-[16px] leading-[8px] flex items-center gap-1">
-              <span>View Results</span>
-              <img src={arrow} alt="arrow" className="lg:w-[12px] w-[5px] h-auto" loading="lazy"/>
-            </p>
-            
-          </a>
-          
-        </div>
       </div>
+      {/* {emailToggle && <div
+        onClick={sendEmail}
+        className="absolute top-0 w-full h-[70vh] left-0 flex justify-center items-center">{<OrderSuccess />}</div>} */}
+
     </section>
   )
 }

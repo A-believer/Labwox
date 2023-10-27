@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Products } from "../components"
 import { useEffect, useState } from "react"
 import { collection, getDocs } from "firebase/firestore"
@@ -10,6 +11,7 @@ const TestListing = () => {
   const [loading, setLoading] = useState(false)
   const [view, setView] = useState(false)
   const [viewMobile, setViewMobile] = useState(false)
+  const [search, setSearch] = useState('')
 
   
   
@@ -34,28 +36,51 @@ const TestListing = () => {
   useEffect(() => {
    
     getTestList()
-    console.log("tests")
   }, [])
 
-
+const handleQuery = (e) => {
+  e.preventDefault() 
+    const filteredTest = tests.filter((item) =>
+          item.testTitle.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")) ||
+          item.instruments.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")))
+      setTests(filteredTest)
+    }
+ 
+    const handleSearch = (e) => {
+      let term = e.target.value
+      setSearch(term)
+      if (term !== "") {
+        const filteredTest = tests.filter((item) =>
+          item.testTitle.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")) ||
+          item.instruments.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")))
+        
+      setTests(filteredTest)
+      }
+        
+    }
 
   return (
     <main className="bg-whitebgii flex lg:flex-row flex-col lg:pl-[70px] px-4 lg:pr-10 lg:py-[52px] pt-4 gap-[24px] w-full ">
-      
-      {loading ?
-        
-          <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
-          :
     
         <div className="w-full relative">
           
           {/* Desktop Search View  */}
           <div className="mt-2 justify-between items-center lg:flex hidden h-[47px] mb-7 relative">
             <div className="h-full flex items-center">
-              <input placeholder="enter test..." type="text"  className="rounded-l w-full h-full border border-orange ring-0 outline-none pl-4"/>
-              <button type="button" className="bg-orange text-white h-full pl-6 pr-8 rounded-r border-0">Search</button>
+              <input
+                value={search}
+                onChange={handleSearch}
+                placeholder="enter test..."
+                type="text"
+                className="rounded-l w-full h-full border border-orange ring-0 outline-none pl-4" />
+              <button
+              onClick={handleQuery}
+                type="button"
+                className="bg-orange text-white h-full pl-6 pr-8 rounded-r border-0">Search</button>
             </div>
-            <button type="button" className="bg-orange flex justify-center items-center  gap-2 text-white px-4 rounded h-full" onClick={() => setView(prev => !prev)}>
+            <button
+              type="button"
+              className="bg-orange flex justify-center items-center  gap-2 text-white px-4 rounded h-full" onClick={() => setView(prev => !prev)}>
                 <img src={filter} alt="filter" className="w-6 h-6" /> 
               <span>Filter Tests</span>
             </button>
@@ -91,10 +116,13 @@ const TestListing = () => {
           </div>} 
           </div>
 
-          
-              <Products tests={tests} />
+        {loading ?
+        
+          <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
+          :
+          <Products tests={tests} />}
             </div>
-           }
+           
     </main>
   )
 }
