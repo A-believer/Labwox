@@ -1,10 +1,10 @@
-import { Banner, CTA, Ctaii, FAQs, Hero, Notes_Videos, Onboarding, Partners, ProductList } from "../components"
+import { Banner, CTA, Ctaii, FAQs, MainHero, Notes_Videos, Onboarding, Partners, ProductList } from "../components"
 
 
 function HomeLayout() {
   return (
     <main className="bg-whitebg">
-      <Hero/>
+      <MainHero/>
       <Banner />
       <ProductList />
       <Onboarding />

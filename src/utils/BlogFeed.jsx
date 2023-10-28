@@ -1,28 +1,8 @@
 import { blogFeed } from "../data/data"
-import { useEffect, useState } from "react";
-// import VideoModal from "./VideoModal";
-import closeFeed from "../assets/closeFeed.png"
-import blogFeedVid from "../assets/blogFeedVid.mp4"
 
 
 const BlogFeed = () => {
-  const [id, setId] = useState(null);
-  const [hide, setHide] = useState(false)
-
- useEffect(() => {
-    if (!hide) {
-      setId(null);
-    }
-  }, [hide]);
-
-  const handleOpen = (videoId) => {
-    setId(videoId);
-    setHide(true);
-  };
-
-  const closeModal = () => {
-    setHide(false);
-  };
+ 
 
   return (
     <div>
@@ -35,21 +15,6 @@ const BlogFeed = () => {
                         <p className="text-blackii lg:text-2xl text-sm lg:leading-8 leading-5 font-bold lg:mt-[8px] lg:mb-[19px]">{ feed.subtext}</p>
                     <a href="#" className="text-[#071A2B] lg:text-lg text-xs lg:leading-5 leading-3 font-bold underline underline-offset-4">Read More</a>
                     
-                    <div className="text-center bg-black/20 lg:px-[100px] px-[60px] lg:py-[75px] py-[50px] mt-[37px]" onClick={() => handleOpen(feed.id)} onBlur={closeModal}>
-                      Click Here
-                         <div className={`absolute lg:max-w-6xl max-w-[250px] max-h-screen lg:left-28 left-5 flex flex-row-reverse justify-between ${id === feed.id ? "block" : "hidden"}`}>
-                              <button type="button" className={`self-start`} onClick={closeModal}>
-                                <img src={closeFeed} alt="closeFeed" loading="lazy"/>
-                              </button>
-                              <video
-                                className="rounded"
-                                autoPlay={true}
-                                controls
-                                muted>
-                                <source type='video/mp4' src={blogFeedVid} />
-                              </video> 
-                      </div>        
-                    </div>
                       </div>
 
                   </div>

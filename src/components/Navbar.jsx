@@ -30,7 +30,8 @@ const Navbar = () => {
     await logout()
     navigate("/login")
     setToggle((prev) => !prev)
-      }
+  }
+  console.log(location)
 
   const handleClickOutside = (e) => {
     if (cartRef.current && !cartRef.current.contains(e.target)) {
@@ -61,9 +62,9 @@ const item = {
 }
 
   return (
-    <>      
+        
       <header className={`drop-shadow-xl ${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} sticky font-aeon z-[99]`}>
-        <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] pl-[24px] lg:pr-[45px] pr-[24px]">
+        <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] px-6 lg:pr-[45px]">
           
           <Link to="/">
             <img
@@ -78,7 +79,7 @@ const item = {
             {/* Desktop Navbar */}
             <ul className="flex justify-between items-center gap-x-7">
               {navLinks.map((link, i) => (
-                <li key={i} className={`${location.pathname === "/" +link.id ? "scale-105 text-orange underline underline-offset-4" : "text-blackii"} hover:text-orange hover:scale-105 transition-all ease-in-out duration-500 lg:block hidden `}>
+                <li key={i} className={`${location.hash === `#/${link.id}` ? "scale-105 text-orange underline underline-offset-4" : "text-blackii"} hover:text-orange hover:scale-105 transition-all ease-in-out duration-500 lg:block hidden `}>
                   <NavLink to={link.id}>{link.title}</NavLink>
                 </li>
               ))}
@@ -162,7 +163,7 @@ const item = {
           </div>
         </nav>
       </header>
-    </>
+    
   )
 }
 

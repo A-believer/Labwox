@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
-// import p1 from "../assets/serv1.png"
-import p2 from "../assets/serv2.png"
-import p3 from "../assets/serv3.png"
-import p4 from "../assets/serv4.png"
-import p5 from "../assets/serv5.png"
+import p1 from "../assets/serv2.png"
+import p2 from "../assets/serv3.png"
+import p3 from "../assets/serv4.png"
+import p4 from "../assets/serv5.png"
 
 
 import cv2 from "../assets/cv2.png"
@@ -42,12 +41,13 @@ export const navLinks = [
 ];
 
 export const products = [
-  {
-  id: 1,
+  
+  {id: 1,
   header: "Pollutant Analysis",
   bgColor: "orange",
   btnText: "Order Tests",
-  imgSrc: p2,
+  route: "testlisting",
+  imgSrc: p1,
   btnBgColor: "white",
   btnTextColor: "blackii",
   textColor: "white",
@@ -55,12 +55,13 @@ export const products = [
     description: "Analyse a variety of chemical pollutants in environmental media and other matrices.",
   services: "At Labwox, we understand the critical importance of monitoring and managing environmental pollutants to ensure the safety of our planet and the well-being of its inhabitants. Our laboratory business specializes in providing comprehensive testing services for a wide range of environmental pollutants"
   },
-  {
-  id: 2,
+
+  {id: 2,
   header: "Nutritional Analysis",
   bgColor: "blackii",
   btnText: "Order Tests",
-  imgSrc: p3,
+  route: "testlisting",
+  imgSrc: p2,
   btnBgColor: "white",
   btnTextColor: "blackii",
   textColor: "white",
@@ -68,12 +69,13 @@ export const products = [
     description: "Foods require rigorous testing to determine their nutritional content.",
   services: "At Labwox, we specialize in providing comprehensive testing services to uncover the nutritional composition of a wide range of food and beverage products. Our mission is to empower individuals, food manufacturers, health professionals, and researchers with accurate and detailed nutritional information"
   },
-  {
-  id: 3,
+
+  {id: 3,
   header: "Phytochemical Analysis",
   bgColor: "yellowiv",
   btnText: "Order Tests",
-  imgSrc: p4,
+  route: "testlisting",
+  imgSrc: p3,
   btnBgColor: "blackii",
   btnTextColor: "white",
   textColor: "blackii",
@@ -81,16 +83,18 @@ export const products = [
     description: "Obtain qualitative and quantitative information about bioactive plant compounds.",
   services: "At Labwox, we specialize in providing comprehensive testing services for phytochemicals, unlocking the secrets of the plant kingdom to advance your research and development endeavors. Labwox offers a wide range of tests to identify, quantify, and characterize phytochemicals found in plants. Whether you're studying flavonoids, alkaloids, polyphenols, or any other phytochemical class, our advanced laboratory facilities are equipped to meet your specific research needs."
   },
+
    {id: 4,
   header: "ChemXpert Training",
   bgColor: "greenii",
   btnText: "Learn More",
-  imgSrc: p5,
+  route: "chemxpert",
+  imgSrc: p4,
   btnBgColor: "white",
   btnTextColor: "blackii",
   textColor: "white",
     subtext: "white",
-    description: "The primary goal of ChemXPERT is to empower academics with the practical skills and in-depth knowledge required to excel in their specialized areas of analytical chemistry."
+    description: "The primary goal of ChemXPERT is to empower academics with the practical skills and in-depth knowledge required to excel intheir specialized areas of analytical chemistry."
   },
 ]
 

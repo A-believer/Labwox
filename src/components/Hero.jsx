@@ -74,12 +74,12 @@ const Hero = () => {
     }
   
   return (
-       <section className="py-2 lg:px-[60px] px-6  lg:flex md:flex-row flex-col bg-heroBg bg-contain bg-no-repeat rounded-[4px] justify-between items-center">
+       <>
       <div className="lg:my-0 my-10 relative z-[1]">
         <Header text1={`Expanding`} text2={`Research`} text3={`Frontiers`} tColor={`blackii`}/>
         <p
           // onClick={() => setEmailToggle(prev => !prev)}
-          className="text-grey mt-4 lg:w-[89%] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
+          className="text-grey mt-4 max-w-[600px] w-full">Labwox provides cutting-edge solutions to support research and learning in the chemical sciences</p>
         <div className="text-white flex mt-4 lg:h-[52px] lg:w-5/6 w-full relative">
           <input
             value={search}
@@ -114,16 +114,16 @@ const Hero = () => {
         
       </div>
 
-      <div className="relative my-4 lg:w-[800px] w-full lg:h-[460px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] lg:flex hidden">
+      <div className="relative my-4 lg:w-[520px] w-full lg:h-[500px] h-[300px] bg-center bg-contain bg-no-repeat flex-col justify-center items-center rounded-[8px] flex">
         
-        <img src={heroImg} alt="hero image" className="lg:h-[425px] sm:h-[280px] lg:w-[550px] sm:w-[270px] absolute object-contain"/>
+        <img src={heroImg} alt="hero image" className="w-full h-full object-contain"/>
 
       </div>
       {/* {emailToggle && <div
         onClick={sendEmail}
         className="absolute top-0 w-full h-[70vh] left-0 flex justify-center items-center">{<OrderSuccess />}</div>} */}
 
-    </section>
+    </>
   )
 }
 
