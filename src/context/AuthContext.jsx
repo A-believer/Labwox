@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
@@ -63,17 +64,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-      setCurrentUser(user)
-      setLoading(true)
             const newData = await getDoc(doc(db, "userInfo", user.uid))
             if (newData.exists()) {
               setUserData(newData.data())
               console.log("user")
         } 
-      } else {
-        setCurrentUser(null);
-        setLoading(false)
-        setUserData(null);
+        setCurrentUser(user)
+      setLoading(true)
       }
       
     })

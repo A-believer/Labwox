@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "../../utils"
 import closeCart from "../../assets/closeCart.png"
 import { Link, NavLink } from "react-router-dom"
@@ -9,7 +10,8 @@ import { db } from "../../config/firebaseConfig";
 import { ToastContainer, toast } from "react-toastify";
 import PropTypes from 'prop-types';
 
-function CartModal({ closeModal }) {
+// eslint-disable-next-line no-unused-vars
+function CartModal({ closeModal, cartRef }) {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
@@ -47,7 +49,8 @@ function CartModal({ closeModal }) {
       </form>)) 
 
   return (
-    <section 
+    <section
+      ref={cartRef}  
       onBlur={closeModal}
       className="lg:w-[500px] w-[300px] absolute lg:top-[80px] top-[50px] lg:right-0 right-2 bg-white lg:px-6 px-2 py-5 border border-grey/50 rounded-lg z-[10000]">
           <div className="flex justify-between items-center mb-2">

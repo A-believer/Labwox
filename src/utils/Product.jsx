@@ -6,7 +6,7 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 };
 const Product = () => {
-
+  console.log(products)
   return (
       <div>
           {products && products?.map((item) => (

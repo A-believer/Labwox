@@ -6,12 +6,12 @@ import { useEffect, useState } from "react"
 
 const UserProfile = () => {
   const { userData } = UserAuth()
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // If userData is already available, setLoading to false
+    // If userData is already available, setIsLoading to false
     if (userData) {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [userData]);
 

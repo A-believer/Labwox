@@ -8,7 +8,7 @@ function CartShipping({ shippingOption, onOptionChange }) {
 
   const option = ["Drop Off", "Agent Pick Up"]
   return (
-    <section className="lg:absolute sticky lg:top-[125px] top-[10%] lg:left-[72px] left-auto lg:w-[57vw] w-[90vw] text-center bg-white drop-shadow-2xl p-8 z-[99] border border-orange">
+    <section className="text-center bg-white drop-shadow-2xl p-8 z-[99] border border-orange">
       
       <label htmlFor="dropOff" className="flex gap-x-5">
         <input
@@ -40,7 +40,6 @@ function CartShipping({ shippingOption, onOptionChange }) {
           />
         <p className="flex flex-col text-left">
           <b>Agent Pick Up</b>
-          <span  className="text-grey">Agent Name: {`TBD`}</span>
           <span  className="text-grey">(+234)8090870364, (+234)8090870364</span>
         </p>
       </label>

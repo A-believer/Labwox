@@ -6,7 +6,7 @@ import { UserAuth } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 
 function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
@@ -22,7 +22,6 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
     const cartId = uniqueId(`${userData.firstName} ${userData.lastName}-`)
 
   const cartData = {
-    // createdAt: serverTimestamp(),
     sampleName: cartDetail.sampleName,
     sampleType: cartDetail.sampleType,
     testCode: testCode,

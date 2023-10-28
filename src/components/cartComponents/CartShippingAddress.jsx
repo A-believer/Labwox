@@ -12,7 +12,7 @@ function CartShippingAddress({ closeModal, deliveryDetails, shippingDetailsChang
     <div className="lg:absolute sticky lg:top-[125px] top-[10%] lg:left-[20%] left-auto lg:w-[30vw] w-[90vw] text-center bg-white drop-shadow-2xl 
     p-8 z-[99] flex flex-col gap-4 border border-orange outline-offset-4 outline-orange">
       <div className="flex justify-between">
-        <p className="text-xl font-bold">Enter Address</p>
+        <p className="text-xl font-bold">Enter Pick Up Details</p>
         <img src={close} alt="close shipping address details" onClick={closeModal} className="object-contain"/>
       </div>
       

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Products } from "../components"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../config/firebaseConfig"
 import filter from "../assets/filter.png"
@@ -12,8 +12,7 @@ const TestListing = () => {
   const [view, setView] = useState(false)
   const [viewMobile, setViewMobile] = useState(false)
   const [search, setSearch] = useState('')
-
-  
+  const filterRef = useRef(null);
   
   const testListCollectionRef = collection(db, "lists of tests")
    async function getTestList() {
@@ -38,9 +37,23 @@ const TestListing = () => {
     getTestList()
   }, [])
 
+  const handleClickOutside = (e) => {
+    if (filterRef.current && !filterRef.current.contains(e.target)) {
+      setView(false);
+      setViewMobile(false);
+    }
+  };
+
+   useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+   }, []);
+  
 const handleQuery = (e) => {
   e.preventDefault() 
-    const filteredTest = tests.filter((item) =>
+     const filteredTest = tests.filter((item) =>
           item.testTitle.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")) ||
           item.instruments.toLowerCase().split(" ").join("").includes(search.toLowerCase().split(" ").join("")))
       setTests(filteredTest)
@@ -49,14 +62,16 @@ const handleQuery = (e) => {
     const handleSearch = (e) => {
       let term = e.target.value
       setSearch(term)
+      let filteredTest;
       if (term !== "") {
-        const filteredTest = tests.filter((item) =>
+         filteredTest = tests.filter((item) =>
           item.testTitle.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")) ||
-          item.instruments.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")))
-        
-      setTests(filteredTest)
+           item.instruments.toLowerCase().split(" ").join("").includes(term.toLowerCase().split(" ").join("")))
       }
-        
+      if(term === ""){
+        filteredTest = tests
+      }
+        setTests(filteredTest)
     }
 
   return (
@@ -86,7 +101,7 @@ const handleQuery = (e) => {
             </button>
 
             {view &&
-              <div className="absolute top-14 right-0 w-fit bg-white rounded border border-orange">
+              <div ref={filterRef} className="absolute top-14 right-0 w-fit bg-white rounded border border-orange">
               <p className="font-bold mt-4 mx-4">Categories</p>
               <ul className="mt-2 flex flex-col gap-y-3 mx-4 pb-4">
                <li>Nutritional Analysis</li>
@@ -106,7 +121,7 @@ const handleQuery = (e) => {
                   <span>Filter</span></button>
               </div>
               
-              {viewMobile && <div className="absolute top-[50px] left-4 w-[90%] bg-white rounded border border-orange">
+              {viewMobile && <div ref={filterRef} className="absolute top-[50px] left-4 w-[90%] bg-white rounded border border-orange">
               <p className="font-bold mt-4 ml-4">Categories</p>
               <ul className="mt-2 flex flex-col gap-y-3 ml-4 pb-4">
                <li>Nutritional Analysis</li>

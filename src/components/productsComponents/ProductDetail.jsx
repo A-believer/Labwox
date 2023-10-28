@@ -9,6 +9,7 @@ import CartDetail from "../cartComponents/CartDetail";
 const ProductDetail = () => {
     const [test, setTest] = useState([])
     const [truncate, setTruncate] = useState(false)
+    const [loading, setLoading] = useState(true)
     const { id } = useParams()
     const [cartDetailToggle, setCartDetailToggle] = useState(false)
     function handleCartDetailToggle() {
@@ -30,6 +31,7 @@ const ProductDetail = () => {
             id: newData.id,
             ...newData.data(),
           });
+        setLoading(false)
         } 
         } catch (err) {
             console.error(err)
@@ -46,8 +48,11 @@ const ProductDetail = () => {
                 <span className="underline">Go Back</span>
             </Link>
             
-            
-            <div key={test.key} className="bg-whitebgii lg:pt-5 pt-2 lg:pl-5 lg:pr-3 px-2 lg:pb-4 pb-2 mt-5 lg:mx-20 mx-0 border border-b-0 border-orange rounded-t-lg">
+            {loading ?
+                <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
+                :
+                <div>
+                    <div key={test.key} className="bg-whitebgii lg:pt-5 pt-2 lg:pl-5 lg:pr-3 px-2 lg:pb-4 pb-2 mt-5 lg:mx-20 mx-0 border border-b-0 border-orange rounded-t-lg">
                 <div className="flex justify-between items-center lg:gap-x-0 gap-x-4">
                     <div className="lg:text-xl text-base font-bold leading-6 text-blackii">
                     <p className="font-extrabold underline decoration-grey underline-offset-2 lg:pr-4 pr-0">{test.testTitle}</p>
@@ -89,6 +94,9 @@ const ProductDetail = () => {
                 <li><span className="text-lg">Instrument: </span><span className="text-grey">{ test.instruments}</span></li>
                 <li><span className="text-lg">Sample Type: </span><span className="text-grey">{ test.sampleType}</span></li>
             </ul>
+                </div>
+            }
+            
                     
     </section>
 )

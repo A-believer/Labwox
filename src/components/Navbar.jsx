@@ -6,7 +6,7 @@ import cartIcon from "../assets/cartIcon.png"
 import Button from "../utils/Button"
 import menu from "../assets/menu.png"
 import close from "../assets/close.png"
-import {  useState } from "react"
+import {  useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { UserAuth } from "../context/AuthContext"
 import CartModal from "./cartComponents/CartModal"
@@ -19,6 +19,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const [toggle, setToggle] = useState(false)
   const [cartToggle, setCartToggle] = useState(false)
+  const cartRef = useRef(null);
 
   function handleCartToggle() {
     setCartToggle(prev => !prev)
@@ -30,6 +31,19 @@ const Navbar = () => {
     navigate("/login")
     setToggle((prev) => !prev)
       }
+
+  const handleClickOutside = (e) => {
+    if (cartRef.current && !cartRef.current.contains(e.target)) {
+      setCartToggle(false);
+    }
+  };
+
+   useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+   }, []);
 
   const container = {
   hidden: { opacity: 0 },
@@ -80,6 +94,7 @@ const item = {
               </li>
               {cartToggle &&
                 <CartModal
+                cartRef={cartRef}
                   closeModal={handleCartToggle}
                   />}
 

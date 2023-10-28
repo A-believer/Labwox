@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, clearCart } from "../utils/cartSlice";
 import { Link } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 import CartToOrderSuccess from '../components/cartComponents/CartToOrderSuccess';
@@ -11,6 +12,7 @@ import { db } from '../config/firebaseConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
+import { formatCurrency } from '../config/currencyConverter';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
@@ -19,13 +21,14 @@ function Cart() {
   const [toggleShipping, setToggleShipping] = useState(false)
   const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
   const [toggleSuccess, setToggleSuccess] = useState(false)
-    const intialShippingDetails = {
+  const intialShippingDetails = {
     deliveryOption: "",
     deliveryAddress: "",
     locationLandmark: "",
     contactNumber: ""
   }
-  
+  const [shippingFee, setShippingFee] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
   const [shippingDetails, setShippinDetails] = useState(intialShippingDetails)
   const [error, setError] = useState(false)
   const orderId = uuidv1().split("").slice(24, 35).join("")
@@ -35,21 +38,25 @@ function Cart() {
   for (let i = 0; i < cartItems.length; i++) {
     total += cartItems[i].testPrice
   } 
-  let shippingFee
-  if (shippingDetails.deliveryOption === "Drop Off") {
-    shippingFee = 0
+
+useEffect(() => {
+    // If userData is already available, setLoading to false
+    if (userData) {
+      setIsLoading(false);
+    }
+}, [userData]);
+  
+  useEffect(() => {
+  if (shippingDetails.deliveryOption === "Agent Pick Up") {
+    setShippingFee(5000);
+  } else {
+    setShippingFee(0);
   }
-  if(shippingDetails.deliveryOption === "Agent Pick Up"){
-    shippingFee = 5000
-  }
+}, [shippingDetails.deliveryOption]);
 
   let serverTime = new Date()
   const dateStamp = serverTime.toDateString()
   const timeStamp = serverTime.toLocaleTimeString()
-  console.log(serverTime)
-  console.log(dateStamp)
-  console.log(timeStamp)
-  
   
   
   const details = {
@@ -66,9 +73,7 @@ function Cart() {
   const [orderDetails, setOrderDetails] = useState(details)
   // handles what happens when all the right shipping details are correctly filled   
   function handleOrdersSubmit() {
-    if (shippingDetails.deliveryOption === "") {
-      setToggleShipping(true)
-    } else {
+    if (shippingDetails.deliveryOption !== "") {
       setOrderDetails(details)
       toast.success('Items added to Orders!');
       setToggleSuccess(true)
@@ -114,6 +119,10 @@ function Cart() {
     if (option === "Agent Pick Up") {
       setToggleShippingAddress(true)
     } 
+    if(option === "Drop Off") {
+      setToggleShippingAddress(false)
+      setError(false)
+    }
   }
 
   //handle Shipping details
@@ -147,7 +156,11 @@ function Cart() {
   // Final return
   return (
     <section className="lg:px-[70px] px-6 lg:py-7 py-6 bg-whitebgiv relative w-full h-screen">
-      <div className='my-2'>
+      {isLoading ? 
+      <div className="h-[70vh] w-full flex items-center justify-center lg:text-6xl text-4xl animate-pulse">Loading...</div> 
+      :
+        <>
+          <div className='my-2'>
         <p className="flex items-center">
         <span className='font-bold lg:text-2xl text-xl'>Cart</span>
         <span className="lg:hidden block">({cartItems.length})</span>
@@ -170,28 +183,22 @@ function Cart() {
 
       <div className='flex lg:flex-row flex-col items-center w-full justify-between gap-6'>
         
-      {toggleShipping && 
-        <CartShipping
-          shippingOption={shippingDetails.deliveryOption}
-          onOptionChange={handleShippingOptionChange}/>}
-        
         {toggleShippingAddress &&
           <CartShippingAddress
           error={error}
           closeModal={handleShippingAddressDetail }
           deliveryDetails={shippingDetails}
           shippingDetailsChange={handleShippingDetailsChange}
-            handleShippingDetails={handleShippingDetails} />}
+          handleShippingDetails={handleShippingDetails} />}
         
         {toggleSuccess && <CartToOrderSuccess
           handleOrderSuccess={handleOrderSuccess}
         />}
         
-        <div className='w-[65%] bg-white h-[60vh] lg:flex flex-col drop-shadow-2xl hidden'>
-          
-          
+        <div className='w-[65%] bg-white h-full self-start lg:flex flex-col drop-shadow-2xl hidden'>
           
           {/* Desktop Cart  */}
+          {cartItems.length > 0 ?
           <table className=' table-auto w-full'>
           <thead className='bg-whitebgv border-b border-grey/30 text-base font-light text-grey leading-normal'>
             <tr className='text-center'>
@@ -210,7 +217,7 @@ function Cart() {
                 <td>{item.sampleName}</td>
                 <td>{item.sampleType}</td>
                 <td>{item.testCode}</td>
-                <td>₦ {item.testPrice.toLocaleString('en-US')}.00</td>
+                <td>₦ {formatCurrency(item.testPrice)}</td>
                 <td>
                   <button
                     type="submit"
@@ -223,6 +230,9 @@ function Cart() {
               
           </tbody>
           </table>
+            :
+          <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center lg:text-3xl text-2xl">Empty Cart</div>
+          }
           <Link to={`/testListing`} className='text-orange border border-orange m-6  px-9 py-2 w-fit rounded'>Back to TestListing</Link>
         </div>
         
@@ -230,11 +240,11 @@ function Cart() {
         <div className='lg:hidden px-4 pt-4 w-full bg-white drop-shadow-2xl'>
           {cartItems.map(item => (
             <div key={item.id} className='flex justify-between items-center text-blackii font-normal mb-5 gap-x-10'>
-              <p className='flex flex-col'>
+              <p className='flex flex-col gap-y-2'>
                 <span className='text-orange underline'>{item.testName}</span>
                 <span>Sample Name: {item.sampleName}</span>
                 <span>Sample Type: {item.sampleType}</span>
-                <span className='text-black font-medium'>₦ {item.testPrice.toLocaleString('en-US')}.00</span>
+                <span className='text-black font-bold text-xl'>₦ {formatCurrency(item.testPrice)}</span>
               </p>
               <button
                     type="submit"
@@ -247,23 +257,35 @@ function Cart() {
           <hr className='text-grey/30 my-10' />
         </div>
 
-        <div className='lg:w-[35%] w-full bg-white py-[50px] h-[60vh] px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl mb-10 lg:mb-0'>
+        <div className='lg:w-[35%] w-full bg-white py-[50px] h-auto px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl mb-10'>
           <p className='whitespace-nowrap flex justify-between items-center'>
             <span className='font-normal'>Cart Subtotal</span>
-            <span className='font-bold'># {total.toLocaleString('en-US')}.00</span>
-          </p>
-          {shippingDetails.deliveryOption === "Agent Pick Up" && <p className='whitespace-nowrap flex justify-between items-center my-8'>
-            <span className='font-normal'>Shipping</span>
-            <span className='font-bold'># {shippingFee.toLocaleString('en-US')}.00</span>
-          </p>}
+            <span className='font-bold text-xl'>₦ {formatCurrency(total)}</span>
+              </p>
+
+              <div>
+                <p className='whitespace-nowrap flex justify-between items-center my-8'>
+                  <span className='font-normal'>Shipping</span>
+                  <span className='font-bold text-xl'>₦ {formatCurrency(shippingFee)}</span>
+                </p>
+                <div>         
+            <CartShipping
+              shippingOption={shippingDetails.deliveryOption}
+              onOptionChange={handleShippingOptionChange}/>
+                </div>
+          </div>
+          
            <hr className='text-grey/30 my-10'/>
           <p className='whitespace-nowrap flex justify-between items-center mb-8'>
             <span className='font-normal'>Order Total</span>
-            <span className='font-bold'># {(total+shippingFee).toLocaleString('en-US')}.00</span>
+            <span className='font-bold text-2xl'>₦ {formatCurrency(total + shippingFee)}</span>
           </p>
           <button type='submit' onClick={handleOrdersSubmit} className='text-center text-white bg-orange rounded w-full py-2'>Place Order</button>
         </div>
       </div>
+      </>
+      }
+      
       <ToastContainer/>
     </section>
   )

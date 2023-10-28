@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Header from "../utils/Header"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import heroImg from "../assets/heroImg.png"
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from "../config/firebaseConfig"
@@ -12,6 +12,8 @@ const Hero = () => {
   const [searchModal, setSearchModal] = useState(false)
   // const [emailToggle, setEmailToggle] = useState(false)
   const [results, setResults] = useState([]);
+  const searchContainerRef = useRef(null);
+
 
   async function getTestList() {
     try {
@@ -32,6 +34,20 @@ const Hero = () => {
   useEffect(() => {
     getTestList()
   }, [])
+
+   const handleClickOutside = (e) => {
+    if (searchContainerRef.current && !searchContainerRef.current.contains(e.target)) {
+      setSearchModal(false);
+    }
+  };
+
+   useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+   }, []);
+  
 
   const handleQuery = (e) => {
     e.preventDefault() 
@@ -79,7 +95,9 @@ const Hero = () => {
         </div>
 
         {searchModal &&
-          <div className={`absolute left-0 text-blackiii bg-white lg:w-[83%] w-full lg:h-[500px] h-[400px] overflow-hidden overflow-y-scroll mt-1 p-4 rounded-lg border scroll-m-0 scroll-p-0 border-orange flex flex-col gap-y-5`}>
+          <div
+            ref={searchContainerRef}
+            className={`absolute left-0 text-blackiii bg-white lg:w-[83%] w-full lg:h-[500px] h-[400px] overflow-hidden overflow-y-scroll mt-1 p-4 rounded-lg border scroll-m-0 scroll-p-0 border-orange flex flex-col gap-y-5`}>
             {results?.map((test, index) => (
             <Link
                   key={index}

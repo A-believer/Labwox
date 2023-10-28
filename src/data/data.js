@@ -1,13 +1,13 @@
+/* eslint-disable no-undef */
 // import p1 from "../assets/serv1.png"
 import p2 from "../assets/serv2.png"
 import p3 from "../assets/serv3.png"
 import p4 from "../assets/serv4.png"
+import p5 from "../assets/serv5.png"
 
-// import cv1 from "../assets/cv1.png"
+
 import cv2 from "../assets/cv2.png"
-// import cv3 from "../assets/cv3.png"
 import cv4 from "../assets/cv4.png"
-// import cv5 from "../assets/cv5.png"
 import cv6 from "../assets/cv6.png"
 
 import message from "../assets/message.png"
@@ -22,6 +22,10 @@ export const navLinks = [
   {
     id: "testlisting",
     title: "Tests Listing",
+  },
+   {
+    id: "chemxpert",
+    title: "ChemXPERT",
   },
   {
     id: "services",
@@ -42,6 +46,7 @@ export const products = [
   id: 1,
   header: "Pollutant Analysis",
   bgColor: "orange",
+  btnText: "Order Tests",
   imgSrc: p2,
   btnBgColor: "white",
   btnTextColor: "blackii",
@@ -54,6 +59,7 @@ export const products = [
   id: 2,
   header: "Nutritional Analysis",
   bgColor: "blackii",
+  btnText: "Order Tests",
   imgSrc: p3,
   btnBgColor: "white",
   btnTextColor: "blackii",
@@ -65,7 +71,8 @@ export const products = [
   {
   id: 3,
   header: "Phytochemical Analysis",
-  bgColor: "white",
+  bgColor: "yellowiv",
+  btnText: "Order Tests",
   imgSrc: p4,
   btnBgColor: "blackii",
   btnTextColor: "white",
@@ -73,6 +80,17 @@ export const products = [
     subtext: "blackii",
     description: "Obtain qualitative and quantitative information about bioactive plant compounds.",
   services: "At Labwox, we specialize in providing comprehensive testing services for phytochemicals, unlocking the secrets of the plant kingdom to advance your research and development endeavors. Labwox offers a wide range of tests to identify, quantify, and characterize phytochemicals found in plants. Whether you're studying flavonoids, alkaloids, polyphenols, or any other phytochemical class, our advanced laboratory facilities are equipped to meet your specific research needs."
+  },
+   {id: 4,
+  header: "ChemXpert Training",
+  bgColor: "greenii",
+  btnText: "Learn More",
+  imgSrc: p5,
+  btnBgColor: "white",
+  btnTextColor: "blackii",
+  textColor: "white",
+    subtext: "white",
+    description: "The primary goal of ChemXPERT is to empower academics with the practical skills and in-depth knowledge required to excel in their specialized areas of analytical chemistry."
   },
 ]
 

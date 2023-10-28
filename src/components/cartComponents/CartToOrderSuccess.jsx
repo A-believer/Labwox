@@ -17,7 +17,7 @@ function CartToOrderSuccess({ handleOrderSuccess}) {
         <NavLink
           onClick={handleOrderSuccess}
           className="text-center w-full bg-orange text-white rounded py-2"
-          to={'/'}>
+          to={'/userprofile'}>
           View Orders
           </NavLink>
       </div>
