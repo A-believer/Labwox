@@ -31,7 +31,6 @@ const Navbar = () => {
     navigate("/login")
     setToggle((prev) => !prev)
   }
-  console.log(location)
 
   const handleClickOutside = (e) => {
     if (cartRef.current && !cartRef.current.contains(e.target)) {

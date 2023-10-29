@@ -37,7 +37,7 @@ export default function MainHero() {
           onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
                 className="flex md:flex-row flex-col justify-between items-center">
-                {component ? <Hero/> : <Hero_ChemXpert/>}
+                {component ? <Hero/> : <Hero_ChemXpert btnText={"Register Here"} btnTextII={"Explore More"} route={`/chemxpert`}/>}
     </motion.section>   
       </div>
       

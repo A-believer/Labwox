@@ -13,6 +13,45 @@ import message from "../assets/message.png"
 import location from "../assets/location.png"
 import phone from "../assets/phone.png"
 
+import specialized from "../assets/specialize.svg"
+import expert from "../assets/expert.svg"
+import network from "../assets/network.svg"
+import handson from "../assets/handson.svg"
+import current from "../assets/current.svg"
+
+export const keysFeatures = [
+  {
+    id: 1,
+    imgSrc: specialized,
+    text: "Specialized Training Modules:",
+    subtext: "Our training program will offer modules focusing on specific applications within analytical chemistry. These modules will cover a wide range of topics, ensuring that participants gain a broad view of current trends in their chosen field.",
+  },
+  {
+    id: 2,
+    imgSrc: expert,
+    text: "Expert Instructors:",
+    subtext: "Our instructors are experts in their respective fields, bringing years of practical experience and academic knowledge to the training sessions. They will provide guidance, answer questions, and mentor participants throughout the training",
+  },
+  {
+    id: 3,
+    imgSrc: network,
+    text: "Networking Opportunities",
+    subtext: "Academics will have the chance to connect with peers, instructors, and industry professionals, fostering valuable relationships for future collaborations and research opportunities.",
+  },
+  {
+    id: 4,
+    imgSrc: handson,
+    text: "Hands-On Experience:",
+    subtext: "Labwox is affiliated with several lab partners with state-of-the-art analytical instruments. Participants will have the opportunity to work with these instruments, gaining practical experience and confidence in their use.",
+  },
+  {
+    id: 5,
+    imgSrc: current,
+    text: "Current Industry Trends:",
+    subtext: "We will ensure that the training content reflects the latest trends, methodologies, and technologies in analytical chemistry. Participants will stay up-to-date with the rapidly evolving field.",
+  },
+]
+
 export const navLinks = [
   {
     id: "about",
