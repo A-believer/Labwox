@@ -97,7 +97,7 @@ const Hero = () => {
         {searchModal &&
           <div
             ref={searchContainerRef}
-            className={`absolute left-0 text-blackiii bg-white lg:w-[83%] w-full lg:h-[500px] h-[400px] overflow-hidden overflow-y-scroll mt-1 p-4 rounded-lg border scroll-m-0 scroll-p-0 border-orange flex flex-col gap-y-5`}>
+            className={`no-scrollbar absolute left-0 text-blackiii bg-white lg:w-[83%] w-full max-h-[500px] h-auto overflow-hidden overflow-y-scroll mt-1 p-4 rounded-lg border scroll-m-0 scroll-p-0 border-orange flex flex-col gap-y-5`}>
             {results?.map((test, index) => (
             <Link
                   key={index}
