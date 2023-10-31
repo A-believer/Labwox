@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function UserProfileOrders() {
   const [orders, setOrders] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const {currentUser} = UserAuth()
 
   const orderRef = query(collection(db, "order"), where(`userName`, "==", `${currentUser.displayName}`))
@@ -24,11 +24,11 @@ function UserProfileOrders() {
           ...doc.data()
         })
     })
-  setOrders(data)
+      setOrders(data)
+      setLoading(false)
     } catch (err) {
       console.error(err)
       }
-      setLoading(false)
   }
   
   useEffect(() => {
@@ -46,7 +46,7 @@ function UserProfileOrders() {
       :
       <div className="relative w-full">
 
-         {orders > 0 ? orders?.map((order, i) => (
+         {orders.length > 0 ? orders?.map((order, i) => (
           <div key={i + 1} className="bg-white flex lg:flex-row flex-col justify-between lg:p-10 p-3 mt-3">
         <p className="flex flex-col text-grey text-base">
             <span className="text-lg">labwox-{order.id}</span>

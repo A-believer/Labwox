@@ -17,7 +17,7 @@ const Product = () => {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 1 }}>
             
             <div className="lg:mt-16 mt-9">
               <p className={`text-${item.textColor} lg:text-[48px] text-[24px] lg:leading-[67.2px] leading-[28px] font-bold lg:whitespace-nowrap whitespace-normal`}>{ item.header }</p>
