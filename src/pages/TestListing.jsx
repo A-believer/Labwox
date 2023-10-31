@@ -60,7 +60,7 @@ const TestListing = () => {
     getTestList()
   }, [])
 
-const filteredTests = selectedCategories.length === 0 || selectedCategories.length === 3;
+const filteredTests = selectedCategories.length === 0 || selectedCategories.length === 3
     ? tests
     : tests.filter((item) => selectedCategories.includes(item.category));
   
@@ -151,9 +151,21 @@ const handleQuery = (e) => {
             <div ref={filterRef} className="absolute top-[50px] left-4 w-[90%] bg-white rounded border border-orange">
               <p className="font-bold mt-4 ml-4">Categories</p>
               <ul className="mt-2 flex flex-col gap-y-3 ml-4 pb-4">
-               <li><input type="checkbox"/>Nutritional Analysis</li>
-               <li><input type="checkbox"/>Phytochemical Analysis</li>
-               <li><input type="checkbox"/>Pollutant Analysis</li>
+               <li>
+                  <input
+                  checked={selectedCategories.includes('Nutritional Analysis')}
+                  onChange={() => handleCategoryChange('Nutritional Analysis')}
+                  type="checkbox" /> Nutritional Analysis</li>
+                <li>
+                  <input
+                  checked={selectedCategories.includes('Phytochemical Analysis')}
+                  onChange={() => handleCategoryChange('Phytochemical Analysis')}
+                  type="checkbox" /> Phytochemical Analysis</li>
+                <li>
+                  <input
+                  checked={selectedCategories.includes('Pollutants Analysis')}
+                  onChange={() => handleCategoryChange('Pollutants Analysis')}
+                  type="checkbox" /> Pollutants Analysis</li>
               </ul>
           </div>} 
           </div>
