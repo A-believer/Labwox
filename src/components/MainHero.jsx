@@ -4,7 +4,6 @@ import Hero_ChemXpert from "./Hero_ChemXpert";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-
 export default function MainHero() {
 
     const [component, setComponent] = useState(true);

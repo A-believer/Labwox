@@ -49,11 +49,11 @@ const Products = ({ tests }) => {
         
       ))}
 
-      <div className="lg:mt-4 mt-2 flex items-center justify-center text-grey gap-x-3">
+      {tests.length > 5 && <div className="lg:mt-4 mt-2 flex items-center justify-center text-grey gap-x-3">
         <button className="underline" onClick={goToPrev} disabled={!canGoPrev}>Prev</button>
         <p className="text-xl">{currentPage} of {pages}</p>
         <button className="underline" onClick={goToNext} disabled={!canGoNext}>Next</button>
-      </div>
+      </div>}
     </section>
   )
 }

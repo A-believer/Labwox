@@ -111,7 +111,7 @@ export const products = [
 
   {id: 3,
   header: "Phytochemical Analysis",
-  bgColor: "yellowiv",
+  bgColor: "orange",
   btnText: "Order Tests",
   route: "testlisting",
   imgSrc: p3,
@@ -125,7 +125,7 @@ export const products = [
 
    {id: 4,
   header: "ChemXpert Training",
-  bgColor: "greenii",
+  bgColor: "blackii",
   btnText: "Learn More",
   route: "chemxpert",
   imgSrc: p4,
