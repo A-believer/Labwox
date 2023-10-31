@@ -86,7 +86,7 @@ const Hero = () => {
             onChange={handleSearch}
             type="text"
             placeholder="find research here"
-            className="text-grey pl-4 placeholder:text-greyi rounded-[4px] lg:text-[19px] text-[13px] lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-greyi ring-0 active:border-greyi outline-none focus:border-orange" />
+            className="text-grey pl-4 placeholder:text-greyi text-greyi rounded-[4px] lg:text-[19px] text-[13px] lg:leading-[52px] leading-[36px] bg-clear mr-2 w-2/3 border border-greyi ring-0 active:border-greyi outline-none focus:border-orange" />
           <button
             onClick={handleQuery}
             type="button"

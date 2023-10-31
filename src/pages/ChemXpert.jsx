@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Hero_ChemXpert from "../components/Hero_ChemXpert"
 import Banner from "../components/Banner"
 import { CTA, Ctaii, KeysFeatures, Objective, ProofOfConcept } from "../components"
@@ -12,15 +13,14 @@ export default function ChemXpert() {
       <Banner />
       <Objective />
       <KeysFeatures />
-      <ProofOfConcept/>
+      {/* <ProofOfConcept/> */}
       <Ctaii
         text1={`Get access to a `}
         text2={`specialized`}
         text3={`analytical Chemistry training`}
         imgSrc={ctaBgii}
         bgImg={`ctaBgiii`}
-        subText={`ChemXPERT empowers academics in analytical chemistry through hands-on training and industry exposure, marking the first step in our vision's journey.`}
-        btnText={`Search`} />
+        subText={`ChemXPERT empowers academics in analytical chemistry through hands-on training and industry exposure, marking the first step in our vision's journey.`} />
        <CTA
         route={`contact`}
         btnTextCol={`white`}
