@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { doc, getDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../config/firebaseConfig";
 import {IoMdArrowRoundBack} from "react-icons/io"
 import CartDetail from "../cartComponents/CartDetail";
+import { decryptId } from "../../config/encrypt";
 
 
 const ProductDetail = () => {
@@ -16,12 +19,13 @@ const ProductDetail = () => {
         setCartDetailToggle(prev => !prev)
     }
 
+
     function handleTextToggle() {
       setTruncate(!truncate)
     }
 
     useEffect(() => {
-      const testRef = doc(db, "lists of tests", id)
+      const testRef = doc(db, "lists of tests", decryptId(id))
 
     async function getTest() {
         try {

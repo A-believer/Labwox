@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import { encryptId } from "../../config/encrypt"
 
 const Products = ({ tests }) => {
   
@@ -36,7 +37,7 @@ const Products = ({ tests }) => {
               <p className="text-orange lg:my-5 my-2">₦ {test.pricing.toLocaleString('en-US')}.00</p>
             </div>
 
-            <Link to={test.id} className="self-start bg-orange lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-white rounded-sm border border-orange whitespace-nowrap">
+            <Link to={encryptId(test.id)} className="self-start bg-orange lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-white rounded-sm border border-orange whitespace-nowrap">
               View Details
             </Link>
           </div>

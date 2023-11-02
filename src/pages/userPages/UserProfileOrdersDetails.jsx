@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { db } from '../../config/firebaseConfig';
 import PaystackPop from "@paystack/inline-js"
 import { UserAuth } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
+import { decryptId } from '../../config/encrypt';
 
 
 function UserProfileOrdersDetails() {
@@ -20,7 +22,7 @@ function UserProfileOrdersDetails() {
   const lastName = userData.lastName
  
  
-  const orderRef = doc(db, "order", id)
+  const orderRef = doc(db, "order", decryptId(id))
   async function getOrder() {
       setLoading(true)
       try {
@@ -42,7 +44,7 @@ function UserProfileOrdersDetails() {
      e.preventDefault()
      const paystack = new PaystackPop()
         await paystack.newTransaction({
-          key: "pk_live_7d1a10bd189ae156ac3c3f360f851600f70b439e",
+          key: import.meta.env.VITE_LABWOX_FIREBASE_API_KEY,
           amount: amount * 100,
           email,
           firstName,

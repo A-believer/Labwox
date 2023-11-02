@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 import { UserAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { encryptId } from "../../config/encrypt";
 
 
 function UserProfileOrders() {
@@ -57,7 +58,7 @@ function UserProfileOrders() {
                <span className="text-[#66C27C]">{order?.orderStatus}</span>
         </p>
         <Link
-          to={order.id}
+          to={encryptId(order.id)}
           className={`flex items-center gap-x-2 text-yellow lg:self-start self-end lg:mt-0 mt-4`}>
           <span>View Details</span>
           <span><AiOutlineArrowRight/></span>
