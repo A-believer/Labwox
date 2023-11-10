@@ -61,7 +61,7 @@ const ProductDetail = () => {
                     <div className="lg:text-xl text-base font-bold leading-6 text-blackii">
                     <p className="font-extrabold underline decoration-grey underline-offset-2 lg:pr-4 pr-0">{test.testTitle}</p>
                     <p className="my-1 text-grey">{test.code}</p>
-                    <p className="text-orange my-2">₦ {test.pricing?.toLocaleString('en-US')}.00</p>
+                    <p className="text-orange my-2">₦ {Number(test.pricing)?.toLocaleString('en-US')}.00</p>
                     </div>
                     
                     <button
@@ -73,7 +73,7 @@ const ProductDetail = () => {
                         <CartDetail
                         closeCartDetail={handleCartDetailToggle}
                         test={test}
-                        testPricing={test.pricing}
+                        testPricing={Number(test.pricing)}
                         testCode={test.code}
                         testTitle={test.testTitle}
                         testSampleType={test.sampleType}

@@ -44,7 +44,7 @@ function UserProfileOrdersDetails() {
      e.preventDefault()
      const paystack = new PaystackPop()
         await paystack.newTransaction({
-          key: import.meta.env.VITE_LABWOX_FIREBASE_API_KEY,
+          key: import.meta.env.VITE_PAYSTACK_LIVE_KEY,
           amount: amount * 100,
           email,
           firstName,
@@ -67,7 +67,7 @@ function UserProfileOrdersDetails() {
     if (order?.deliveryDetails?.deliveryOption === "Drop Off") {
       details = <p><span className='font-semibold'>Delivery Address: </span><span>Address: 2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos</span> </p>
       setShipping(details)
-      setAmount(order.cartTotal)
+      setAmount(Number(order.cartTotal))
     }
     if(order?.deliveryDetails?.deliveryOption === "Agent Pick Up"){
      details = <div className='flex flex-col gap-y-4'>
@@ -111,7 +111,7 @@ function UserProfileOrdersDetails() {
                   <th className='hidden lg:flex flex-col mt-2 whitespace-wrap overflow-ellipsis overflow-hidden'>
                     <span>{item.testName}</span>
                     <span>({item.testCode})</span></th>
-                        <td className='hidden lg:table-cell'>₦ {item.testPrice.toLocaleString()}.00</td>
+                        <td className='hidden lg:table-cell'>₦ {Number(item.testPrice).toLocaleString('en-US')}.00</td>
                     </tr>
                 </tbody>
                 ))}

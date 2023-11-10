@@ -18,8 +18,10 @@ function CartModal({ closeModal, cartRef }) {
   // total price of items in cart 
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
-    total += cartItems[i].testPrice
+    let priceToNum = Number(cartItems[i].testPrice)
+    total += priceToNum
   } 
+  console.log(cartItems)
   
   const cartTotal = total.toLocaleString('en-US', {
         minimumFractionDigits: 0,

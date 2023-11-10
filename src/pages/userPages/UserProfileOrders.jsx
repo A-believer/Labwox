@@ -54,7 +54,7 @@ function UserProfileOrders() {
             <span className="my-1">
               {order.createdAt}
             </span>
-            <span className="text-blackii font-bold">₦{order.cartTotal.toLocaleString('en-US')}</span>
+            <span className="text-blackii font-bold">₦{Number(order.cartTotal).toLocaleString('en-US')}</span>
                <span className="text-[#66C27C]">{order?.orderStatus}</span>
         </p>
         <Link

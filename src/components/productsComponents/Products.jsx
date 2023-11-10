@@ -34,7 +34,7 @@ const Products = ({ tests }) => {
             <div className="lg:text-xl text-lg font-bold leading-6 text-blackii">
               <p className="font-extrabold underline decoration-grey underline-offset-2 lg:pr-4 pr-0">{test.testTitle}</p>
               <p className="my-2 text-grey">{test.code}</p>
-              <p className="text-orange lg:my-5 my-2">₦ {test.pricing.toLocaleString('en-US')}.00</p>
+              <p className="text-orange lg:my-5 my-2">₦ {Number(test.pricing).toLocaleString('en-US')}.00</p>
             </div>
 
             <Link to={encryptId(test.id)} className="self-start bg-orange lg:py-[10px] py-1 lg:px-3 px-1 lg:text-lg text-xs font-medium lg:leading-6 leading-2 text-white rounded-sm border border-orange whitespace-nowrap">

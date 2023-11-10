@@ -36,7 +36,8 @@ function Cart() {
   // cart total and shipping Fee
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
-    total += cartItems[i].testPrice
+    let priceToNum = Number(cartItems[i].testPrice)
+    total += priceToNum
   } 
 
 useEffect(() => {
