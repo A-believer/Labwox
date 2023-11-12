@@ -133,7 +133,8 @@ export const products = [
   btnTextColor: "blackii",
   textColor: "white",
     subtext: "white",
-    description: "The primary goal of ChemXPERT is to empower academics with the practical skills and in-depth knowledge required to excel intheir specialized areas of analytical chemistry."
+     description: "The primary goal of ChemXPERT is to empower academics with the practical skills and in-depth knowledge required to excel intheir specialized areas of analytical chemistry.",
+    services: "This service is designed to provide participants with comprehensive training in topics such as Pesticides Analysis in Foods, Heavy Metals Analysis in Environmental Media, and more"
   },
 ]
 
