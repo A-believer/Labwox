@@ -5,6 +5,7 @@ import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login
 import { ProductDetail} from "./components"
 import { ProtectedRoute } from "./utils/ProtectedRoute.jsx"
 import SampleSheet from "./pages/userPages/SampleSheet.jsx"
+import Email from "./emails/index.jsx"
 
 const App = () => {
   
@@ -14,6 +15,7 @@ const App = () => {
       <Route path='/' element={<Home />}>
         <Route index element={<HomeLayout/>}/>
         <Route path="about" element={<About/>}/>
+        <Route path="email" element={<Email/>}/>
         <Route path="contact" element={<Contact/>}/>
         <Route path="resources" element={<Resources/>}/>
         <Route path="services" element={<Services/>}/>
