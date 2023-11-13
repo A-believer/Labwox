@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite && email dev",
+    "dev": "vite && email dev && react-dotenv",
     "build": "react-dotenv && vite build",
     "lint": "react-dotenv && eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "react-dotenv && vite preview",
