@@ -10,7 +10,7 @@ const Ctaii = ({btnText, route, text1, text2, text3, subText, imgSrc, bgImg}) =>
           <div className="bg-white lg:pl-8 px-4 lg:pb-[60px] lg:pt-[60px] py-4 rounded w-full h-full max-h-max lg:mx-0 mx-auto">
             <Header text1={text1} text2={text2} text3={text3}/>
             <p className="my-[31px] lg:w-[70%] w-full lg:text-xl text-lg leading-5 text-grey">{subText}</p>
-            <Link to={route}>
+            <Link target="_blank" to={route}>
               <Button bgColor={`orange`} text={btnText} textColor={`white`} />
             </Link>
           </div>

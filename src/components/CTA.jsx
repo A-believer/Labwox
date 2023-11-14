@@ -9,7 +9,7 @@ const CTA = ({btnText, route, btnBgCol, btnTextCol, text}) => {
       <div className="text-center lg:text-[52px] text-[24px] lg:leading-[62.4px] leading-[28.8px] pb-[32px] font-semibold">
         {text}
       </div>
-      <Link to={route}><Button bgColor={btnBgCol} textColor={btnTextCol} text={btnText}/></Link>
+      <Link target="_blank" to={route}><Button bgColor={btnBgCol} textColor={btnTextCol} text={btnText}/></Link>
     </div>
   )
 }

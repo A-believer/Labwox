@@ -5,7 +5,7 @@ import {About, Contact, ErrorPage, Home, Resources, TestListing, Services, Login
 import { ProductDetail} from "./components"
 import { ProtectedRoute } from "./utils/ProtectedRoute.jsx"
 import SampleSheet from "./pages/userPages/SampleSheet.jsx"
-import Email from "./emails/index.jsx"
+import Email from "./emails/welcome.jsx"
 
 const App = () => {
   

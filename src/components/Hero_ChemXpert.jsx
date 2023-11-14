@@ -13,7 +13,7 @@ export default function Hero_ChemXpert({btnText, btnTextII, route}) {
         className="text-blackii mt-4 max-w-[600px] w-full">Labwox is excited to present a proof of concept for our new Application Training Service ChemXPERT, tailored to academics in higher education seeking to upskill in specific areas of analytical chemistry.</p>
               
         <div className=" flex mt-4 w-full gap-4 lg:text-[18px] text-sm font-aeon text-center">
-          <Link className="text-white bg-orange py-2.5 lg:px-16 px-0 lg:w-fit w-full rounded border border-orange">{btnText}</Link>
+          <Link target="_blank" to={`https://docs.google.com/forms/d/1jOTJF03RF6U3jseWIYGWbdESYSPna2iiDr8KsKh8p1Y/edit`} className="text-white bg-orange py-2.5 lg:px-16 px-0 lg:w-fit w-full rounded border border-orange">{btnText}</Link>
           <Link to={`${route}`} className="text-greyi bg-clear py-2.5 lg:px-16 px-0 lg:w-fit w-full rounded border border-greyi">{ btnTextII}</Link>
         </div>
       </div>

@@ -23,7 +23,7 @@ import labwox from "../assets/Logo.png"
 import profile from "../assets/profileBg.png"
 import bg from "../assets/email-template-questions.png"
 
-export const VercelInviteUserEmail = ({user, emailType, cta, userfirstname, btnText, btnCta}) => {
+export const TemplateEmail = ({user, emailType, cta, userfirstname, btnText, btnCta}) => {
 
   return (
     <Html>
@@ -55,7 +55,7 @@ export const VercelInviteUserEmail = ({user, emailType, cta, userfirstname, btnT
               <div className='w-full bg-white py-7 px-6'>
                  <h2 className='mb-2'>{emailType}</h2>
               <p className='my-2'>Hello, {userfirstname},</p>
-              <p className='my-2'>{cta} Hello</p>
+              <p className='my-2'>{cta}</p>
               <Button href={btnCta} className='w-40 p-2.5 rounded bg-[#FE432D] text-center my-2'>
                 {btnText}
               </Button>
@@ -68,7 +68,7 @@ export const VercelInviteUserEmail = ({user, emailType, cta, userfirstname, btnT
             <Section className='w-full relative my-6 py-8 text-center bg-[#EDEDED] h-full'>
               <Img
                 src={bg}
-                className='absolute top-0 left-0'
+                className='absolute top-0 left-0 w-full h-full'
               />
               <Text className='w-full h-full'>
                 <p className='text-[#121A26] text-base font-normal leading-tight'>Have Questions?</p>
@@ -87,4 +87,4 @@ export const VercelInviteUserEmail = ({user, emailType, cta, userfirstname, btnT
   );
 };
 
-export default VercelInviteUserEmail;
+export default TemplateEmail;

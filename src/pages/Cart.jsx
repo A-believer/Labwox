@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
+import EmailTemplate from "../emails/welcome"
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
@@ -71,6 +72,22 @@ useEffect(() => {
     orderStatus: "Unpaid"
   }
   
+// Resend 
+//   function sendOrderEmail() {
+//     const resend = new Resend('re_SzbQqJGB_HWQcVEmQHSBeAy2WKLXPebYS')
+//     resend.sendEmail({
+//   from: 'labwoxltd@gmail.com',
+//   to: userData.email,
+//   subject: 'Order Created Successfully',
+//       react: <EmailTemplate
+//         user={userData.firstName}
+//         emailType={'Order Created Successfully'}
+//         cta={`Your order #${orderId} has been created successfully. Please proceed to 
+// make payment of ₦${Number(total).toLocaleString('en-US')} for the order`}
+//       />,
+// });
+//   }
+  
   const [orderDetails, setOrderDetails] = useState(details)
   // handles what happens when all the right shipping details are correctly filled   
   function handleOrdersSubmit() {
@@ -78,6 +95,7 @@ useEffect(() => {
       setOrderDetails(details)
       toast.success('Items added to Orders!');
       setToggleSuccess(true)
+      // sendOrderEmail()
      deleteCartItems()
     }
   }
