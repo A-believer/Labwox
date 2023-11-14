@@ -13,7 +13,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
-import EmailTemplate from "../emails/welcome"
+// import EmailTemplate from "../emails/welcome"
+// import { resend } from '../config/email';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
@@ -74,7 +75,7 @@ useEffect(() => {
   
 // Resend 
 //   function sendOrderEmail() {
-//     const resend = new Resend('re_SzbQqJGB_HWQcVEmQHSBeAy2WKLXPebYS')
+    
 //     resend.sendEmail({
 //   from: 'labwoxltd@gmail.com',
 //   to: userData.email,

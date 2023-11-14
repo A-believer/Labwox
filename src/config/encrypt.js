@@ -15,3 +15,4 @@ export const encryptId = (str) => {
   const ciphertext = AES.encrypt(str, secretPassphrase);
   return encodeURIComponent(ciphertext.toString());
 };
+
