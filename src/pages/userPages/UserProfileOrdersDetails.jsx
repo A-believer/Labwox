@@ -40,8 +40,7 @@ function UserProfileOrdersDetails() {
       getOrder()
   }, [])
 
-    async function payWithPaystack(e) {
-     e.preventDefault()
+    async function payWithPaystack() {
      const paystack = new PaystackPop()
         await paystack.newTransaction({
           key: import.meta.env.VITE_PAYSTACK_LIVE_KEY,

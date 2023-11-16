@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useParams } from "react-router-dom"
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../config/firebaseConfig';
 import { useEffect, useState } from "react";
 import {BsArrowLeft, BsPrinter} from "react-icons/bs"
+import { decryptId } from '../../config/encrypt';
 
 
 export default function SampleSheet() {
@@ -13,7 +15,7 @@ export default function SampleSheet() {
 
 
     
-    const orderRef = doc(db, "order", id)
+    const orderRef = doc(db, "order", decryptId(id))
     async function getOrder() {
         setLoading(true)
       try {
@@ -89,7 +91,7 @@ export default function SampleSheet() {
                         <td>{item.sampleType}</td>
                   <th className='hidden lg:table-cell'>
                     <span>{item.testCode}</span></th>
-                        <td className='hidden lg:table-cell'>{item.testName}</td>
+                        <td className='hidden lg:table-cell w-[50%]'>{item.testName}</td>
                     </tr>
                 </tbody>
                 ))}
