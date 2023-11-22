@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, clearCart } from "../utils/cartSlice";
-import { Link } from 'react-router-dom';
+import { removeItem, clearCart, addItemToOrder } from "../utils/cartSlice";
+import { Link, useNavigate } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
 import { useEffect, useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
@@ -13,12 +13,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
-// import EmailTemplate from "../emails/welcome"
-// import { resend } from '../config/email';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
+  const orderItems = useSelector(state => state.order.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const {userData, currentUser} = UserAuth()
   const [toggleShipping, setToggleShipping] = useState(false)
   const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
@@ -73,21 +73,7 @@ useEffect(() => {
     orderStatus: "Unpaid"
   }
   
-// Resend 
-//   function sendOrderEmail() {
-    
-//     resend.sendEmail({
-//   from: 'labwoxltd@gmail.com',
-//   to: userData.email,
-//   subject: 'Order Created Successfully',
-//       react: <EmailTemplate
-//         user={userData.firstName}
-//         emailType={'Order Created Successfully'}
-//         cta={`Your order #${orderId} has been created successfully. Please proceed to 
-// make payment of ₦${Number(total).toLocaleString('en-US')} for the order`}
-//       />,
-// });
-//   }
+
   
   const [orderDetails, setOrderDetails] = useState(details)
   // handles what happens when all the right shipping details are correctly filled   
@@ -103,7 +89,7 @@ useEffect(() => {
 
   // delete whole cart
   async function deleteCartItems() {
-    dispatch(clearCart())
+    
     try {
       const q = query(collection(db, "userCart"), where("userId", "==", `${userData, currentUser.id}`));
     const qS = await getDocs(q)
@@ -116,9 +102,12 @@ useEffect(() => {
   }
 
 //handle order success
- async function handleOrderSuccess() {
+  async function handleOrderSuccess() {
+    dispatch(addItemToOrder(orderDetails))
+     dispatch(clearCart())
    try {
-      await setDoc(doc(db, 'order', orderId), orderDetails);
+     await setDoc(doc(db, 'order', orderId), orderDetails);
+     navigate(`/userprofile/orders`)
       
     } catch (err) {
       console.error(err.message)
@@ -172,6 +161,10 @@ useEffect(() => {
       console.error(error.message)
     }
   }
+
+  if (cartItems.length <= 0) {
+    navigate(`/testlisting`)
+  } 
   
   // Final return
   return (

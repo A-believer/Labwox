@@ -45,6 +45,7 @@ function CartModal({ closeModal, cartRef }) {
         <span className="text-blackii font-bold">₦ {item.testPrice?.toLocaleString('en-US')}.00</span>
       </p>
       <button
+      onClick={() => removeTestFromCart(item.id)}
         type="submit">
         <TbTrashXFilled className="text-greyiii" />
       </button>
@@ -69,13 +70,13 @@ function CartModal({ closeModal, cartRef }) {
               </div>
               
       </div>
-      <hr className="text-greyiii mb-5"/>
+      <hr className="text-greyiii"/>
           
           <div className="mb-10 flex flex-col gap-y-3">
              {displayCartItems}
       </div>
       
-      {cartItems.length > 0 &&
+      {cartItems.length > 0 ?
         <div>
           <hr className="text-greyiii"/>
           <p className="flex justify-between my-4">
@@ -83,6 +84,9 @@ function CartModal({ closeModal, cartRef }) {
           <span className="font-bold">₦ {cartTotal}.00</span>
         </p>
         </div>
+        :
+
+        <div className="text-center w-full h-full fles justify-center items-center text-greyi pb-5">No items your cart...</div>
         }
           
           {cartItems.length > 0 && <NavLink to={`cart`} onClick={closeModal}>

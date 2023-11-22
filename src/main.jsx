@@ -7,9 +7,10 @@ import store from './utils/store.js';
 import "./config/logout.js"
 import './index.css'
 import "./font.css"
-import { loadCartFromLocalStorage } from './utils/cartSlice.js';
+import { loadCartFromLocalStorage, loadOrderFromLocalStorage } from './utils/cartSlice.js';
 
 store.dispatch(loadCartFromLocalStorage())
+store.dispatch(loadOrderFromLocalStorage())
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <HashRouter>

@@ -1,17 +1,24 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AiOutlineArrowRight }from "react-icons/ai"
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 import { UserAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import { encryptId } from "../../config/encrypt";
+import { decryptId, encryptId } from "../../config/encrypt";
+import { TbTrashXFilled } from "react-icons/tb"
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemFromOrder } from "../../utils/cartSlice";
 
 
 function UserProfileOrders() {
   const [orders, setOrders] = useState(null)
   const [loading, setLoading] = useState(true)
-  const {currentUser} = UserAuth()
+  const { currentUser } = UserAuth()
+  const orderItems = useSelector(state => state.order.items);
+  const dispatch = useDispatch();
 
   const orderRef = query(collection(db, "order"), where(`userName`, "==", `${currentUser.displayName}`))
    async function getOrders() {
@@ -36,6 +43,18 @@ function UserProfileOrders() {
     getOrders()
   }, [])
 
+  console.log(orderItems)
+  
+  async function removeTestFromCart(id) {
+dispatch(removeItemFromOrder((id)))
+    try {
+       await deleteDoc(doc(db, 'order', decryptId(id)));
+      
+      toast.error('Order removed!');
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 
   
   return (
@@ -47,21 +66,28 @@ function UserProfileOrders() {
       :
       <div className="relative w-full">
 
-         {orders.length > 0 ? orders?.map((order, i) => (
-          <div key={i + 1} className="bg-white flex lg:flex-row flex-col justify-between lg:p-10 p-3 mt-3">
-        <p className="flex flex-col text-grey text-base">
-            <span className="text-lg">labwox-{order.id}</span>
-            <span className="my-1">
-              {order.createdAt}
-            </span>
-            <span className="text-blackii font-bold">₦{Number(order.cartTotal).toLocaleString('en-US')}</span>
-               <span className="text-[#66C27C]">{order?.orderStatus}</span>
-        </p>
+         {orderItems.length > 0 ? orderItems?.map((order, i) => (
+          <div key={i} className="bg-white flex lg:flex-row flex-col justify-between lg:px-10 lg:py-4 p-3 mt-3 shadow-2xl rounded-md">
+             <div className="flex lg: md:flex-col flex-row items-center justify-between">
+               <p className="flex flex-col text-grey text-base">
+                <span className="text-lg">labwox-{order.id}</span>
+                <span className="my-1">
+                  {order.createdAt}
+                </span>
+                <span className="text-blackii font-bold">₦{Number(order.cartTotal).toLocaleString('en-US')}</span>
+                  <span className="text-[#66C27C]">{order?.orderStatus}</span>
+               </p>
+               <button type="button" onClick={() => removeTestFromCart(order.id)} className="self-start flex  items-center gap-x-4 text-red-500 py-5">
+                 <TbTrashXFilled />
+                 <span className="md:flex hidden">Cancel order</span>
+               </button>
+        </div>
+             
         <Link
           to={encryptId(order.id)}
           className={`flex items-center gap-x-2 text-yellow lg:self-start self-end lg:mt-0 mt-4`}>
           <span>View Details</span>
-          <span><AiOutlineArrowRight/></span>
+          <span className="text-orange"><AiOutlineArrowRight/></span>
         </Link>
       </div>)
           ) :

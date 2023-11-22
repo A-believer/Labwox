@@ -119,7 +119,7 @@ function UserProfileOrdersDetails() {
               <hr className='mt-10 mb-2 text-greyiii/40 lg:mx-1 mx-0' />
               
         <div className='ml-4 text-blackii text-base w-fit'>
-            <h3 className='text-xl font-bold'>Cart Totals</h3>
+            <h3 className='text-xl font-bold'>Cart Total</h3>
           <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>₦ {order?.cartTotal?.toLocaleString()}.00</span></p>
           
           <div className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Shipping</span> <div>{shipping}</div></div>
