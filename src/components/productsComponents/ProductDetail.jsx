@@ -82,21 +82,21 @@ const ProductDetail = () => {
                 </div>
             </div>
             <ul className="lg:text-base text-sm leading-6 text-blackii font-medium lg:pb-5 pb-3 lg:pl-5 lg:pr-3 px-2 flex flex-col gap-y-2 lg:mx-20 mx-0 border border-t-0 border-orange rounded-b-lg">
-                <li><span className="text-lg">Category: </span><span className="text-grey">{test.category}</span></li>
-                <li><span className="text-lg">Sub-Category: </span><span className="text-grey">{ test.subcategory }</span></li>
+                <li><span className="text-lg">Category: </span><span className="text-greyi">{test.category}</span></li>
+                <li><span className="text-lg">Sub-Category: </span><span className="text-greyi">{ test.subcategory }</span></li>
                 <li>
                     <span className="text-lg">Sub-Category Information: </span>
-                    <span className={`text-grey`}>
+                    <span className={`text-greyi`}>
                         {truncate ?
                         test["Subcategory Info"] :
-                       (test["Subcategory Info"]?.split(" ").slice(0, 10).join(" "))}
+                       (test["Subcategory Info"]?.split(" ").slice(0, 10).join(" ")) + "..."}
                     </span>
-                    {!truncate && <span className="cursor-pointer hover:underline" onClick={handleTextToggle}>...Read More</span>}
+                    {!truncate && <span className="cursor-pointer underline underline-offset-2 decoration-2 text-greyi" onClick={handleTextToggle}>Read More</span>}
                 </li>
-                <li><span className="text-lg">Minimum Sample Amount: </span><span className="text-grey">{test.minimumSampleAmount}</span></li>
-                <li><span className="text-lg">Paramenters: </span><span className="text-grey">{test.parameters }</span></li>
-                <li><span className="text-lg">Instrument: </span><span className="text-grey">{ test.instruments}</span></li>
-                <li><span className="text-lg">Sample Type: </span><span className="text-grey">{ test.sampleType}</span></li>
+                <li><span className="text-lg">Minimum Sample Amount: </span><span className="text-greyi">{test.minimumSampleAmount}</span></li>
+                <li><span className="text-lg">Paramenters: </span><span className="text-greyi">{test.parameters }</span></li>
+                <li><span className="text-lg">Instrument: </span><span className="text-greyi">{ test.instruments}</span></li>
+                <li><span className="text-lg">Sample Type: </span><span className="text-greyi">{ test.sampleType}</span></li>
             </ul>
                 </div>
             }
