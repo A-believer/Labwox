@@ -4,7 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../config/firebaseConfig';
 import { useEffect, useState } from "react";
 import {BsArrowLeft, BsPrinter} from "react-icons/bs"
-import { decryptId } from '../../config/encrypt';
+import { decryptId, encryptId } from '../../config/encrypt';
 
 
 export default function SampleSheet() {
@@ -54,7 +54,7 @@ export default function SampleSheet() {
               <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>}
           
           <div className="" >
-              <Link to={`/userprofile/orders/${order.id}`} className="flex items-center lg:text-2xl text-lg gap-x-3 text-blackii lg:mb-6 lg:mt-0 my-3"><BsArrowLeft /> Sample Sheet</Link>
+              <Link to={`/userprofile/orders/${encryptId(order.id)}`} className="flex items-center lg:text-2xl text-lg gap-x-3 text-blackii lg:mb-6 lg:mt-0 my-3"><BsArrowLeft /> Sample Sheet</Link>
               <div className="bg-white px-5 py-4 print-content" >
                   <div className="flex justify-between lg:flex-row flex-col">
                   <div className="mb-8">
