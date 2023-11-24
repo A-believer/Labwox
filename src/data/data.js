@@ -141,18 +141,24 @@ export const products = [
 export const blogFeed = [
   {
     id: 1,
-    title: "Photochemical Analysis",
-    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+    title: "ANALYSIS OF HEAVY METALS IN BEVERAGES BY ICP-OES",
+    description: "Nonalcoholic beverages are important food sources for adults and children all over the world. Many harmful pollutants in elemental form can be detected using Inductively Coupled Plasma-Optical Emission Spectrometry (ICP-OES).",
+    category: "Pollutant Analysis",
+    blogLink: "https://94sola.github.io/labwox-app/"
   },
   {
     id: 2,
-    title: "Photochemical Analysis",
-    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+    title: "ANALYSIS OF PAH IN SPENT COOKING OIL",
+    description: "Vegetable oils are an important food source and cooking medium all over the world. Polynuclear aromatic hydrocarbons are lipophilic compounds which are produced as a byproduct of the combustion of organic matter. Some PAHs have been confirmed to be carcinogenic.",
+    category: "Pollutant Analysis",
+    blogLink: "https://94sola.github.io/labwox-PAH-app/"
   },
   {
     id: 3,
-    title: "Photochemical Analysis",
-    subtext: "How to Carry out Bleeding From Oragnoplasmic Substances",
+    title: "ANALYSIS OF VOLATILE ORGANIC COMPOUNDS IN DUMPSITE SOIL",
+    description: "VOCs are an important markers of soil contamination. They are widely used in many industries as solvents and chemical reagents. VOCs leach into soils at landfills and dumpsites leading to soil contamination.",
+    category: "Pollutant Analysis",
+    blogLink: "https://94sola.github.io/labwox-voc-application/"
   },
   
 ]

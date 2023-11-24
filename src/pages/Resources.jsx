@@ -33,7 +33,7 @@ const Resources = () => {
         <div onClick={handleSearchResult}><Button bgColor={`orange`} text={`Apply`} textColor={`white`}/></div>
         
       </div>
-      <div className="bg-white lg:px-[70px] px-[24px] pt-[20px] lg:pb-[50px] pb-[30px]"><BlogFeed/></div>
+      <div className="bg-white lg:px-[70px] px-6 py-8"><BlogFeed/></div>
       
     </main>
   )
