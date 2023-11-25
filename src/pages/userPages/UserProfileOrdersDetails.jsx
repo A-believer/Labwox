@@ -7,10 +7,11 @@ import PaystackPop from "@paystack/inline-js"
 import { UserAuth } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import { decryptId } from '../../config/encrypt';
+import { sendEmail } from '../../emails/sendEmail';
 
 
 function UserProfileOrdersDetails() {
-    const { userData} = UserAuth()
+    const { currentUser, userData} = UserAuth()
   const [order, setOrder] = useState([])
   const [shipping, setShipping] = useState("")
   const [loading, setLoading] = useState(false)
@@ -53,8 +54,21 @@ function UserProfileOrdersDetails() {
              orderStatus: "Paid", 
              orderReference: transaction.reference
             })
+
+            sendEmail(
+        currentUser.email,
+        "Payment Completed Successfully!",
+        currentUser.displayName,
+        `
+        Your payment for analysis order <b>#${decryptId(id)}</b> has been made successfully. 
+Please proceed to:
+        `,
+        `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
+        "View Reciept"
+            )
+            
             setPaymentStatus(true)
-            toast.success(`Payment Successful ${transaction.reference}`)
+            toast.success(`Payment Successful ${transaction.reference}, check your mail for receipt`)
           },
           onCancel() {
             toast.error("transaction cancelled")

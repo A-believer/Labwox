@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
+import { sendEmail } from '../emails/sendEmail';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
@@ -82,11 +83,20 @@ useEffect(() => {
       setOrderDetails(details)
       toast.success('Items added to Orders!');
       setToggleSuccess(true)
-      // sendOrderEmail()
+      sendEmail(
+        currentUser.email,
+        "Order Created Successfully!",
+        currentUser.displayName,
+        `
+        Your order <b>#${orderId}</b> has been created successfully. Please proceed to 
+        make payment of <b>${formatCurrency(total + shippingFee)}</b> for the order.`,
+        "https://labwox.com.ng/#/userprofile/orders",
+        "Pay Now"
+      )
      deleteCartItems()
     }
   }
-
+console.log(formatCurrency(total + shippingFee))
   // delete whole cart
   async function deleteCartItems() {
     

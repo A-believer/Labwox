@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.0",
+    "@emailjs/browser": "^3.11.0",
     "@heroicons/react": "^2.0.18",
     "@paystack/inline-js": "^2.13.0",
     "@react-email/button": "0.0.10",
@@ -75,7 +76,8 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "PAYSTACK_LIVE_KEY"
+      "VITE_PAYSTACK_LIVE_KEY",
+      "VITE_FIREBASE_API_KEY"
     ]
   }
 }

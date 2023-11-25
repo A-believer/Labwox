@@ -3,6 +3,7 @@ import Logo from "../../assets/Logo.png"
 import { useState } from "react"
 import { UserHero } from "../../components"
 import { UserAuth } from "../../context/AuthContext"
+import { sendEmail } from "../../emails/sendEmail"
 
 const Login = () => {
   const initialFormData = {
@@ -27,10 +28,20 @@ const Login = () => {
     e.preventDefault()
     try {
       await createUser(formData.email, formData.password, formData.firstName, formData.lastName, formData.institution, formData.phoneNumber)
-      if (currentUser) {
+     
+        sendEmail(
+          currentUser.email,
+          "Signed Up Successfully!",
+          `Signed Up Successfully!`,
+          "Welcome to Labwox",
+          currentUser.displayName,
+          "Your account has been created, you can now order tests",
+          "https://labwox.com.ng/#/testlisting",
+          "Visit Website"
+        )
         navigate("/signupsuccess")
-        setFormData(initialFormData)
-      }
+      
+      setFormData(initialFormData)
     } catch (err) {
       setError(err.message)
       console.error(err.message)

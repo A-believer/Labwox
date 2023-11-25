@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom"
 import { UserHero } from "../../components"
 import signupSuccessImg from "../../assets/signupsuccess.png"
+import { toast } from "react-toastify"
 
 
 function SignUpSuccess() {
+
+  function handleSuccessPrompt() {
+        toast.success('Sign up successful, Check your mail!')
+  }
+  
   return (
       <main className="flex h-full w-full">
           <UserHero />
@@ -14,7 +20,7 @@ function SignUpSuccess() {
               </div>
               <img src={signupSuccessImg} alt="sign up successful" className="w-32 h-32 my-24"/>
 
-              <Link to="/" className="bg-orange text-white font-medium text-lg py-2 w-full rounded-md">Go to my account</Link>
+              <Link to="/" onClick={handleSuccessPrompt} className="bg-orange text-white font-medium text-lg py-2 w-full rounded-md">Go to my account</Link>
           </div>
     </main>
   )

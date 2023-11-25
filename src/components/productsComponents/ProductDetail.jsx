@@ -2,21 +2,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { doc, getDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { db } from "../../config/firebaseConfig";
 import {IoMdArrowRoundBack} from "react-icons/io"
 import CartDetail from "../cartComponents/CartDetail";
 import { decryptId } from "../../config/encrypt";
+import { UserAuth } from "../../context/AuthContext";
 
 
 const ProductDetail = () => {
     const [test, setTest] = useState([])
     const [truncate, setTruncate] = useState(false)
     const [loading, setLoading] = useState(true)
+    const { currentUser } = UserAuth()
+    const navigate = useNavigate()
     const { id } = useParams()
     const [cartDetailToggle, setCartDetailToggle] = useState(false)
+
     function handleCartDetailToggle() {
-        setCartDetailToggle(prev => !prev)
+        if (currentUser) {
+                setCartDetailToggle(prev => !prev)
+        } else {
+            navigate("/login")
+            }
+        
     }
 
 

@@ -4,6 +4,7 @@ import Logo from "../../assets/Logo.png"
 import { UserAuth } from "../../context/AuthContext"
 import { useState } from "react"
 import { UserHero } from "../../components"
+import { toast } from "react-toastify"
 
 
 const Login = () => {
@@ -23,10 +24,14 @@ const Login = () => {
  async function handleSignIn(e) {
     e.preventDefault()
    try {
-     await signIn(formData.email, formData.password)
+     
      if (currentUser) {
        navigate('/')
      setFormData(initialFormData)
+     } else {
+       await signIn(formData.email, formData.password)
+       navigate('/')
+       toast.success("You're successfully logged in 🎊")
      }
     } catch (err) {
       console.error(err.message)

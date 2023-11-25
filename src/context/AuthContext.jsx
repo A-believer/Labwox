@@ -17,7 +17,6 @@ export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false)
 
- 
   const createUser = async (email, password, firstName, lastName, institution, phoneNumber) => {
     try {
       const userCred = await createUserWithEmailAndPassword(auth, email, password);

@@ -2,6 +2,7 @@ import { Hero_Resources } from "../components"
 import { BlogFeed, Button } from "../utils"
 import slider from "../assets/sliders.png"
 import { useState } from "react"
+// import { sendEmail } from "../config/email"
 
 const Resources = () => {
 
@@ -12,10 +13,11 @@ const Resources = () => {
     setSearch(e.target.value)
   }
 
-   function handleSearchResult(e) {
-    e.preventDefault()
-    console.log(search)
-  }
+  //  function handleSearchResult(e) {
+  //    e.preventDefault()
+  //    sendEmail()
+  //   console.log(search)
+  // }
 
   return (
     <main>
@@ -30,7 +32,10 @@ const Resources = () => {
             className="w-full pl-2 text-grey border-none outline-none rounded" />
           <img src={slider} alt="slider" className="h-5 w-7 my-auto" loading="lazy"/>
         </div>
-        <div onClick={handleSearchResult}><Button bgColor={`orange`} text={`Apply`} textColor={`white`}/></div>
+        <div
+          // onClick={handleSearchResult}
+        >
+          <Button bgColor={`orange`} text={`Apply`} textColor={`white`} /></div>
         
       </div>
       <div className="bg-white lg:px-[70px] px-6 py-8"><BlogFeed/></div>

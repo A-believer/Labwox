@@ -16,7 +16,6 @@ const BlogFeed = () => {
                     <p className="lg:text-lg text-base text-greyiii">{feed.description.slice(0, 200)}...
                       <a href={feed.blogLink} className="text-orange lg:text-base text-xs lg:leading-5 leading-3 font-bold underline underline-offset-4">Read More</a></p>
                       </div>
-
                   </div>
               ))}
           </div>

@@ -1,20 +1,27 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom"
 import { UserAuth } from "../../context/AuthContext"
 import logoutImg from "../../assets/logoutImg.png"
 import closeCart from "../../assets/closeCart.png"
+import { toast } from "react-toastify"
 
 
 const Logout = ({closeToggle}) => {
 
-  const {logout} = UserAuth()
+  const {logout, currentUser} = UserAuth()
    const navigate = useNavigate()
    
     const handleLogout = async (e) => {
     e.preventDefault()
-    try {
-      await logout()
-      navigate("/login")
+      try {
+        if (currentUser) {
+         await logout()
+      toast.dark("You're now logged out")
+      navigate("/")
       closeToggle
+      }
+     
+
     } catch (err) {
       console.error(err.message)
     }

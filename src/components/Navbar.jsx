@@ -12,6 +12,7 @@ import { UserAuth } from "../context/AuthContext"
 import CartModal from "./cartComponents/CartModal"
 import { useSelector } from "react-redux"
 import {HiOutlineUserCircle} from "react-icons/hi"
+import { toast } from "react-toastify"
 
 const Navbar = () => {
   const cartItems = useSelector(state => state.cart.items);
@@ -28,7 +29,8 @@ const Navbar = () => {
   const handleLogout = async (e) => {
     e.preventDefault()
     await logout()
-    navigate("/login")
+    navigate("/")
+    toast.dark("You're logged out!")
     setToggle((prev) => !prev)
   }
 
@@ -63,7 +65,7 @@ const item = {
   return (
         
       <header className={`drop-shadow-xl ${!currentUser ? "bg-whitebgiv lg:bg-white" : "bg-white"} sticky font-aeon z-[99]`}>
-        <nav className="flex justify-between items-center lg:py-[24px] py-[12px] lg:pl-[70px] px-6 lg:pr-[45px]">
+        <nav className="flex justify-between items-center lg:py-[24px] py-[12px] xl:pl-[70px] lg:pl-[30px] px-6 lg:pr-[30px] xl:pr-[45px]">
           
           <Link to="/">
             <img
@@ -73,10 +75,9 @@ const item = {
               className="w-[93px] h-[34px]" loading="lazy" />
           </Link>
           
-          <div className="flex font-normal text-base leading-[19.2px] gap-x-7">
             
             {/* Desktop Navbar */}
-            <ul className="flex justify-between items-center gap-x-7">
+            <ul className="flex justify-between items-center font-normal text-base leading-[19.2px] lg:gap-x-4 xl:gap-x-7 gap-x-0">
               {navLinks.map((link, i) => (
                 <li key={i} className={`${location.hash === `#/${link.id}` ? "scale-105 text-orange underline underline-offset-4" : "text-blackii"} hover:text-orange hover:scale-105 transition-all ease-in-out duration-500 lg:block hidden `}>
                   <NavLink to={link.id}>{link.title}</NavLink>
@@ -86,9 +87,9 @@ const item = {
                {/* Cart Icon */}
               <li
                 onClick={handleCartToggle}
-                className={`cursor-pointer items-center flex hover:scale-110 transition-all duration-500 lg:static absolute ${currentUser ? "right-[70px]" : "right-[50px]"}`}>
-                <img src={cartIcon} alt="cartIcon" className="object-contain w-[16px] h-[17px]" />
-                <p className="relative right-1 bottom-2 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center bg-orange">
+                className={`relative cursor-pointer items-center flex hover:scale-110 transition-all duration-500`}>
+                <img src={cartIcon} alt="cartIcon" className="object-contain w-6 h-4" />
+                <p className="absolute right-0 top-0 w-[9px] h-[9px] text-[7px] text-white leading-tight font-bold rounded-full flex items-center justify-center bg-orange">
                  {cartItems.length}
                 </p>
               </li>
@@ -98,11 +99,11 @@ const item = {
                   closeModal={handleCartToggle}
                   />}
 
-              {/* Login and Register */}
-              <li className="flex items-center">
+              {/* Login and Register */} 
+              <li className="flex items-center relative lg:mx-0 mx-2">
                 {(currentUser && loading) ?
-                  <NavLink to='userprofile' className="flex items-center gap-1 lg:static absolute">
-                    <HiOutlineUserCircle className="text-blackii/50 lg:w-8 lg:h-8 w-5 h-5" />
+                  <NavLink to='userprofile' className="flex items-center gap-1 w-full">
+                    <HiOutlineUserCircle className="text-blackii/50 lg:w-6 lg:h-6 w-5 h-5" />
                     <p className={`lg:flex hidden decoration-orange ${location.pathname === "/userprofile" ? "underline underline-offset-4 text-black/80" : "text-greyiii"} `}>Welcome, {currentUser.displayName}</p>
                     <img src={dropdown} alt="dropdown" className="w-2 h-1 ml-1 lg:flex hidden" />
                   </NavLink>
@@ -115,12 +116,11 @@ const item = {
 
               {/* Mobile NavMenu */}
               <li
-                onBlur={() => {setToggle(prev => !prev)}}
                 className="lg:hidden block">
               {/* Menu Icon */}
                <img src={toggle ? close : menu}
                    alt="menu"
-                className={`${toggle ? "h-4 w-4" : "h-3 w-4"} object-contain lg:hidden block`}
+                className={`${toggle ? "h-5 w-5" : "h-5 w-5"} object-contain lg:hidden block`}
                 onClick={() => setToggle((prev) => !prev)} />
 
               {toggle && <motion.ul className="lg:hidden block absolute left-0 bg-whitebgiv top-[60px] w-full px-[24px]  z-50 border-b-2 border-t-2 border-orange rounded-b-xl rounded-t-xl"
@@ -159,7 +159,7 @@ const item = {
             </li>
               
             </ul>
-          </div>
+        
         </nav>
       </header>
     
