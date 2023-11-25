@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, clearCart, addItemToOrder } from "../utils/cartSlice";
 import { Link, useNavigate } from 'react-router-dom';
 import { TbTrashXFilled } from "react-icons/tb"
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CartShipping from '../components/cartComponents/CartShipping';
 import CartShippingAddress from '../components/cartComponents/CartShippingAddress';
 import CartToOrderSuccess from '../components/cartComponents/CartToOrderSuccess';
@@ -14,13 +14,16 @@ import { UserAuth } from '../context/AuthContext';
 import { v1 as uuidv1 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
 import { sendEmail } from '../emails/sendEmail';
+import { GoQuestion } from "react-icons/go";
+import Discount from '../components/Discount';
+
+
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
-  const orderItems = useSelector(state => state.order.items);
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const {userData, currentUser} = UserAuth()
+  const {userData, currentUser, loading} = UserAuth()
   const [toggleShipping, setToggleShipping] = useState(false)
   const [toggleShippingAddress, setToggleShippingAddress] = useState(false)
   const [toggleSuccess, setToggleSuccess] = useState(false)
@@ -34,7 +37,25 @@ function Cart() {
   const [isLoading, setIsLoading] = useState(true);
   const [shippingDetails, setShippinDetails] = useState(intialShippingDetails)
   const [error, setError] = useState(false)
+
+  const [discountModal, setDiscountModal] = useState(false)
+  const discountRef = useRef(null);
+
   const orderId = uuidv1().split("").slice(24, 35).join("")
+
+  // discount modal close 
+  const handleClickOutside = (e) => {
+    if (discountRef.current && !discountRef.current.contains(e.target)) {
+      setDiscountModal(false);
+    }
+  };
+
+   useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+   }, []);
 
   // cart total and shipping Fee
   let total = 0
@@ -68,9 +89,9 @@ useEffect(() => {
     cart: cartItems,
     deliveryDetails: shippingDetails,
     cartTotal: total + shippingFee,
-    userName: currentUser.displayName,
+    userName: loading && userData.firstName ,
     id: orderId,
-    userId: userData.id,
+    userId: loading && userData.id,
     orderStatus: "Unpaid"
   }
   
@@ -96,7 +117,7 @@ useEffect(() => {
      deleteCartItems()
     }
   }
-console.log(formatCurrency(total + shippingFee))
+
   // delete whole cart
   async function deleteCartItems() {
     
@@ -263,10 +284,10 @@ console.log(formatCurrency(total + shippingFee))
         <div className='lg:hidden px-4 pt-4 w-full bg-white drop-shadow-2xl'>
           {cartItems.map(item => (
             <div key={item.id} className='flex justify-between items-center text-blackii font-normal mb-5 gap-x-10'>
-              <p className='flex flex-col gap-y-2'>
+              <p className='flex flex-col gap-y-3'>
                 <span className='text-orange underline'>{item.testName}</span>
-                <span>Sample Name: {item.sampleName}</span>
-                <span>Sample Type: {item.sampleType}</span>
+                <span><b>Sample Name:</b> {item.sampleName}</span>
+                <span><b>Sample Type:</b> {item.sampleType}</span>
                 <span className='text-black font-bold text-xl'>₦ {formatCurrency(item.testPrice)}</span>
               </p>
               <button
@@ -280,13 +301,13 @@ console.log(formatCurrency(total + shippingFee))
           <hr className='text-grey/30 my-10' />
         </div>
 
-        <div className='lg:w-[35%] w-full bg-white py-[50px] h-auto px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl mb-10'>
+        <div className='lg:w-[35%] w-full bg-white py-[50px] h-auto px-6 text-blackii text-base border border-orange rounded drop-shadow-2xl mb-6'>
           <p className='whitespace-nowrap flex justify-between items-center'>
             <span className='font-normal'>Cart Subtotal</span>
             <span className='font-bold text-xl'>₦ {formatCurrency(total)}</span>
               </p>
 
-              <div>
+              <div className='relative'>
                 <p className='whitespace-nowrap flex justify-between items-center my-8'>
                   <span className='font-normal'>Shipping</span>
                   <span className='font-bold text-xl'>₦ {formatCurrency(shippingFee)}</span>
@@ -296,9 +317,15 @@ console.log(formatCurrency(total + shippingFee))
               shippingOption={shippingDetails.deliveryOption}
               onOptionChange={handleShippingOptionChange}/>
                 </div>
+
+                <p className='pt-4 flex flex-col mt-5'>
+                  <span className='flex items-center gap-x-1'>Did you know you can get discounts?<GoQuestion className='text-orange cursor-pointer' onClick={()=> setDiscountModal(prev => !prev)}/></span>
+                  <i className='text-[12px] text-orange'>Discounts are applied at checkout!</i>
+                  {discountModal && <Discount discountRef={discountRef} />}
+                </p>
           </div>
           
-           <hr className='text-grey/30 my-10'/>
+           <hr className='text-grey/30 my-4'/>
           <p className='whitespace-nowrap flex justify-between items-center mb-8'>
             <span className='font-normal'>Order Total</span>
             <span className='font-bold text-2xl'>₦ {formatCurrency(total + shippingFee)}</span>

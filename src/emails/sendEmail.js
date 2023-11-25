@@ -59,8 +59,8 @@ export const sendEmail = async (userEmail, subject, displayName,  message, link,
                             <div style="margin: 20px 0px; text-align: left; color: #212529; font-size: 16px; 
                             ">
                                 <p>&copy; 2023 Labwox Limited, All rights reserved.</p>
-                                <p>Phone number: (+234)8090870364</p>
-                                <p>Registered office: 2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos</p>
+                                <p><b>Phone number:</b> (+234)8090870364</p>
+                                <p><b>Registered office:</b> 2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos</p>
                             </div>
                         </div>
 

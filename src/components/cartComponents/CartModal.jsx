@@ -15,13 +15,15 @@ function CartModal({ closeModal, cartRef }) {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
+const cartItemsSlice = cartItems.slice(0, 5)
+
   // total price of items in cart 
   let total = 0
   for (let i = 0; i < cartItems.length; i++) {
     let priceToNum = Number(cartItems[i].testPrice)
     total += priceToNum
   } 
-  console.log(cartItems)
+  
   
   const cartTotal = total.toLocaleString('en-US', {
         minimumFractionDigits: 0,
@@ -38,7 +40,7 @@ function CartModal({ closeModal, cartRef }) {
     }
   }
 
-  const displayCartItems =  cartItems?.map(item => (
+  const displayCartItems =  cartItemsSlice?.map(item => (
     <form onSubmit={() => removeTestFromCart(item.id)} key={item.id} className="flex justify-between items-center gap-x-10 bg-greyii lg:p-2 p-1 rounded-lg">
       <p className="flex flex-col justify-center text-base">
         <span className="text-grey mb-2 underline">{item.testName}</span>
@@ -78,7 +80,8 @@ function CartModal({ closeModal, cartRef }) {
       
       {cartItems.length > 0 ?
         <div>
-          <hr className="text-greyiii"/>
+          <hr className="text-greyiii" />
+          
           <p className="flex justify-between my-4">
           <span className="font-bold text-greyiii">Cart Total</span>
           <span className="font-bold">₦ {cartTotal}.00</span>

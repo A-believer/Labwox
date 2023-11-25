@@ -32,11 +32,9 @@ const Login = () => {
         sendEmail(
           currentUser.email,
           "Signed Up Successfully!",
-          `Signed Up Successfully!`,
-          "Welcome to Labwox",
           currentUser.displayName,
           "Your account has been created, you can now order tests",
-          "https://labwox.com.ng/#/testlisting",
+          "https://labwox.com.ng/#/login",
           "Visit Website"
         )
         navigate("/signupsuccess")

@@ -8,10 +8,11 @@ import { UserAuth } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import { decryptId } from '../../config/encrypt';
 import { sendEmail } from '../../emails/sendEmail';
+import { formatCurrency } from '../../config/currencyConverter';
 
 
 function UserProfileOrdersDetails() {
-    const { currentUser, userData} = UserAuth()
+  const { currentUser, userData } = UserAuth()
   const [order, setOrder] = useState([])
   const [shipping, setShipping] = useState("")
   const [loading, setLoading] = useState(false)
@@ -39,7 +40,30 @@ function UserProfileOrdersDetails() {
   
     useEffect(() => {
       getOrder()
-  }, [])
+    }, [])
+  
+  function applyDiscount(order, length) {
+    let discountedPrice;
+    if (length > 9 && length < 20) {
+      discountedPrice = order * 0.95
+    } 
+      else if (length > 19 && length < 29) {
+      discountedPrice = order * 0.92
+    } 
+      else if (length === 30 && length < 49) {
+      discountedPrice = order * 0.9
+    } 
+      else if (length >= 50) {
+      discountedPrice = order * 0.85
+    } else {
+      discountedPrice = order
+    }
+    return discountedPrice
+  }
+
+  console.log(applyDiscount(20000, 10))
+
+    
 
     async function payWithPaystack() {
      const paystack = new PaystackPop()
@@ -80,7 +104,7 @@ Please proceed to:
     if (order?.deliveryDetails?.deliveryOption === "Drop Off") {
       details = <p><span className='font-semibold'>Delivery Address: </span><span>Address: 2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos</span> </p>
       setShipping(details)
-      setAmount(Number(order.cartTotal))
+      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart.length))
     }
     if(order?.deliveryDetails?.deliveryOption === "Agent Pick Up"){
      details = <div className='flex flex-col gap-y-4'>
@@ -90,7 +114,7 @@ Please proceed to:
         <p><span className='font-semibold'>Shipping Fee: </span><span>₦ 5,000.00</span></p>
       </div>
       setShipping(details)
-      setAmount(order?.cartTotal)
+      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart.length))
     }
     setShipping(details)
   }, [order.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
@@ -134,13 +158,13 @@ Please proceed to:
               
         <div className='ml-4 text-blackii text-base w-fit'>
             <h3 className='text-xl font-bold'>Cart Total</h3>
-          <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>₦ {order?.cartTotal?.toLocaleString()}.00</span></p>
+          <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>₦ {formatCurrency(amount)}.00</span></p>
           
           <div className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Shipping</span> <div>{shipping}</div></div>
 
           <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Status:</span> <span>{order?.orderStatus}</span></p>
 
-            <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Order Total</span> <span className='font-bold'>₦ {amount.toLocaleString()}.00</span></p>
+            <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Order Total</span> <span className='font-bold'>₦ {formatCurrency(amount)}.00</span></p>
               </div>
         <div className='flex gap-5 flex-col lg:flex-row mt-4 ml-4'>
           {order.orderStatus === "Paid" ? <button type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Print Receipt</button>
