@@ -16,11 +16,11 @@ import { removeItemFromOrder } from "../../utils/cartSlice";
 function UserProfileOrders() {
   const [orders, setOrders] = useState(null)
   const [loading, setLoading] = useState(true)
-  const { currentUser, userData } = UserAuth()
+  const { currentUser } = UserAuth()
   const orderItems = useSelector(state => state.order.items);
   const dispatch = useDispatch();
 
-  const orderRef = query(collection(db, "order"),where("userId", "==", userData.id))
+  const orderRef = query(collection(db, "order"),where("userId", "==", currentUser.uid))
    async function getOrders() {
       setLoading(true)
     try {

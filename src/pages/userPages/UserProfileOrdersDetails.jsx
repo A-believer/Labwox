@@ -26,13 +26,17 @@ function UserProfileOrdersDetails() {
  console.log(decryptId(id))
  console.log(order)
 
-  const orderRef = doc(db, "order", decryptId(id))
+  useEffect(() => {
+      const orderRef = doc(db, "order", decryptId(id))
+
+  console.log(orderRef)
   async function getOrder() {
       setLoading(true)
       try {
         const newOrder = await getDoc(orderRef)
+        console.log(newOrder.data())
         if (newOrder.exists()) {
-          setOrder({ id: id, ...newOrder.data() })
+          setOrder({ id: newOrder.id, ...newOrder.data()})
         }
         setLoading(false)
         } catch (err) {
@@ -40,8 +44,6 @@ function UserProfileOrdersDetails() {
     }
     
   }
-  
-    useEffect(() => {
       getOrder()
     }, [])
   
@@ -67,7 +69,8 @@ function UserProfileOrdersDetails() {
 
     
 
-    async function payWithPaystack() {
+  async function payWithPaystack() {
+      const orderRef = doc(db, "order", decryptId(id))
      const paystack = new PaystackPop()
         await paystack.newTransaction({
           key: "pk_live_7d1a10bd189ae156ac3c3f360f851600f70b439e",
@@ -161,7 +164,8 @@ Please proceed to:
               
         <div className='ml-4 text-blackii text-base w-fit'>
             <h3 className='text-xl font-bold'>Cart Total</h3>
-          <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>₦ {formatCurrency(amount)}.00</span></p>
+              <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>
+                ₦ {formatCurrency(amount)}.00</span></p>
           
           <div className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Shipping</span> <div>{shipping}</div></div>
 

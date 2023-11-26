@@ -90,7 +90,7 @@ useEffect(() => {
     deliveryDetails: shippingDetails,
     cartTotal: total + shippingFee,
     userName: loading && userData.firstName ,
-    id: orderId,
+    id: `${userData.firstName}-${orderId}`,
     userId: loading && userData.id,
     orderStatus: "Unpaid"
   }
