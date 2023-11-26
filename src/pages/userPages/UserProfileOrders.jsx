@@ -48,8 +48,7 @@ function UserProfileOrders() {
   async function removeTestFromCart(id) {
 dispatch(removeItemFromOrder((id)))
     try {
-       await deleteDoc(doc(db, 'order', decryptId(id)));
-      
+       await deleteDoc(doc(db, 'order', id));
       toast.error('Order removed!');
     } catch (error) {
       console.error(error.message)
@@ -70,7 +69,7 @@ dispatch(removeItemFromOrder((id)))
           <div key={i} className="bg-white flex lg:flex-row flex-col justify-between lg:px-10 lg:py-4 p-3 mt-3 shadow-2xl rounded-md">
              <div className="flex lg: md:flex-col flex-row items-center justify-between">
                <p className="flex flex-col text-grey text-base">
-                <span className="text-lg">labwox-#{order.refId}</span>
+                <span className="text-lg">labwox-#{order.id}</span>
                 <span className="my-1">
                   {order.createdAt}
                 </span>
@@ -84,7 +83,7 @@ dispatch(removeItemFromOrder((id)))
         </div>
              
         <Link
-          to={encryptId(order.id)}
+          to={encryptId(order.refId)}
           className={`flex items-center gap-x-2 text-yellow lg:self-start self-end lg:mt-0 mt-4`}>
           <span>View Details</span>
           <span className="text-orange"><AiOutlineArrowRight/></span>

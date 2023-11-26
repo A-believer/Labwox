@@ -15,7 +15,7 @@ function CartModal({ closeModal, cartRef }) {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-const cartItemsSlice = cartItems.slice(0, 5)
+const cartItemsSlice = cartItems.slice(0, 3)
 
   // total price of items in cart 
   let total = 0

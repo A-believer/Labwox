@@ -41,7 +41,7 @@ function Cart() {
   const [discountModal, setDiscountModal] = useState(false)
   const discountRef = useRef(null);
 
-  const orderId = uuidv4().split("").slice(24, 35).join("")
+
 
   // discount modal close 
   const handleClickOutside = (e) => {
@@ -82,7 +82,10 @@ useEffect(() => {
   let serverTime = new Date()
   const dateStamp = serverTime.toDateString()
   const timeStamp = serverTime.toLocaleTimeString()
-  
+
+  let uniqueId = uuidv4();
+  const orderId = uniqueId.split("").slice(0, 8).join("")
+  const orderRefId = `${userData.firstName}-${orderId}`
   
   const details = {
     createdAt: `${dateStamp}, ${timeStamp}`,
@@ -90,8 +93,8 @@ useEffect(() => {
     deliveryDetails: shippingDetails,
     cartTotal: total + shippingFee,
     userName: loading && userData.firstName ,
-    id: `${userData.firstName}-${orderId}`,
-    refId: orderId,
+    id: orderId,
+    refId: orderRefId,
     userId: loading && userData.id,
     orderStatus: "Unpaid"
   }
@@ -138,7 +141,7 @@ useEffect(() => {
     dispatch(addItemToOrder(orderDetails))
      dispatch(clearCart())
    try {
-     await setDoc(doc(db, 'order', `${userData.firstName}-${orderId}`), orderDetails);
+     await setDoc(doc(db, 'order', orderDetails.refId), orderDetails);
      navigate(`/userprofile/orders`)
       
     } catch (err) {

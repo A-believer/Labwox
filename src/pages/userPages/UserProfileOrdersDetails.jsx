@@ -133,7 +133,7 @@ Please proceed to:
         <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
         :
         <>
-          <p className="text-blackii font-medium text-lg lg:text-2xl lg:mb-4 lg:mt-0 my-4">Order Details #{order?.refId}</p>
+          <p className="text-blackii font-medium text-lg lg:text-2xl lg:mb-4 lg:mt-0 my-4">Order Details #{order?.id}</p>
           <div className='bg-white lg:pb-10 pb-4'>
         <table className='table-auto w-full'>
         <thead className='bg-whitebgv border-b border-grey/30 text-base font-light text-grey leading-normal'>
