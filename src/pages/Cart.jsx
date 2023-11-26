@@ -11,7 +11,7 @@ import { collection, deleteDoc, doc, getDocs, query,  setDoc, where } from 'fire
 import { db } from '../config/firebaseConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
-import { v1 as uuidv1 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { formatCurrency } from '../config/currencyConverter';
 import { sendEmail } from '../emails/sendEmail';
 import { GoQuestion } from "react-icons/go";
@@ -41,7 +41,7 @@ function Cart() {
   const [discountModal, setDiscountModal] = useState(false)
   const discountRef = useRef(null);
 
-  const orderId = uuidv1().split("").slice(24, 35).join("")
+  const orderId = uuidv4().split("").slice(24, 35).join("")
 
   // discount modal close 
   const handleClickOutside = (e) => {

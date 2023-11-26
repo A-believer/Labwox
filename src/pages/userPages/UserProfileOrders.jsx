@@ -70,7 +70,7 @@ dispatch(removeItemFromOrder((id)))
           <div key={i} className="bg-white flex lg:flex-row flex-col justify-between lg:px-10 lg:py-4 p-3 mt-3 shadow-2xl rounded-md">
              <div className="flex lg: md:flex-col flex-row items-center justify-between">
                <p className="flex flex-col text-grey text-base">
-                <span className="text-lg">labwox-{order.id}</span>
+                <span className="text-lg">labwox-#{order.refId}</span>
                 <span className="my-1">
                   {order.createdAt}
                 </span>
