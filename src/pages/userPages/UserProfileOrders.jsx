@@ -16,11 +16,11 @@ import { removeItemFromOrder } from "../../utils/cartSlice";
 function UserProfileOrders() {
   const [orders, setOrders] = useState(null)
   const [loading, setLoading] = useState(true)
-  const { currentUser } = UserAuth()
+  const { currentUser, userData } = UserAuth()
   const orderItems = useSelector(state => state.order.items);
   const dispatch = useDispatch();
 
-  const orderRef = query(collection(db, "order"), where(`userName`, "==", `${currentUser.displayName}`))
+  const orderRef = query(collection(db, "order"),where("userId", "==", userData.id))
    async function getOrders() {
       setLoading(true)
     try {
@@ -43,7 +43,7 @@ function UserProfileOrders() {
     getOrders()
   }, [])
 
-  console.log(orderItems)
+  console.log(orders)
   
   async function removeTestFromCart(id) {
 dispatch(removeItemFromOrder((id)))
@@ -66,7 +66,7 @@ dispatch(removeItemFromOrder((id)))
       :
       <div className="relative w-full">
 
-         {orderItems.length > 0 ? orderItems?.map((order, i) => (
+         {orders.length > 0 ? orders?.map((order, i) => (
           <div key={i} className="bg-white flex lg:flex-row flex-col justify-between lg:px-10 lg:py-4 p-3 mt-3 shadow-2xl rounded-md">
              <div className="flex lg: md:flex-col flex-row items-center justify-between">
                <p className="flex flex-col text-grey text-base">

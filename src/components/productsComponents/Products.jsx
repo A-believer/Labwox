@@ -43,8 +43,8 @@ const Products = ({ tests }) => {
           </div>
           <div className="lg:text-xl text-lg leading-6 text-blackii font-medium">
             <p>Category: <span className="text-grey font-normal lg:text-lg text-base">{ test.category}</span></p>
-            <p>Parameters: </p>
-            <p className="text-grey font-normal lg:text-lg text-base">{test.parameters}</p>
+            <p>Parameters: <span className="text-grey font-normal lg:text-lg text-base">{test.parameters}</span></p>
+            
           </div>  
         </div>
         

@@ -137,7 +137,7 @@ useEffect(() => {
     dispatch(addItemToOrder(orderDetails))
      dispatch(clearCart())
    try {
-     await setDoc(doc(db, 'order', orderId), orderDetails);
+     await setDoc(doc(db, 'order', `${userData.firstName}-${orderId}`), orderDetails);
      navigate(`/userprofile/orders`)
       
     } catch (err) {
