@@ -20,7 +20,7 @@ function CartShipping({ shippingOption, onOptionChange }) {
           id="dropOff"
         className="place-self-start mt-2"/>
         <p className="flex flex-col text-left">
-          <b>Drop Off Sample by Yourself</b>
+          <b>Drop Off Sample</b>
           <span className="text-grey">
             2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos.
           </span>

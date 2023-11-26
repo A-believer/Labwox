@@ -321,7 +321,7 @@ useEffect(() => {
                 <p className='pt-4 flex flex-col mt-5'>
                   <span className='flex items-center gap-x-1'>Did you know you can get discounts?<GoQuestion className='text-orange cursor-pointer' onClick={()=> setDiscountModal(prev => !prev)}/></span>
                   <i className='text-[12px] text-orange'>Discounts are applied at checkout!</i>
-                  {discountModal && <Discount discountRef={discountRef} />}
+                  {discountModal && <Discount discountRef={discountRef} displayModal={discountModal} />}
                 </p>
           </div>
           

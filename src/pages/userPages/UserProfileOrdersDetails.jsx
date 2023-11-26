@@ -13,7 +13,7 @@ import { formatCurrency } from '../../config/currencyConverter';
 
 function UserProfileOrdersDetails() {
   const { currentUser, userData } = UserAuth()
-  const [order, setOrder] = useState([])
+  const [order, setOrder] = useState(null)
   const [shipping, setShipping] = useState("")
   const [loading, setLoading] = useState(false)
   const [paymentStatus, setPaymentStatus] = useState(false)
@@ -23,19 +23,22 @@ function UserProfileOrdersDetails() {
   const firstName = userData.firstName
   const lastName = userData.lastName
  
- 
+ console.log(decryptId(id))
+ console.log(order)
+
   const orderRef = doc(db, "order", decryptId(id))
   async function getOrder() {
       setLoading(true)
       try {
         const newOrder = await getDoc(orderRef)
         if (newOrder.exists()) {
-          setOrder({ id: newOrder.id, ...newOrder.data() })
+          setOrder({ id: id, ...newOrder.data() })
         }
+        setLoading(false)
         } catch (err) {
-            console.error(err)
+            console.error(err.message)
     }
-    setLoading(false)
+    
   }
   
     useEffect(() => {
@@ -61,7 +64,6 @@ function UserProfileOrdersDetails() {
     return discountedPrice
   }
 
-  console.log(applyDiscount(20000, 10))
 
     
 
@@ -104,7 +106,7 @@ Please proceed to:
     if (order?.deliveryDetails?.deliveryOption === "Drop Off") {
       details = <p><span className='font-semibold'>Delivery Address: </span><span>Address: 2B Awori Close, Akora Villas off Adeniyi Jones, Ikeja, Lagos</span> </p>
       setShipping(details)
-      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart.length))
+      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart?.length))
     }
     if(order?.deliveryDetails?.deliveryOption === "Agent Pick Up"){
      details = <div className='flex flex-col gap-y-4'>
@@ -114,20 +116,21 @@ Please proceed to:
         <p><span className='font-semibold'>Shipping Fee: </span><span>₦ 5,000.00</span></p>
       </div>
       setShipping(details)
-      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart.length))
+      setAmount(applyDiscount(Number(order?.cartTotal), order?.cart?.length))
     }
     setShipping(details)
-  }, [order.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
+  }, [order?.cartTotal, order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
   
    
 
 
   return (
     <section className=" w-full h-full">
-      {loading &&
-        <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>}
-        
-          <p className="text-blackii font-medium text-lg lg:text-2xl lg:mb-4 lg:mt-0 my-4">Order Details #{order.id}</p>
+      {loading ?
+        <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>
+        :
+        <>
+          <p className="text-blackii font-medium text-lg lg:text-2xl lg:mb-4 lg:mt-0 my-4">Order Details #{order?.id}</p>
           <div className='bg-white lg:pb-10 pb-4'>
         <table className='table-auto w-full'>
         <thead className='bg-whitebgv border-b border-grey/30 text-base font-light text-grey leading-normal'>
@@ -167,13 +170,15 @@ Please proceed to:
             <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Order Total</span> <span className='font-bold'>₦ {formatCurrency(amount)}.00</span></p>
               </div>
         <div className='flex gap-5 flex-col lg:flex-row mt-4 ml-4'>
-          {order.orderStatus === "Paid" ? <button type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Print Receipt</button>
+          {order?.orderStatus === "Paid" ? <button type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Print Receipt</button>
             :
            <button disabled={paymentStatus} onClick={payWithPaystack} type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Pay Now</button> }
                   
             <NavLink to={`samplesheet`} className='text-orange bg-white py-2 px-6 rounded border border-orange text-center'>View Sample Sheet</NavLink>
               </div>
       </div>
+        </>
+          }
       <ToastContainer/>
       </section>
   )
