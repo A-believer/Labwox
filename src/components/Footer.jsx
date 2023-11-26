@@ -1,5 +1,5 @@
 import footerLogo from "../assets/Logoft.png"
-import { Link, NavLink } from "react-router-dom"
+import {  NavLink } from "react-router-dom"
 import arrow from "../assets/arrow.png"
 import { ImFacebook } from 'react-icons/im';
 import { ImInstagram } from 'react-icons/im';

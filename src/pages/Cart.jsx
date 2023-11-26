@@ -91,6 +91,7 @@ useEffect(() => {
     cartTotal: total + shippingFee,
     userName: loading && userData.firstName ,
     id: `${userData.firstName}-${orderId}`,
+    refId: orderId,
     userId: loading && userData.id,
     orderStatus: "Unpaid"
   }
