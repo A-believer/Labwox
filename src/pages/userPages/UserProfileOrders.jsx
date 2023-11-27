@@ -74,7 +74,8 @@ dispatch(removeItemFromOrder((id)))
                   {order.createdAt}
                 </span>
                 <span className="text-blackii font-bold">₦{Number(order.cartTotal).toLocaleString('en-US')}</span>
-                  <span className="text-[#66C27C]">{order?.orderStatus}</span>
+                 <span className={`${order?.orderStatus === "Unpaid" && "text-red-800"} ${order?.orderStatus === "Incomplete" && "text-orange"} ${order?.orderStatus === "Paid" && "text-[#66C27C]"}`}>
+                   {order?.orderStatus}</span>
                </p>
                <button type="button" onClick={() => removeTestFromCart(order.id)} className="self-start flex  items-center gap-x-4 text-red-500 py-5">
                  <TbTrashXFilled />

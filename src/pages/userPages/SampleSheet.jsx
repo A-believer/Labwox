@@ -54,7 +54,7 @@ export default function SampleSheet() {
               <div className="text-center w-full h-[60vh] lg:px-5 pl-2 lg:py-5 py-2 lg:my-0 my-2 rounded shadow-2xl flex items-center justify-center animate-pulse lg:text-6xl text-4xl">Loading...</div>}
           
           <div className="" >
-              <Link to={`/userprofile/orders/${encryptId(order.id)}`} className="flex items-center lg:text-2xl text-lg gap-x-3 text-blackii lg:mb-6 lg:mt-0 my-3"><BsArrowLeft /> Sample Sheet</Link>
+              <Link to={`/userprofile/orders/${encryptId(order.refId)}`} className="flex items-center lg:text-2xl text-lg gap-x-3 text-blackii lg:mb-6 lg:mt-0 my-3"><BsArrowLeft /> Sample Sheet</Link>
               <div className="bg-white px-5 py-4 print-content" >
                   <div className="flex justify-between lg:flex-row flex-col">
                   <div className="mb-8">
@@ -68,7 +68,7 @@ export default function SampleSheet() {
                               <span className="whitespace-normal">labwox-{order.id}</span></p>
                           <p className="grid auto-cols-fr grid-cols-2 my-4 gap-x-4 whitespace-nowrap">
                               <span>Order Status</span>
-                              <span className="whitespace-normal">{ order.orderStatus}</span></p>
+                              <span className={`${order?.orderStatus === "Unpaid" && "text-red-800"} ${order?.orderStatus === "Incomplete" && "text-orange"} ${order?.orderStatus === "Paid" && "text-[#66C27C]"} whitespace-normal`}>{ order.orderStatus}</span></p>
                           <p className="grid auto-cols-fr grid-cols-2 my-4 gap-x-4 whitespace-normal">
                               <span>Shipping Address</span>
                               <span className="whitespace-normal">{shipping}</span></p>

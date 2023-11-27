@@ -60,7 +60,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   }
 
-  console.log(currentUser)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -68,7 +67,6 @@ export const AuthContextProvider = ({ children }) => {
             const newData = await getDoc(doc(db, "userInfo", user.uid))
             if (newData.exists()) {
               setUserData(newData.data())
-              console.log("user")
         } 
         setCurrentUser(user)
       setLoading(true)
