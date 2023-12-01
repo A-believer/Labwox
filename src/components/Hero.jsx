@@ -5,6 +5,7 @@ import heroImg from "../assets/heroImg.png"
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from "../config/firebaseConfig"
 import { Link } from "react-router-dom"
+import { encryptId } from "../config/encrypt"
 
 const Hero = () => {
   const [tests, setTests] = useState([])
@@ -101,7 +102,7 @@ const Hero = () => {
             {results?.map((test, index) => (
             <Link
                   key={index}
-                to={`/testlisting/${test.id}`}
+                to={`/testlisting/${encryptId(test.id)}`}
                 className="italic text-lg"
                   >
                 <div>

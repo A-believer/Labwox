@@ -24,7 +24,7 @@ const Footer = () => {
 
   
   return (
-    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col`}>
+    <footer className={`font-aeon lg:px-[60px] px-[25px] lg:pt-[70px] pt-[24px] lg:pb-[70px] pb-[24px] bg-black flex flex-col z-50`}>
       
       {/* Logo */}
       <div className="w-[93px] h-[34px]">

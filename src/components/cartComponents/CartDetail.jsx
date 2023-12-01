@@ -60,9 +60,9 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
 
 
   return (
-    <div className="bg-blackii/50 absolute left-0 top-0 w-full h-fit lg:text-lg text-sm flex justify-center item-center py-12">
+    <div className="bg-blackii/50 fixed left-0 top-0 w-full h-screen lg:text-lg text-sm flex justify-center item-center pt-32 z-auto">
       <div
-      className="bg-white lg:w-[400px] w-[300px] mx-auto my-auto outline-orange outline-4 border-2 border-grey/90 rounded-lg mt-10">
+      className="bg-white lg:w-[400px] w-[300px] mx-auto my-auto outline-orange border-2 border-grey/90 rounded-lg mt-10 shadow-2xl">
       
         <form onSubmit={addTestToCart} className="lg:p-8 px-5 py-8 flex flex-col gap-y-5">
           <div className="flex justify-between px-5 items-center">

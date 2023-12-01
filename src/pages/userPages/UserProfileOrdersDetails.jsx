@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
@@ -24,8 +26,109 @@ function UserProfileOrdersDetails() {
   const email = userData.email
   const firstName = userData.firstName
   const lastName = userData.lastName
- 
+  const orderRef = doc(db, "order", decryptId(id))
+  const paystack = new PaystackPop()
+  const paystackApiKey = import.meta.env.VITE_PAYSTACK_KEY
+  
+  async function completePayWithPaystack() {
+    await paystack.newTransaction({
+      key: paystackApiKey,
+          amount: applyDiscount(amount, order?.cart?.length) * 100,
+          email,
+          firstName,
+      lastName,
+      onSuccess(transaction) {
+             updateDoc(orderRef, {
+             orderStatus: "Paid", 
+             orderReference: transaction.reference
+            })
 
+            sendEmail(
+        currentUser.email,
+        "Payment Completed Successfully!",
+        currentUser.displayName,
+        `
+        Your payment for order <b><i>#${decryptId(id)}</i></b> has been made successfully. 
+        Please proceed to:
+        `,
+        `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
+        "View Reciept"
+            )
+            
+            setPaymentStatus(true)
+            toast.success(`Payment Successfully Completed ${transaction.reference}, check your mail for receipt`)
+          }
+    })
+  }
+  
+  async function payWithPaystack() {
+    if (partPayment) {
+      await paystack.newTransaction({
+          key: paystackApiKey,
+          amount:applyDiscount(amount, order?.cart?.length) * 100,
+          email,
+          firstName,
+          lastName,
+        onSuccess(transaction) {
+            updateDoc(orderRef, {
+              orderStatus: "Incomplete",
+              orderReference: transaction.reference
+            })
+            console.log(transaction)
+            setPartPaymentCheck(false)
+            setPartPayment(false)
+            setAmount(order.cartTotal * 0.3)
+            sendEmail(
+              currentUser.email,
+              "Payment Completed Successfully!",
+              currentUser.displayName,
+              `
+              Your part payment for order <b><i>#${decryptId(id)}</i></b> has been made successfully. 
+              Please proceed to:
+              `,
+              `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
+              "Complete Payment"
+            )
+            toast.success(`Payment Successful ${transaction.reference}, check your mail for receipt`)
+        },
+        onCancel() {
+          toast.error("transaction cancelled")
+        } 
+    })
+    } else {
+      await paystack.newTransaction({
+          key: paystackApiKey,
+          amount:applyDiscount(amount, order?.cart?.length) * 100,
+          email,
+          firstName,
+          lastName,
+        onSuccess(transaction) {
+           updateDoc(orderRef, {
+             orderStatus: "Paid", 
+             orderReference: transaction.reference
+            })
+
+            sendEmail(
+        currentUser.email,
+        "Payment Completed Successfully!",
+        currentUser.displayName,
+        `
+        Your payment for order <b><i>#${decryptId(id)}</i></b> has been made successfully. 
+        Please proceed to:
+        `,
+        `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
+        "View Reciept"
+            )
+            
+            setPaymentStatus(true)
+            toast.success(`Payment Successfully Completed ${transaction.reference}, check your mail for receipt`)
+        },
+        onCancel() {
+          toast.error("transaction cancelled")
+        } 
+    })
+    }
+  }
 
   function handlePartPayment(e) {
     setPartPayment(e.target.checked)
@@ -44,7 +147,6 @@ function UserProfileOrdersDetails() {
         } catch (err) {
             console.error(err.message)
     }
-    
   }
       getOrder()
     }, [])
@@ -68,81 +170,30 @@ function UserProfileOrdersDetails() {
     return discountedPrice
   }
 
-
-  useEffect(() => {
-    let amountToBePaid;
+  function intiatePartPayment() {
+    
     if (partPayment) {
-      amountToBePaid = order?.cartTotal * 0.7
-    }else {
-      amountToBePaid = order?.cartTotal
+     setAmount(order?.cartTotal * 0.7)
+    }  else {
+      setAmount(order?.cartTotal)
     }
-    if (!partPaymentCheck) {
-      amountToBePaid = order?.cartTotal * 0.3 
-    } else {
-      amountToBePaid = order?.cartTotal
-    }
-    console.log(amountToBePaid)
-    setAmount(applyDiscount(amountToBePaid, order?.cart?.length))
-  },  [order?.cart?.length, order?.cartTotal, partPayment, partPaymentCheck])
-
-  async function payWithPaystack() {
-      const orderRef = doc(db, "order", decryptId(id))
-     const paystack = new PaystackPop()
-        await paystack.newTransaction({
-          key: "pk_test_3cd589de022087fac93f7324eaf9a53a5e063eec",
-          amount: amount * 100,
-          email,
-          firstName,
-          lastName,
-          onSuccess(transaction) {
-            setPartPaymentCheck(false)
-            if (partPaymentCheck) {
-               updateDoc(orderRef, {
-             orderStatus: "Incomplete", 
-             orderReference: transaction.reference
-            })
-            
-            sendEmail(
-              currentUser.email,
-              "Payment Completed Successfully!",
-              currentUser.displayName,
-              `
-              Your part payment for order <b><i>#${decryptId(id)}</i></b> has been made successfully. 
-              Please proceed to:
-              `,
-              `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
-              "Complete Payment"
-            )
-            toast.success(`Payment Successful ${transaction.reference}, check your mail for receipt`)
-            } else {
-               updateDoc(orderRef, {
-             orderStatus: "Paid", 
-             orderReference: transaction.reference
-            })
-
-            sendEmail(
-        currentUser.email,
-        "Payment Completed Successfully!",
-        currentUser.displayName,
-        `
-        Your payment for order <b><i>#${decryptId(id)}</i></b> has been made successfully. 
-        Please proceed to:
-        `,
-        `https://labwox.com.ng/#/userprofile/orders/${decryptId(id)}`,
-        "View Reciept"
-            )
-            
-            setPaymentStatus(true)
-            toast.success(`Payment Successful ${transaction.reference}, check your mail for receipt`)
-            }
-          },
-          onCancel() {
-            toast.error("transaction cancelled")
-          }
-    })
+    
   }
 
+  
+
   useEffect(() => {
+    if (order?.orderStatus === "Paid") {
+    setAmount(0)
+  }
+    else if (order?.orderStatus === "Incomplete") {
+      setAmount(order?.cartTotal * 0.3)
+    } else {
+    intiatePartPayment()
+    }
+  })
+  
+useEffect(() => {
     let details;
     
     if (order?.deliveryDetails?.deliveryOption === "Drop Off") {
@@ -159,10 +210,6 @@ function UserProfileOrdersDetails() {
     }
     setShipping(details)
   }, [order?.deliveryDetails?.contactNumber, order?.deliveryDetails?.deliveryAddress, order?.deliveryDetails?.deliveryOption, order?.deliveryDetails?.locationLandmark])
-  
- 
-
-
 
 
   return (
@@ -198,13 +245,13 @@ function UserProfileOrdersDetails() {
                 ))}
               </table>
               
-              <hr className='mt-10 mb-2 text-greyiii/40 lg:mx-1 mx-0' />
               
-            <div className='ml-4 text-blackii text-base w-fit'>
+              
+            <div className='ml-4 text-blackii text-base w-fit mt-10 '>
               
             <h3 className='text-xl font-bold'>Cart Total</h3>
               <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Cart Subtotal</span> <span className='font-bold'>
-                ₦ {formatCurrency(amount)}.00</span></p>
+                ₦ {formatCurrency(order?.cartTotal)}.00</span></p>
           
           <div className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Shipping</span> <div>{shipping}</div></div>
 
@@ -215,21 +262,28 @@ function UserProfileOrdersDetails() {
               </p>
 
               <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Order Total</span> <span className='font-bold'>
+                ₦ {formatCurrency(order?.cartTotal)}.00</span>
+              </p>
+
+              <p className='grid auto-cols-fr  grid-cols-2 my-4 gap-x-4'><span className='font-medium lg:text-lg text-base text-grey'>Amount To Be Paid</span> <span className='font-bold'>
                 ₦ {formatCurrency(amount)}.00</span>
               </p>
 
-              {partPaymentCheck && <label htmlFor="part-payment" className='text-xs flex items-center gap-x-2 italic text-orange'>
+              {order?.orderStatus === "Incomplete" && <label htmlFor="part-payment" className='text-xs flex items-center gap-x-2 italic text-orange'>
                 <input type='checkbox' id='part-payment' className='checked:bg-orange' checked={partPayment}
                 onChange={handlePartPayment}/>
                 <span>Check this box to pay 70% now, 30% later</span>
               </label>}
         </div>
             
-        <div className='flex gap-5 flex-col lg:flex-row mt-4 ml-4'>
+            <div className='flex gap-5 flex-col lg:flex-row mt-4 ml-4'>
+              
           {order?.orderStatus === "Paid" ? <button type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Print Receipt</button>
             :
-              order?.orderStatus === "Incomplete" ?
-                <button disabled={paymentStatus} onClick={payWithPaystack} type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Complete Payment</button> :
+            order?.orderStatus === "Incomplete" ?
+                  <button disabled={paymentStatus}
+                    onClick={completePayWithPaystack} type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Complete Payment</button>
+            :
              <button disabled={paymentStatus} onClick={payWithPaystack} type='submit' className='text-white bg-orange py-2 px-12 rounded border border-orange'>Pay Now</button> }
                   
               <Link to={`samplesheet`} className='text-orange bg-white py-2 px-6 rounded border border-orange text-center'>View Sample Sheet</Link>
