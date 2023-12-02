@@ -28,7 +28,7 @@ function UserProfileOrdersDetails() {
   const lastName = userData.lastName
   const orderRef = doc(db, "order", decryptId(id))
   const paystack = new PaystackPop()
-  const paystackApiKey = "pk_live_7d1a10bd189ae156ac3c3f360f851600f70b439e"
+  const paystackApiKey = import.meta.env.VITE_PAYSTACK_KEY
   
   async function completePayWithPaystack() {
     await paystack.newTransaction({
