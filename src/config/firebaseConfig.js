@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore"
 
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_KEY,
+  apiKey: "AIzaSyA2fY1hRsjWe3625AqWkTAJ2aJ9SBDVGpQ",
   authDomain: "labwox-afa7e.firebaseapp.com",
   projectId: "labwox-afa7e",
   storageBucket: "labwox-afa7e.appspot.com",
