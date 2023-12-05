@@ -16,21 +16,13 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
     sampleType: "",
     sampleName: ""
   })
-  const [error, setError] = useState(false)
+  const [errorSampleName, setErrorSampleName] = useState(false)
+  const [errorSampleType, setErrorSampleType] = useState(false)
   
   const [ready, setReady] = useState(false)
-    const cartId = uniqueId(`${userData.firstName} ${userData.lastName}-`)
-
-  const cartData = {
-    sampleName: cartDetail.sampleName,
-    sampleType: cartDetail.sampleType,
-    testCode: testCode,
-    testName: testTitle,
-    testPrice: testPricing,
-    id: cartId,
-    userId: userData.id
-      }
-
+  const cartId = uniqueId(`${userData.firstName} ${userData.lastName}-`)  
+ 
+ 
   function handleCartDetailChange(e) {
     const { name, value } = e.target
     setCartDetail(prev => ({...prev, [name]: value}))
@@ -39,17 +31,37 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
   async function addTestToCart(e) {
     e.preventDefault()
     setReady(true)
-    if (cartDetail.sampleName !== "" && cartDetail.sampleType !== "") {
-       dispatch(addItem(cartData))
+
+    if (cartDetail.sampleName && cartDetail.sampleType) {
+      const sampleNameArray = cartDetail.sampleName.split(",").map((name) => name.trim())
+      
+      const newSample = sampleNameArray.map((name) => ({
+      sampleName: name,
+    sampleType: cartDetail.sampleType,
+    testCode: testCode,
+    testName: testTitle,
+    testPrice: testPricing,
+    id: cartId,
+    userId: userData.id
+    }))
+
+      newSample.forEach((doc)=> dispatch(addItem(doc)))
+       
       closeCartDetail()
-    try {
-      await setDoc(doc(db, 'userCart', cartId), cartData);
+      console.log(newSample)
+      try {
+      
+      newSample.forEach((test) => {
+           setDoc(doc(db, 'userCart', cartId), test);
+        })
+      
       toast.success('Test added to cart!');
     } catch (err) {
       console.error(err.message)
       }
        } else {
-      setError(true)
+      setErrorSampleName(true)
+      setErrorSampleType(true)
     }
       setCartDetail({
       sampleType: "",
@@ -87,8 +99,8 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
               type="text"
               className="border border-greyiii/50 font-bold w-[80%] rounded pl-2 py-1 border-grey outline-none text-grey" />
           </p>
-          {error &&
-            <p className="text-red italic text-xs text-right">enter a sample name!</p>}
+          {errorSampleName &&
+            <p className="text-red-600 italic text-xs text-right">enter a sample name!</p>}
           
         <p className="flex gap-x-3 items-center">
           <label htmlFor="sampleType" className="text-grey font-bold whitespace-nowrap text-right">Sample Type</label>
@@ -108,8 +120,8 @@ function CartDetail({ closeCartDetail, testCode, testPricing, testTitle  }) {
             <option value="Tissue">Tissue</option>
           </select>
           </p>
-          {error &&
-            <p className="text-red italic text-xs text-right">select a sample type!</p>}
+          {errorSampleType &&
+            <p className="text-red-600 italic text-xs text-right">select a sample type!</p>}
           
           <hr className="text-greyiii/30" />
         <button

@@ -71,7 +71,7 @@ const Footer = () => {
           <div>
             <p className="text-white lg:text-[24px] font-bold lg:leading-[28.8px] mb-[20px]">Contact Us</p>
             <ul className="text-white/50 leading-[40px] lg:text-[18px] text-[14px]">
-              <li className="underline decoration-white/50 underline-offset-4"><a href="#mail">info@labwox.com</a></li>
+              <li className="underline decoration-white/50 underline-offset-4"><a href="#mail">info@labwox.com.ng</a></li>
               <li>(+234)9034956049</li>
               <li>(+234)8090870364</li>
             </ul>
