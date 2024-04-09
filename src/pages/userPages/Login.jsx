@@ -3,35 +3,56 @@ import Logo from "../../assets/Logo.png";
 import { UserAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import { UserHero } from "../../components";
-import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from 'zod';
+
+const signInFormSchema = z.object({
+    email: z
+        .string()
+        .min(1, 'Email is required')
+        .email('Invalid email'),
+    password: z
+        .string()
+        .min(1, 'Password is required')
+        .min(8, 'Password must have than 8 characters!')
+})
+
+
 
 const Login = () => {
-  const initialFormData = {
-    email: "",
-    password: "",
-  };
-  const [formData, setFormData] = useState(initialFormData);
+
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-  const { signIn, currentUser } = UserAuth();
+  const { signIn, error } = UserAuth();
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  }
+ const {
+    register,
+    handleSubmit,
+   formState: { errors },
+    reset
+  } = useForm({
+    resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  })
 
-  async function handleSignIn(e) {
-    e.preventDefault();
+  async function handleSignIn(data) {
+    setLoading(true)
     try {
-      if (currentUser) {
-        navigate("/");
-        setFormData(initialFormData);
+      await signIn(data.email, data.password);
+      if (error === null) {
+        setLoading(false)
       } else {
-        await signIn(formData.email, formData.password);
-        navigate("/");
-        toast.success("You're successfully logged in 🎊");
+        navigate('/')
+        reset()
+        setLoading(false)
       }
     } catch (err) {
-      console.error(err.message);
+      setLoading(false)
     }
   }
   return (
@@ -39,7 +60,7 @@ const Login = () => {
       <UserHero />
 
       <form
-        onSubmit={handleSignIn}
+        onSubmit={handleSubmit(handleSignIn)}
         className="lg:w-1/2 w-full lg:h-screen h-full lg:p-12 py-10 lg:px-20 px-10 flex flex-col justify-center items-stretch  gap-y-10 overflow-scroll"
       >
         <Link to="/">
@@ -65,13 +86,13 @@ const Login = () => {
         >
           <span>Email</span>
           <input
-            value={formData.email}
-            onChange={handleChange}
+            {...register("email")}
             name="email"
             type="email"
             placeholder="enter your email..."
-            className="rounded outline-none p-2  border border-grey"
+            className={`rounded outline-none p-2 ${errors.email ? "border border-red-600" : "border border-grey"}  border border-grey`}
           />
+          <p className="text-red-600 text-xs italic">{errors.email?.message}</p>
         </label>
 
         <label
@@ -80,16 +101,17 @@ const Login = () => {
         >
           <span>Password</span>
           <input
-            value={formData.password}
-            onChange={handleChange}
+                        {...register("password")}
             name="password"
             type="password"
             placeholder="enter your password..."
-            className="rounded outline-none p-2  border border-grey"
+             className={`rounded outline-none p-2 ${errors.email ? "border border-red-600" : "border border-grey"}  border border-grey`}
           />
+          <p className="text-red-600 text-xs italic">{errors.password?.message}</p>
         </label>
 
         <button
+          disabled={loading}
           type="submit"
           className="bg-orange text-center text-white text-lg font-medium leading-snug p-2.5 rounded mt-4 mb-8"
         >
@@ -108,6 +130,7 @@ const Login = () => {
           </p>
         </div>
       </form>
+      <ToastContainer/>
     </main>
   );
 };

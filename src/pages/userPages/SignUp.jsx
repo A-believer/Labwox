@@ -1,39 +1,57 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
-import { useState } from "react";
 import { UserHero } from "../../components";
 import { UserAuth } from "../../context/AuthContext";
 import { sendEmail } from "../../emails/sendEmail";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from 'zod';
 
-const Login = () => {
-  const initialFormData = {
-    firstName: "",
+const signUpFormSchema = z.object({
+  firstName: z.string().min(2, 'enter more than 2 characters'),
+  lastName: z.string().min(2, 'enter more than 2 characters'),
+    email: z
+        .string()
+        .min(1, 'Email is required')
+        .email('Invalid email'),
+    password: z
+        .string()
+        .min(1, 'Password is required')
+    .min(8, 'Password must have than 8 characters!'),
+  institution: z.string("enter your institutiion"),
+   phoneNumber: z.string().min(11, "enter a valid phone number"). max(14) 
+})
+
+const SignUp = () => {
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signUpFormSchema),
+    defaultValues: {
+       firstName: "",
     lastName: "",
     email: "",
     password: "",
     institution: "",
     phoneNumber: "",
-  };
-  const [formData, setFormData] = useState(initialFormData);
-  const [error, setError] = useState(null);
-  const { createUser, currentUser } = UserAuth();
+    }
+  })
+  const { createUser, currentUser, loading } = UserAuth();
   const navigate = useNavigate();
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSignUp(data) {
     try {
       await createUser(
-        formData.email,
-        formData.password,
-        formData.firstName,
-        formData.lastName,
-        formData.institution,
-        formData.phoneNumber
+        data.email,
+        data.password,
+        data.firstName,
+        data.lastName,
+        data.institution,
+        data.phoneNumber
       );
 
       sendEmail(
@@ -46,9 +64,7 @@ const Login = () => {
       );
       navigate("/signupsuccess");
 
-      setFormData(initialFormData);
     } catch (err) {
-      setError(err.message);
       console.error(err.message);
     }
   }
@@ -58,7 +74,7 @@ const Login = () => {
       <UserHero />
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleSignUp)}
         className="lg:w-1/2 w-full h-full lg:py-10 py-5 lg:px-20 px-8 flex flex-col items-stretch gap-y-5 overflow-scroll"
       >
         <Link to="/">
@@ -70,7 +86,7 @@ const Login = () => {
           />
         </Link>
         <div>
-          <p className="text-black lg:text-[27px] text-xl font-bold">
+          <p className="text-black lg:text-[27px] text-xl  font-bold">
             Create An Account
           </p>
           <p className="lg:text-base text-xs font-normal text-[#777] my-1">
@@ -85,15 +101,15 @@ const Login = () => {
           >
             <span>First Name</span>
             <input
-              value={formData.firstName}
-              onChange={handleChange}
+            {...register("firstName")}
               name="firstName"
               type="text"
               placeholder="enter your first name..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.firstName?.message ? "border-red-600" : "border-grey"
               }`}
             />
+             {errors.firstName?.message && <p className="text-red-600 text-xs italic">{errors.firstName?.message}</p>}
           </label>
 
           <label
@@ -102,15 +118,15 @@ const Login = () => {
           >
             <span>Last Name</span>
             <input
-              value={formData.lastName}
-              onChange={handleChange}
+            {...register("lastName")} 
               name="lastName"
               type="text"
               placeholder="enter your last name..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.lastName?.message ? "border-red-600" : "border-grey"
               }`}
             />
+             {errors.lastName?.message && <p className="text-red-600 text-xs italic">{errors.lastName?.message}</p>}
           </label>
 
           <label
@@ -119,15 +135,15 @@ const Login = () => {
           >
             <span>Email</span>
             <input
-              value={formData.email}
-              onChange={handleChange}
+            {...register("email")} 
               name="email"
               type="email"
               placeholder="enter your email..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.email?.message ? "border-red-600" : "border-grey"
               }`}
             />
+             {errors.email?.message && <p className="text-red-600 text-xs italic">{errors.email?.message}</p>}
           </label>
 
           <label
@@ -136,15 +152,15 @@ const Login = () => {
           >
             <span>Password</span>
             <input
-              value={formData.password}
-              onChange={handleChange}
+            {...register("password")}
               name="password"
               type="password"
               placeholder="enter your password..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.password?.message ? "border-red-600" : "border-grey"
               }`}
             />
+             {errors.password?.message && <p className="text-red-600 text-xs italic">{errors.password?.message}</p>}
           </label>
 
           <label
@@ -153,15 +169,15 @@ const Login = () => {
           >
             <span>Phone Number</span>
             <input
-              value={formData.phoneNumber}
-              onChange={handleChange}
+            {...register("phoneNumber")}
               name="phoneNumber"
               type="tel"
               placeholder="your phone number..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.phoneNumber?.message ? "border-red-600" : "border-grey"
               }`}
             />
+             {errors.phoneNumber?.message && <p className="text-red-600 text-xs italic">{errors.phoneNumber?.message}</p>}
           </label>
 
           <label
@@ -170,20 +186,21 @@ const Login = () => {
           >
             <span>Institution</span>
             <input
-              value={formData.institution}
-              onChange={handleChange}
+            {...register("institution")}
               name="institution"
               type="text"
               placeholder="enter your institution..."
               className={`rounded outline-none p-2  border ${
-                error ? "border-red" : "border-grey"
+                errors.institution?.message ? "border-red-600" : "border-grey"
               }`}
             />
           </label>
-          {error && <p className="text-red font-bold">{error}</p>}
+          {errors.institution?.message && <p className="text-red-600 text-xs italic">{errors.institution?.message}</p>}
         </div>
 
         <button
+          disabled={loading}
+          
           type="submit"
           className="bg-orange text-center text-white text-lg font-medium leading-snug p-2.5 rounded mt-4 mb-8 border-none outline-none"
         >
@@ -203,4 +220,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

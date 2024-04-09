@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../config/firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
@@ -16,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null)
 
   const createUser = async (
     email,
@@ -57,8 +59,11 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       setCurrentUser(userCred.user);
+        toast.success(`Welcome, Login Successful. `)
     } catch (error) {
       console.error(error.message);
+      setError(error.message)
+      toast.error("Oops! Something went wrong!")
     }
   };
   const logout = async () => {
@@ -87,7 +92,7 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
-  const value = { createUser, signIn, currentUser, userData, loading, logout };
+  const value = { createUser, signIn, currentUser, userData, loading, logout,error };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
