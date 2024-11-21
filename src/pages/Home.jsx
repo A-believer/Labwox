@@ -24,7 +24,7 @@ const Home = () => {
     location.pathname === `/userprofile/orders/:${id}/samplesheet` || 
     location.pathname === "/cart")
   return (
-    <main className="max-w-[1440px] mx-auto">
+    <main className="max-w-[1520px] mx-auto">
       {!displayCheckNavabar ? <Navbar /> : null}
       <Outlet />
       {!displayCheckFooter ? <Footer/> : null}
